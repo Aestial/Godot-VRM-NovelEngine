@@ -1,0 +1,20 @@
+[gd_resource type="Environment" format=3 uid="uid://loc7egiabhbn"]
+
+[resource]
+background_mode = 1
+background_color = Color(0.577137, 0.333197, 0.423574, 1)
+background_energy_multiplier = 1.1
+ambient_light_source = 2
+ambient_light_color = Color(0.840893, 0.761058, 0.81823, 1)
+ambient_light_energy = 1.65
+tonemap_white = 2.72
+fog_mode = 1
+fog_light_energy = 2.55
+fog_sun_scatter = 0.2
+fog_density = 1.0
+volumetric_fog_density = 0.075
+volumetric_fog_temporal_reprojection_enabled = false
+adjustment_enabled = true
+adjustment_brightness = 1.05
+adjustment_contrast = 1.02
+adjustment_saturation = 1.5

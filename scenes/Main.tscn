@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4jw7etvdxnx1"]
+
+[ext_resource type="PackedScene" uid="uid://belrofiecshvl" path="res://scenes/arch_linux_chan.scn" id="1_elqb8"]
+[ext_resource type="Environment" uid="uid://loc7egiabhbn" path="res://scenes/main_environment.tres" id="1_rvslj"]
+[ext_resource type="CameraAttributesPractical" uid="uid://griw7imxte1w" path="res://scenes/main_camera_attributes_practical.tres" id="2_0bbpv"]
+
+[node name="Base" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_rvslj")
+camera_attributes = ExtResource("2_0bbpv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.994522, 0.104528, 0, -0.104528, 0.994522, 0, 1.25, 2)
+current = true
+fov = 30.0
+near = 0.01
+far = 100.0
+
+[node name="ArchLinux-Chan" parent="." instance=ExtResource("1_elqb8")]
+
+[node name="GeneralSkeleton" parent="ArchLinux-Chan/archlinux-chan_v0_1_1" index="0"]
+bones/1/position = Vector3(-0.0154243, 0.817134, 0.000152536)
+bones/1/rotation = Quaternion(-0.0500974, -0.128479, 0.0938947, 0.985986)
+bones/2/rotation = Quaternion(0.0705884, -0.0202693, -0.00723313, 0.997273)
+bones/3/rotation = Quaternion(0.0294196, -1.53881e-05, -0.0667895, 0.997333)
+bones/4/rotation = Quaternion(0.0292371, -0.000736577, -0.0668067, 0.997337)
+bones/11/rotation = Quaternion(-0.0767937, 0.0502993, -0.0492478, 0.994559)
+bones/12/rotation = Quaternion(-0.0614442, 0.204603, 0.0368734, 0.976218)
+bones/72/rotation = Quaternion(0.505124, 0.535862, 0.355372, -0.575684)
+bones/73/rotation = Quaternion(0.040918, 0.988801, -0.0132878, 0.142908)
+bones/74/rotation = Quaternion(0.0378836, -0.709464, 0.0378836, 0.702702)
+bones/75/rotation = Quaternion(0.0376946, 0.731535, -0.075387, 0.676574)
+bones/76/rotation = Quaternion(0.142343, -1.25358e-05, -0.017178, 0.989668)
+bones/77/rotation = Quaternion(0.110547, 1.34677e-05, -0.0133409, 0.993781)
+bones/78/rotation = Quaternion(0.0946044, -9.45882e-07, -0.0114169, 0.99545)
+bones/79/rotation = Quaternion(0.189538, 0.00774321, -0.0580949, 0.980123)
+bones/80/rotation = Quaternion(0.166787, 0.00644821, 0.0152951, 0.985853)
+bones/81/rotation = Quaternion(0.146687, 0.000518425, -0.0177026, 0.989024)
+bones/82/rotation = Quaternion(0.157506, -1.00023e-05, -0.0190079, 0.987335)
+bones/83/rotation = Quaternion(0.127876, -2.64415e-06, -0.0154321, 0.99167)
+bones/84/rotation = Quaternion(0.11038, 2.15906e-06, -0.0133207, 0.9938)
+bones/85/rotation = Quaternion(0.177454, 2.15633e-06, -0.0214153, 0.983896)
+bones/86/rotation = Quaternion(0.147856, 1.96787e-06, -0.0178434, 0.988848)
+bones/87/rotation = Quaternion(0.130396, 1.43441e-06, -0.0157361, 0.991337)
+bones/91/rotation = Quaternion(0.460166, -0.568419, -0.456578, -0.506639)
+bones/92/rotation = Quaternion(-0.163692, 0.967815, -0.182137, -0.0580035)
+bones/93/rotation = Quaternion(0.44533, 0.58756, -0.44533, 0.50807)
+bones/94/rotation = Quaternion(-0.220268, -0.847868, -0.102377, 0.471297)
+bones/95/rotation = Quaternion(0.00451361, -1.5099e-06, 0.000550172, 0.99999)
+bones/96/rotation = Quaternion(0.0470327, 8.69377e-06, 0.005732, 0.998877)
+bones/97/rotation = Quaternion(0.0682649, 3.85824e-07, 0.00831966, 0.997633)
+bones/98/rotation = Quaternion(0.145611, 0.000151448, 0.0177463, 0.989183)
+bones/99/rotation = Quaternion(0.194896, 0.00053245, 0.0237528, 0.980536)
+bones/100/rotation = Quaternion(0.219361, 0.000381186, 0.0267346, 0.975277)
+bones/101/rotation = Quaternion(0.0478693, -4.80429e-05, 0.00583381, 0.998837)
+bones/102/rotation = Quaternion(0.0929211, 6.48138e-05, 0.0113247, 0.995609)
+bones/103/rotation = Quaternion(0.115248, 5.95725e-06, 0.0140457, 0.993238)
+bones/104/rotation = Quaternion(0.10195, 3.18527e-05, 0.0124251, 0.994712)
+bones/105/rotation = Quaternion(0.150174, -1.96719e-05, 0.0183023, 0.98849)
+bones/106/rotation = Quaternion(0.173372, -6.18081e-05, 0.0211295, 0.98463)
+bones/110/rotation = Quaternion(0.0728548, 0.207001, 0.97558, -0.00925743)
+bones/111/rotation = Quaternion(0.0729678, 0.849705, -0.517184, 0.0720934)
+bones/132/rotation = Quaternion(-0.00740561, 0.485678, -0.873923, 0.0179029)
+bones/133/rotation = Quaternion(-3.17048e-08, 0.997097, 0.076146, 2.78186e-08)
+bones/134/rotation = Quaternion(0.0139917, 0.287061, 0.95416, 0.0835431)
+bones/135/rotation = Quaternion(0.11106, 0.812089, -0.572817, -0.00762572)
+bones/156/rotation = Quaternion(0.0348617, 0.482714, -0.874477, -0.0326028)
+bones/157/rotation = Quaternion(-5.2024e-08, 0.995612, 0.0935766, 4.04899e-08)
+
+[node name="Head" parent="ArchLinux-Chan/archlinux-chan_v0_1_1/GeneralSkeleton" index="4"]
+transform = Transform3D(0.960883, 0.0761966, 0.266267, -0.0855743, 0.996048, 0.0237783, -0.263403, -0.0456338, 0.963606, -0.0304702, 1.28967, 0.0137591)
+
+[editable path="ArchLinux-Chan"]
