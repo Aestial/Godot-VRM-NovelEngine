@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4jw7etvdxnx1"]
+[gd_scene load_steps=5 format=3 uid="uid://c4jw7etvdxnx1"]
 
 [ext_resource type="PackedScene" uid="uid://belrofiecshvl" path="res://scenes/archlinux-chan.scn" id="1_elqb8"]
 [ext_resource type="Environment" uid="uid://loc7egiabhbn" path="res://scenes/main_environment.tres" id="1_rvslj"]
 [ext_resource type="CameraAttributesPractical" uid="uid://griw7imxte1w" path="res://scenes/main_camera_attributes_practical.tres" id="2_0bbpv"]
+[ext_resource type="Script" uid="uid://c4vphqjrnpu1j" path="res://scripts/activate_dialogic.gd" id="4_rarhs"]
 
 [node name="Base" type="Node3D"]
 
@@ -230,5 +231,12 @@ bones/157/rotation = Quaternion(5.26883e-08, 1, 0.000692964, 1.55844e-08)
 
 [node name="Head" parent="ArchLinux-Chan/archlinux-chan_v0_1_1/GeneralSkeleton" index="4"]
 transform = Transform3D(0.994304, -0.0390348, 0.0991719, 0.0532012, 0.988076, -0.144485, -0.0923494, 0.148938, 0.984525, -0.102659, 1.41503, 0.0480664)
+
+[node name="Dialogic" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_rarhs")
 
 [editable path="ArchLinux-Chan"]
