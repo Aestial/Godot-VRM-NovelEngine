@@ -13,7 +13,7 @@ config_version=5
 config/name="VRM-NovelEngine"
 run/main_scene="uid://c4jw7etvdxnx1"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://bklxfuuu03836"
 
 [editor_plugins]
 
