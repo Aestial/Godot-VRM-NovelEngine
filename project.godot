@@ -22,10 +22,11 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
-"archlinux-chan": "res://dialogic/archlinux-chan.dch"
+"archlinux-chan": "res://dialogic/characters/archlinux-chan.dch",
+"jaime": "res://dialogic/characters/jaime.dch"
 }
 directories/dtl_directory={
-"chapterA": "res://dialogic/chapterA.dtl"
+"chapterA": "res://dialogic/timelines/chapterA.dtl"
 }
 glossary/default_case_sensitive=true
 layout/style_list=[]
