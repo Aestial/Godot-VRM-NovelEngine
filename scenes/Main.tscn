@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4jw7etvdxnx1"]
+[gd_scene load_steps=6 format=3 uid="uid://c4jw7etvdxnx1"]
 
 [ext_resource type="Environment" uid="uid://loc7egiabhbn" path="res://scenes/main_environment.tres" id="1_rvslj"]
 [ext_resource type="CameraAttributesPractical" uid="uid://griw7imxte1w" path="res://scenes/main_camera_attributes_practical.tres" id="2_0bbpv"]
-[ext_resource type="Script" uid="uid://c4vphqjrnpu1j" path="res://scripts/activate_dialogic.gd" id="4_rarhs"]
+[ext_resource type="Script" uid="uid://r317w7cq2oju" path="res://addons/orbit_camera/orbit_camera.gd" id="3_vcsgt"]
+[ext_resource type="PackedScene" uid="uid://b6uru0j3wwlxv" path="res://scenes/dialogic_control.tscn" id="4_c01mt"]
 [ext_resource type="PackedScene" uid="uid://bkmag3ftw84aj" path="res://characters/archlinux-chan_character.scn" id="4_vcsgt"]
 
 [node name="Base" type="Node3D"]
@@ -11,18 +12,25 @@
 environment = ExtResource("1_rvslj")
 camera_attributes = ExtResource("2_0bbpv")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.994522, 0.104528, 0, -0.104528, 0.994522, 0, 1.25, 2)
+[node name="ArchLinux-Chan_Character" parent="." instance=ExtResource("4_vcsgt")]
+
+[node name="CameraAnchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14068, 0)
+
+[node name="OrbitCamera" type="Camera3D" parent="CameraAnchor"]
+v_offset = 1.1
 current = true
-fov = 30.0
+fov = 28.0
 near = 0.01
 far = 100.0
+script = ExtResource("3_vcsgt")
+SCROLL_SPEED = 0.01
+ZOOM_SPEED = 0.1
+DEFAULT_DISTANCE = 2.35
+ROTATE_SPEED = 0.01
+ANCHOR_NODE_PATH = NodePath("..")
+MOUSE_ZOOM_SPEED = 0.1
+metadata/_custom_type_script = "uid://r317w7cq2oju"
 
-[node name="DialogicControl" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_rarhs")
-
-[node name="ArchLinux-Chan_Character" parent="." instance=ExtResource("4_vcsgt")]
+[node name="DialogicControl" parent="." instance=ExtResource("4_c01mt")]
+visible = true
