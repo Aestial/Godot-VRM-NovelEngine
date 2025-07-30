@@ -5,15 +5,21 @@ extends CharacterBody3D
 @export_category("Character")
 @export var character_name: String = "Char_Name"
 
+@export var initial_anim: String = "Idle"
+
 func _ready():
-	#Dialogic.signal_event.connect(_on_dialogic_dictionary_signal)
-	Dialogic.signal_event.connect(_on_dialogic_string_signal)
+	Dialogic.signal_event.connect(_on_dialogic_dictionary_signal)
+	#Dialogic.signal_event.connect(_on_dialogic_string_signal)
 	
 func set_animation_condition(condition_name:String, value: bool):
-	
+	# Cancel previous anim
+	if initial_anim != "":
+		var path ="parameters/conditions/" + initial_anim
+		animation_tree.set(path, false)
 	# Construct the parameter path
 	var parameter_path ="parameters/conditions/" + condition_name
 	animation_tree.set(parameter_path, value)
+	initial_anim = condition_name
 	
 	# Check if the parameter exissts
 	#if animation_tree.has_node(parameter_path):
@@ -27,9 +33,9 @@ func _on_dialogic_dictionary_signal(argument: Dictionary):
 	if argument["character"] != character_name:
 		pass
 	print("Animation signal from Dialogic for ", argument["character"])
-	if argument["animation"] == null || argument["value"] == null:
+	if argument["animation"] == null:
 		pass
-	set_animation_condition(argument["animation"], argument["value"])
+	set_animation_condition(argument["animation"], true)
 	
 func _on_dialogic_string_signal(argument: String):
 	print("A String signal was fired via Dialogic: ", argument)
