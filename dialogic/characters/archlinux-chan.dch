@@ -8,14 +8,14 @@
 "sound_moods": {},
 "style": ""
 },
-&"default_portrait": "ai-archlinux-chan",
-&"description": "",
+&"default_portrait": "confused",
+&"description": "AI generated Character",
 &"display_name": "ArchLinux-chan",
 &"mirror": false,
 &"nicknames": ["Ali-chan"],
 &"offset": Vector2(0, 0),
 &"portraits": {
-"": {
+"confused": {
 "export_overrides": {
 "image": "\"res://dialogic/portraits/archlinux-chan/ai-archlinux-chan.png\""
 },
@@ -23,17 +23,7 @@
 "offset": Vector2(0, 0),
 "scale": 1,
 "scene": ""
-},
-"ai-archlinux-chan": {
-"export_overrides": {
-"image": "\"res://dialogic/portraits/archlinux-chan/ai-archlinux-chan.png\""
-},
-"ignore_char_scale": false,
-"mirror": false,
-"offset": Vector2(0, 0),
-"scale": 0.5,
-"scene": ""
 }
 },
-&"scale": 0.25
+&"scale": 0.15
 }

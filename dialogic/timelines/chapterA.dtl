@@ -1,4 +1,13 @@
-join archlinux-chan center
+join archlinux-chan right
 archlinux-chan: Hello and welcome to[portrait=confused]...[pause=0.5] Wait? What is this?
+label select
+archlinux-chan: Select an option...
+- Dance
+	[signal arg="Dance"]
+	jump select
+- Wait
+	[signal arg="Idle"]
+	jump select
+- Exit
 
 [end_timeline]
