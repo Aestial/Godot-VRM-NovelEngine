@@ -1,18 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4jw7etvdxnx1"]
+[gd_scene load_steps=8 format=3 uid="uid://c4jw7etvdxnx1"]
 
 [ext_resource type="Environment" uid="uid://loc7egiabhbn" path="res://scenes/main_environment.tres" id="1_rvslj"]
 [ext_resource type="CameraAttributesPractical" uid="uid://griw7imxte1w" path="res://scenes/main_camera_attributes_practical.tres" id="2_0bbpv"]
 [ext_resource type="Script" uid="uid://r317w7cq2oju" path="res://addons/orbit_camera/orbit_camera.gd" id="3_vcsgt"]
 [ext_resource type="PackedScene" uid="uid://b6uru0j3wwlxv" path="res://scenes/dialogic_control.tscn" id="4_c01mt"]
 [ext_resource type="PackedScene" uid="uid://bkmag3ftw84aj" path="res://characters/archlinux-chan_character.scn" id="4_vcsgt"]
+[ext_resource type="PackedScene" uid="uid://e2w2uk33s4my" path="res://characters/dorita-corona_character.tscn" id="6_c01mt"]
+[ext_resource type="PackedScene" uid="uid://bvk8jqxm5vvqc" path="res://characters/jaime_character.tscn" id="7_nxtc6"]
 
 [node name="Base" type="Node3D"]
+
+[node name="DialogicControl" parent="." instance=ExtResource("4_c01mt")]
+visible = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_rvslj")
 camera_attributes = ExtResource("2_0bbpv")
-
-[node name="ArchLinux-Chan_Character" parent="." instance=ExtResource("4_vcsgt")]
 
 [node name="CameraAnchor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14068, 0)
@@ -32,5 +35,10 @@ ANCHOR_NODE_PATH = NodePath("..")
 MOUSE_ZOOM_SPEED = 0.1
 metadata/_custom_type_script = "uid://r317w7cq2oju"
 
-[node name="DialogicControl" parent="." instance=ExtResource("4_c01mt")]
-visible = true
+[node name="ArchLinux-Chan_Character" parent="." instance=ExtResource("4_vcsgt")]
+
+[node name="DoritaCorona_Character" parent="." instance=ExtResource("6_c01mt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.405933, -1.19209e-07, -0.441889)
+
+[node name="Jaime_Character" parent="." instance=ExtResource("7_nxtc6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.407886, -1.19209e-07, -0.341136)

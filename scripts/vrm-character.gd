@@ -33,9 +33,9 @@ func set_animation_condition(condition_name:String, value: bool):
 func _on_dialogic_dictionary_signal(argument: Dictionary):
 	
 	print("A Dictionary signal was fired from Dialogic: ", argument)
-	if argument["character"] != character_name:
-		pass
+	if argument["character"] != "All" && argument["character"] != character_name:
+		return
 	print("Animation signal from Dialogic for ", argument["character"])
 	if argument["animation"] == null:
-		pass
+		return
 	set_animation_condition(argument["animation"], true)

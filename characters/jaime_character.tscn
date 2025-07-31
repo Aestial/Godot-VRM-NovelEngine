@@ -1,0 +1,1426 @@
+[gd_scene load_steps=88 format=3 uid="uid://bvk8jqxm5vvqc"]
+
+[ext_resource type="Script" uid="uid://bgnmwonlivjeg" path="res://scripts/vrm-character.gd" id="1_15x6w"]
+[ext_resource type="PackedScene" uid="uid://by6iaxdb0bhia" path="res://vrm/jaime.vrm" id="1_iijpr"]
+[ext_resource type="Script" uid="uid://bh0kts1q2t2iu" path="res://addons/vrm/vrm_spring_bone.gd" id="2_tdnqw"]
+[ext_resource type="Script" uid="uid://k0tkdr1fej6k" path="res://addons/vrm/vrm_collider_group.gd" id="3_mpwt1"]
+[ext_resource type="Script" uid="uid://p4cpsh67l24x" path="res://addons/vrm/vrm_collider.gd" id="4_15x6w"]
+[ext_resource type="AnimationLibrary" uid="uid://w6ygba13mihu" path="res://animations/mixamo-female_locomotion.res" id="5_tdnqw"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://bqfat2320tyi8" path="res://animations/archlinux_anim_statemachine.res" id="6_mpwt1"]
+
+[sub_resource type="Resource" id="Resource_67fgp"]
+resource_name = "Hood"
+script = ExtResource("2_tdnqw")
+comment = "Hood"
+joint_nodes = PackedStringArray("J_Sec_C_Food", "J_Sec_C_Food_end", "")
+stiffness_scale = 0.75
+drag_force_scale = 0.05
+hit_radius_scale = 0.02
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_ls4bq"]
+resource_name = "HoodString"
+script = ExtResource("2_tdnqw")
+comment = "HoodString"
+joint_nodes = PackedStringArray("J_Sec_L_FoodString2", "J_Sec_L_FoodString2_end", "")
+stiffness_scale = 0.26
+drag_force_scale = 0.0
+hit_radius_scale = 0.02
+gravity_scale = 0.25
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_jx6nx"]
+resource_name = "HoodString"
+script = ExtResource("2_tdnqw")
+comment = "HoodString"
+joint_nodes = PackedStringArray("J_Sec_R_FoodString2", "J_Sec_R_FoodString2_end", "")
+stiffness_scale = 0.26
+drag_force_scale = 0.0
+hit_radius_scale = 0.02
+gravity_scale = 0.25
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_cwnsh"]
+resource_name = "Head"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "Head"
+offset = Vector3(3.63216e-08, 0.100161, -0.00465222)
+tail = Vector3(3.63216e-08, 0.100161, -0.00465222)
+radius = 0.10476
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_ihmao"]
+script = ExtResource("3_mpwt1")
+colliders = Array[ExtResource("4_15x6w")]([SubResource("Resource_cwnsh")])
+
+[sub_resource type="Resource" id="Resource_xk75i"]
+resource_name = "LeftUpperArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "LeftUpperArm"
+offset = Vector3(0.00131595, -0.00043796, 0.00966144)
+tail = Vector3(0.00131595, -0.00043796, 0.00966144)
+radius = 0.0488024
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_ntvnk"]
+resource_name = "LeftUpperArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "LeftUpperArm"
+offset = Vector3(0.000799636, 0.0726855, 0.0130466)
+tail = Vector3(0.000799636, 0.0726855, 0.0130466)
+radius = 0.0488024
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_32bqf"]
+resource_name = "LeftUpperArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "LeftUpperArm"
+offset = Vector3(0.000283319, 0.145809, 0.0164319)
+tail = Vector3(0.000283319, 0.145809, 0.0164319)
+radius = 0.0488024
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_g1dn7"]
+script = ExtResource("3_mpwt1")
+colliders = Array[ExtResource("4_15x6w")]([SubResource("Resource_xk75i"), SubResource("Resource_ntvnk"), SubResource("Resource_32bqf")])
+
+[sub_resource type="Resource" id="Resource_te01v"]
+resource_name = "RightUpperArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "RightUpperArm"
+offset = Vector3(-0.00131595, -0.00043796, 0.00966144)
+tail = Vector3(-0.00131595, -0.00043796, 0.00966144)
+radius = 0.0488024
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_eh6l4"]
+resource_name = "RightUpperArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "RightUpperArm"
+offset = Vector3(-0.000799538, 0.0726855, 0.0130465)
+tail = Vector3(-0.000799538, 0.0726855, 0.0130465)
+radius = 0.0488024
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_ym3b2"]
+resource_name = "RightUpperArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "RightUpperArm"
+offset = Vector3(-0.000283127, 0.145809, 0.0164315)
+tail = Vector3(-0.000283127, 0.145809, 0.0164315)
+radius = 0.0488024
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_n1urx"]
+script = ExtResource("3_mpwt1")
+colliders = Array[ExtResource("4_15x6w")]([SubResource("Resource_te01v"), SubResource("Resource_eh6l4"), SubResource("Resource_ym3b2")])
+
+[sub_resource type="Resource" id="Resource_qr6qr"]
+resource_name = "LeftLowerArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "LeftLowerArm"
+offset = Vector3(0, 0, 1.39698e-09)
+tail = Vector3(0, 0, 1.39698e-09)
+radius = 0.0292814
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_xw8ki"]
+resource_name = "LeftLowerArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "LeftLowerArm"
+offset = Vector3(0.00012207, 0.0486352, 0.00403509)
+tail = Vector3(0.00012207, 0.0486352, 0.00403509)
+radius = 0.0341617
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_2gpkk"]
+resource_name = "LeftLowerArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "LeftLowerArm"
+offset = Vector3(0.000244021, 0.0972703, 0.00807017)
+tail = Vector3(0.000244021, 0.0972703, 0.00807017)
+radius = 0.0292814
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_uectg"]
+resource_name = "LeftLowerArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "LeftLowerArm"
+offset = Vector3(0.000366092, 0.145905, 0.0121053)
+tail = Vector3(0.000366092, 0.145905, 0.0121053)
+radius = 0.0292814
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_f4qny"]
+script = ExtResource("3_mpwt1")
+colliders = Array[ExtResource("4_15x6w")]([SubResource("Resource_qr6qr"), SubResource("Resource_xw8ki"), SubResource("Resource_2gpkk"), SubResource("Resource_uectg")])
+
+[sub_resource type="Resource" id="Resource_0smtd"]
+resource_name = "RightLowerArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "RightLowerArm"
+offset = Vector3(1.19209e-07, 0, 1.39698e-09)
+tail = Vector3(1.19209e-07, 0, 1.39698e-09)
+radius = 0.0292814
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_xmjgm"]
+resource_name = "RightLowerArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "RightLowerArm"
+offset = Vector3(-0.000121713, 0.0486352, 0.0040351)
+tail = Vector3(-0.000121713, 0.0486352, 0.0040351)
+radius = 0.0341617
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_6hvhp"]
+resource_name = "RightLowerArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "RightLowerArm"
+offset = Vector3(-0.000243664, 0.0972704, 0.0080702)
+tail = Vector3(-0.000243664, 0.0972704, 0.0080702)
+radius = 0.0292814
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_lrdg8"]
+resource_name = "RightLowerArm"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "RightLowerArm"
+offset = Vector3(-0.000365496, 0.145906, 0.0121053)
+tail = Vector3(-0.000365496, 0.145906, 0.0121053)
+radius = 0.0292814
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_e16fo"]
+script = ExtResource("3_mpwt1")
+colliders = Array[ExtResource("4_15x6w")]([SubResource("Resource_0smtd"), SubResource("Resource_xmjgm"), SubResource("Resource_6hvhp"), SubResource("Resource_lrdg8")])
+
+[sub_resource type="Resource" id="Resource_7gnf1"]
+resource_name = "LeftHand"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "LeftHand"
+offset = Vector3(-0.00159596, 0.0192974, 0.000116825)
+tail = Vector3(-0.00159596, 0.0192974, 0.000116825)
+radius = 0.0290454
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_08dp3"]
+script = ExtResource("3_mpwt1")
+colliders = Array[ExtResource("4_15x6w")]([SubResource("Resource_7gnf1")])
+
+[sub_resource type="Resource" id="Resource_wylud"]
+resource_name = "RightHand"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "RightHand"
+offset = Vector3(0.00159597, 0.0192974, 0.000116706)
+tail = Vector3(0.00159597, 0.0192974, 0.000116706)
+radius = 0.0290455
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_q4y51"]
+script = ExtResource("3_mpwt1")
+colliders = Array[ExtResource("4_15x6w")]([SubResource("Resource_wylud")])
+
+[sub_resource type="Resource" id="Resource_vnkt2"]
+resource_name = "UpperChest"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "UpperChest"
+offset = Vector3(-1.16415e-10, 0.000687003, 0.00973628)
+tail = Vector3(-1.16415e-10, 0.000687003, 0.00973628)
+radius = 0.0976048
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_v2spw"]
+resource_name = "UpperChest"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "UpperChest"
+offset = Vector3(0.0488024, 0.0625988, -0.0142015)
+tail = Vector3(0.0488024, 0.0625988, -0.0142015)
+radius = 0.0683234
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_fslut"]
+resource_name = "UpperChest"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "UpperChest"
+offset = Vector3(-0.0488024, 0.0625988, -0.0142015)
+tail = Vector3(-0.0488024, 0.0625988, -0.0142015)
+radius = 0.0683234
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_7cxud"]
+script = ExtResource("3_mpwt1")
+colliders = Array[ExtResource("4_15x6w")]([SubResource("Resource_vnkt2"), SubResource("Resource_v2spw"), SubResource("Resource_fslut")])
+
+[sub_resource type="Resource" id="Resource_cusyu"]
+resource_name = "Spine"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "Spine"
+offset = Vector3(0, 0, 0)
+tail = Vector3(0, 0, 0)
+radius = 0.117126
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_1l238"]
+script = ExtResource("3_mpwt1")
+colliders = Array[ExtResource("4_15x6w")]([SubResource("Resource_cusyu")])
+
+[sub_resource type="Resource" id="Resource_gos61"]
+resource_name = "Neck"
+script = ExtResource("4_15x6w")
+node_path = NodePath("")
+bone = "Neck"
+offset = Vector3(5.93718e-09, 0.0268713, 0.0172144)
+tail = Vector3(5.93718e-09, 0.0268713, 0.0172144)
+radius = 0.0488024
+is_capsule = false
+gizmo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_0w2nj"]
+script = ExtResource("3_mpwt1")
+colliders = Array[ExtResource("4_15x6w")]([SubResource("Resource_gos61")])
+
+[sub_resource type="Resource" id="Resource_lxvwn"]
+resource_name = "HairJoint-1f4705b5-f304-4241-89a8-59f606da347e"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-1f4705b5-f304-4241-89a8-59f606da347e", "HairJoint-7790b1d2-f7a4-4fce-8f4f-77702f2ceecc", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.0211257
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_rbw5n"]
+resource_name = "HairJoint-69bf8e8b-a934-42a2-a8a1-a27a6e4b243a"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-69bf8e8b-a934-42a2-a8a1-a27a6e4b243a", "HairJoint-80a88600-e445-4967-a9ee-8dea1237b86b", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.0140524
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_085jd"]
+resource_name = "HairJoint-ffc7b84a-afd5-47a6-a809-a96b0fcc2478"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-ffc7b84a-afd5-47a6-a809-a96b0fcc2478", "HairJoint-67f2893a-91df-4a49-a054-fd1d8b5cf049", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.0139243
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_du7x4"]
+resource_name = "HairJoint-4d5208b4-8e40-4061-bad4-d51d4080a4db"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-4d5208b4-8e40-4061-bad4-d51d4080a4db", "HairJoint-2f0c7c21-d1c6-478d-91ba-1b89a510fedf", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.0105821
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_vg348"]
+resource_name = "HairJoint-98ae64f5-1aab-4628-aca2-4319a68af49a"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-98ae64f5-1aab-4628-aca2-4319a68af49a", "HairJoint-38bf4956-c249-4f0e-b437-d1a368ec6520", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.01
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_gujm7"]
+resource_name = "HairJoint-0d7997b1-305f-449c-b378-1054152698a3"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-0d7997b1-305f-449c-b378-1054152698a3", "HairJoint-50f3ac4a-7dc4-4068-bf83-d93642655c0b", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.0121002
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_n3btj"]
+resource_name = "HairJoint-d6c12da0-5836-44ff-a700-1a6c84adaa2e"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-d6c12da0-5836-44ff-a700-1a6c84adaa2e", "HairJoint-94d85368-a875-4bee-9e0b-035cb9ce67df", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.01
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_sw0d0"]
+resource_name = "HairJoint-8ad245be-e90f-490a-aef4-8fcad315c334"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-8ad245be-e90f-490a-aef4-8fcad315c334", "HairJoint-a4e019f1-3bd5-4bfa-9510-1c6054a1a733", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.0126401
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_ojc4t"]
+resource_name = "HairJoint-8e18e0b4-7944-4318-b3be-65f55d5b519d"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-8e18e0b4-7944-4318-b3be-65f55d5b519d", "HairJoint-25be947b-aceb-494e-952e-da0a95a79275", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.0138203
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_3x2to"]
+resource_name = "HairJoint-9907d28f-8159-4864-a4d6-60e88d2605a0"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-9907d28f-8159-4864-a4d6-60e88d2605a0", "HairJoint-e795c4dc-e275-438b-9b19-1724a36b809f", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.0273521
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_63162"]
+resource_name = "HairJoint-f0f94b4a-ef51-4927-9aad-96038205f361"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-f0f94b4a-ef51-4927-9aad-96038205f361", "HairJoint-bb442883-38db-4cda-ab6b-ab79764ba9a8", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.0256202
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_eiiwn"]
+resource_name = "HairJoint-4d2c8ae6-b8a0-499c-afa0-d6fd73474c3c"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-4d2c8ae6-b8a0-499c-afa0-d6fd73474c3c", "HairJoint-5136446a-8c40-4928-b01b-8c110281a6fc", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.00034146
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_54k8g"]
+resource_name = "HairJoint-91c066fb-8d8d-4d0f-a39d-d0c3f079b07c"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-91c066fb-8d8d-4d0f-a39d-d0c3f079b07c", "HairJoint-a3ce91b9-c6af-4df8-854f-afab23b5f0f6", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.01
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_4kx44"]
+resource_name = "HairJoint-eab2b12b-1d01-402e-b3fb-054b2f7ec325"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-eab2b12b-1d01-402e-b3fb-054b2f7ec325", "HairJoint-078955e9-237f-491d-8804-b8897ed21fb4", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.00146843
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_ud7bl"]
+resource_name = "HairJoint-ad1b7608-f796-46d5-89dc-86525db81ef8"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-ad1b7608-f796-46d5-89dc-86525db81ef8", "HairJoint-3e29ed8a-d5e2-4d8e-878d-7715bd52037b", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.0122959
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_686qy"]
+resource_name = "HairJoint-526ff6fc-60c5-4d57-874b-de94802691f1"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-526ff6fc-60c5-4d57-874b-de94802691f1", "HairJoint-81b11eb1-1cf3-43f2-b02d-90f989cf3a4c", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.01
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_o42dm"]
+resource_name = "HairJoint-82c4c5e8-c368-4b6e-a504-480e4f60cb69"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-82c4c5e8-c368-4b6e-a504-480e4f60cb69", "HairJoint-6913a169-83d6-4677-bef5-9153b9d344b0", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.0120065
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_aef7i"]
+resource_name = "HairJoint-bc61f9e8-5a12-490f-91d8-adc307a33d51"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-bc61f9e8-5a12-490f-91d8-adc307a33d51", "HairJoint-8f43ae4e-2d2a-4f61-a26c-6397e3169d38", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.00823769
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_quvhd"]
+resource_name = "HairJoint-49aba0e8-6a83-47ea-9815-8f6a5c5011f4"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-49aba0e8-6a83-47ea-9815-8f6a5c5011f4", "HairJoint-339a9df3-f3b7-4ac0-a2ac-4beee1db40bc", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.01
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_wnnyp"]
+resource_name = "HairJoint-d0ad1cb1-a563-4a34-9909-75e7e2d389d4"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-d0ad1cb1-a563-4a34-9909-75e7e2d389d4", "HairJoint-a39a88ff-cc9b-490a-8c17-af03ede48e69", "")
+stiffness_scale = 0.797697
+drag_force_scale = 0.4
+hit_radius_scale = 0.0298351
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_cp60c"]
+resource_name = "HairJoint-ae3025ea-7a15-4b14-b090-b06fd78b1f63"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-ae3025ea-7a15-4b14-b090-b06fd78b1f63", "HairJoint-167fcdf0-79dc-43c6-8e43-5e998fa080f7", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.0251546
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_vx7i3"]
+resource_name = "HairJoint-6813f7c8-fd84-41ff-8372-ac83eaf2910c"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-6813f7c8-fd84-41ff-8372-ac83eaf2910c", "HairJoint-1e5424e1-c68a-4f59-8efe-3c358d085041", "")
+stiffness_scale = 0.4
+drag_force_scale = 0.4
+hit_radius_scale = 0.01
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_4bpx6"]
+resource_name = "HairJoint-e61a81b6-23bf-408c-b807-2ba06ec8435e"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-e61a81b6-23bf-408c-b807-2ba06ec8435e", "HairJoint-df0106a2-645a-4bf7-89e5-4d5b46ceadf8", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.01
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Resource" id="Resource_ulhu4"]
+resource_name = "HairJoint-b527190d-90df-4e57-9a86-3b3808e32454"
+script = ExtResource("2_tdnqw")
+comment = ""
+joint_nodes = PackedStringArray("HairJoint-b527190d-90df-4e57-9a86-3b3808e32454", "HairJoint-4f7293a0-9c06-4bdc-952a-52532b800cae", "")
+stiffness_scale = 0.8
+drag_force_scale = 0.4
+hit_radius_scale = 0.01
+gravity_scale = 0.0
+gravity_dir_default = Vector3(0, -1, 0)
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+stiffness_force = PackedFloat64Array()
+gravity_power = PackedFloat64Array()
+gravity_dir = PackedVector3Array()
+drag_force = PackedFloat64Array()
+hit_radius = PackedFloat64Array()
+center_bone = "Root_"
+center_node = NodePath("")
+
+[sub_resource type="Animation" id="Animation_jq1vi"]
+resource_name = "neutral"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_tmahs"]
+resource_name = "aa"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_MTH_A")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_r38ua"]
+resource_name = "ih"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_MTH_I")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_5d05h"]
+resource_name = "ou"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_MTH_U")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_tequx"]
+resource_name = "ee"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_MTH_E")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_yv1sa"]
+resource_name = "oh"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_MTH_O")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_hstvr"]
+resource_name = "blink"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_EYE_Close")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_51jkr"]
+resource_name = "blinkLeft"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_EYE_Close_L")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_gormi"]
+resource_name = "blinkRight"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_EYE_Close_R")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_pmh3a"]
+resource_name = "angry"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_ALL_Angry")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_fxs2i"]
+resource_name = "relaxed"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_ALL_Fun")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_tle1r"]
+resource_name = "happy"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_ALL_Joy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_ls1k5"]
+resource_name = "sad"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_ALL_Sorrow")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_vu26c"]
+resource_name = "Surprised"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_ALL_Surprised")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="Animation" id="Animation_j8f3u"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(1, 1, 0.703233, 0.0739128, -0.0739128, 0.703233)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(1, 1, 0.705384, 0.0493253, -0.0493253, 0.705384)
+
+[sub_resource type="Animation" id="Animation_dnkw4"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(1, 1, 0.705384, -0.0493253, 0.0493253, 0.705384)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(1, 1, 0.703233, -0.0739128, 0.0739128, 0.703233)
+
+[sub_resource type="Animation" id="Animation_c4717"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(1, 1, 0.642788, 0, 0, 0.766044)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(1, 1, 0.642788, 0, 0, 0.766044)
+
+[sub_resource type="Animation" id="Animation_w4eac"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(1, 1, 0.766044, 0, 0, 0.642788)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(1, 1, 0.766044, 0, 0, 0.642788)
+
+[sub_resource type="Animation" id="Animation_6etou"]
+resource_name = "RESET"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_MTH_A")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0)
+tracks/1/type = "blend_shape"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_MTH_I")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0)
+tracks/2/type = "blend_shape"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_MTH_U")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0)
+tracks/3/type = "blend_shape"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_MTH_E")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0)
+tracks/4/type = "blend_shape"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_MTH_O")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0)
+tracks/5/type = "blend_shape"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_EYE_Close")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0)
+tracks/6/type = "blend_shape"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_EYE_Close_L")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0)
+tracks/7/type = "blend_shape"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_EYE_Close_R")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0)
+tracks/8/type = "blend_shape"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_ALL_Angry")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0)
+tracks/9/type = "blend_shape"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_ALL_Fun")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0)
+tracks/10/type = "blend_shape"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_ALL_Joy")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0)
+tracks/11/type = "blend_shape"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_ALL_Sorrow")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0)
+tracks/12/type = "blend_shape"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("%GeneralSkeleton/Face:Face.M_F00_000_00_Fcl_ALL_Surprised")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 0)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mk4xi"]
+_data = {
+&"RESET": SubResource("Animation_6etou"),
+&"Surprised": SubResource("Animation_vu26c"),
+&"aa": SubResource("Animation_tmahs"),
+&"angry": SubResource("Animation_pmh3a"),
+&"blink": SubResource("Animation_hstvr"),
+&"blinkLeft": SubResource("Animation_51jkr"),
+&"blinkRight": SubResource("Animation_gormi"),
+&"ee": SubResource("Animation_tequx"),
+&"happy": SubResource("Animation_tle1r"),
+&"ih": SubResource("Animation_r38ua"),
+&"lookDown": SubResource("Animation_w4eac"),
+&"lookLeft": SubResource("Animation_j8f3u"),
+&"lookRight": SubResource("Animation_dnkw4"),
+&"lookUp": SubResource("Animation_c4717"),
+&"neutral": SubResource("Animation_jq1vi"),
+&"oh": SubResource("Animation_yv1sa"),
+&"ou": SubResource("Animation_5d05h"),
+&"relaxed": SubResource("Animation_fxs2i"),
+&"sad": SubResource("Animation_ls1k5")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_15x6w"]
+radius = 0.292896
+height = 1.68931
+
+[node name="Jaime_Character" type="CharacterBody3D"]
+script = ExtResource("1_15x6w")
+character_name = "Jaime"
+
+[node name="jaime" parent="." instance=ExtResource("1_iijpr")]
+spring_bones = Array[ExtResource("2_tdnqw")]([SubResource("Resource_67fgp"), SubResource("Resource_ls4bq"), SubResource("Resource_jx6nx"), SubResource("Resource_lxvwn"), SubResource("Resource_rbw5n"), SubResource("Resource_085jd"), SubResource("Resource_du7x4"), SubResource("Resource_vg348"), SubResource("Resource_gujm7"), SubResource("Resource_n3btj"), SubResource("Resource_sw0d0"), SubResource("Resource_ojc4t"), SubResource("Resource_3x2to"), SubResource("Resource_63162"), SubResource("Resource_eiiwn"), SubResource("Resource_54k8g"), SubResource("Resource_4kx44"), SubResource("Resource_ud7bl"), SubResource("Resource_686qy"), SubResource("Resource_o42dm"), SubResource("Resource_aef7i"), SubResource("Resource_quvhd"), SubResource("Resource_wnnyp"), SubResource("Resource_cp60c"), SubResource("Resource_vx7i3"), SubResource("Resource_4bpx6"), SubResource("Resource_ulhu4")])
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+collider_library = Array[ExtResource("4_15x6w")]([SubResource("Resource_cwnsh"), SubResource("Resource_xk75i"), SubResource("Resource_ntvnk"), SubResource("Resource_32bqf"), SubResource("Resource_te01v"), SubResource("Resource_eh6l4"), SubResource("Resource_ym3b2"), SubResource("Resource_qr6qr"), SubResource("Resource_xw8ki"), SubResource("Resource_2gpkk"), SubResource("Resource_uectg"), SubResource("Resource_0smtd"), SubResource("Resource_xmjgm"), SubResource("Resource_6hvhp"), SubResource("Resource_lrdg8"), SubResource("Resource_7gnf1"), SubResource("Resource_wylud"), SubResource("Resource_vnkt2"), SubResource("Resource_v2spw"), SubResource("Resource_fslut"), SubResource("Resource_cusyu"), SubResource("Resource_gos61")])
+
+[node name="GeneralSkeleton" parent="jaime" index="0"]
+bones/1/position = Vector3(-0.000133261, 0.908133, 0.0141394)
+bones/1/rotation = Quaternion(-0.0411005, 0.55084, -0.058168, 0.831566)
+bones/2/rotation = Quaternion(0.106794, 0.033196, -0.061025, 0.991851)
+bones/3/rotation = Quaternion(-0.0386101, 0.0286673, 0.0412011, 0.997993)
+bones/4/rotation = Quaternion(-0.0403903, 0.031433, 0.0385114, 0.997947)
+bones/13/rotation = Quaternion(0.102497, -0.211055, -0.0318322, 0.971564)
+bones/14/rotation = Quaternion(-0.0574552, -0.232648, 0.0645892, 0.968711)
+bones/65/rotation = Quaternion(0.502186, 0.461953, 0.451956, -0.574582)
+bones/66/rotation = Quaternion(-0.301275, 0.840992, -0.109832, 0.435779)
+bones/67/rotation = Quaternion(0.315278, -0.507819, 0.462183, 0.655062)
+bones/68/rotation = Quaternion(-0.309309, 0.641852, 0.0744354, 0.697721)
+bones/69/rotation = Quaternion(0.0364906, 0.0114199, -0.128076, 0.991027)
+bones/70/rotation = Quaternion(0.0259258, -0.00105107, -0.000970096, 0.999663)
+bones/71/rotation = Quaternion(0.0254528, -0.000774096, -0.00212237, 0.999674)
+bones/72/rotation = Quaternion(0.288881, -0.00443147, -0.128794, 0.948652)
+bones/73/rotation = Quaternion(0.193267, 0.00508428, -0.00211952, 0.981131)
+bones/74/rotation = Quaternion(0.188265, 0.00336281, -0.000872839, 0.982112)
+bones/75/rotation = Quaternion(0.0955201, 0.0070013, -0.116271, 0.988589)
+bones/76/rotation = Quaternion(0.0666646, -0.000261359, -0.00224193, 0.997773)
+bones/77/rotation = Quaternion(0.0623309, -0.000251072, -0.000560158, 0.998055)
+bones/78/rotation = Quaternion(0.178709, 0.00224053, -0.124145, 0.976036)
+bones/79/rotation = Quaternion(0.118767, 0.00120195, -0.00223683, 0.992919)
+bones/80/rotation = Quaternion(0.118213, 0.000992436, -0.00136502, 0.992987)
+bones/81/rotation = Quaternion(-0.271157, 0.620524, 0.270565, 0.684265)
+bones/82/rotation = Quaternion(0.126013, 0.0630738, 0.0113101, 0.989957)
+bones/83/rotation = Quaternion(0.0865456, 0.0467221, 0.00728382, 0.995125)
+bones/84/rotation = Quaternion(0.491668, -0.50882, -0.486423, -0.512599)
+bones/85/rotation = Quaternion(-0.128568, 0.801008, -0.264786, 0.521292)
+bones/86/rotation = Quaternion(0.320191, 0.405625, -0.590217, 0.620153)
+bones/87/rotation = Quaternion(-0.0576622, -0.676645, -0.476532, 0.558341)
+bones/88/rotation = Quaternion(-0.0560746, -0.0194183, 0.0501526, 0.996977)
+bones/89/rotation = Quaternion(0.152174, 0.0191283, 0.0190843, 0.987984)
+bones/90/rotation = Quaternion(0.115743, 0.0170697, 0.0395729, 0.992344)
+bones/91/rotation = Quaternion(0.41924, 0.125093, 0.0795764, 0.895688)
+bones/92/rotation = Quaternion(0.474729, -0.0702538, 0.0574043, 0.875444)
+bones/93/rotation = Quaternion(0.326691, -0.0439633, 0.0389614, 0.943304)
+bones/94/rotation = Quaternion(0.196295, -0.0254333, 0.0515382, 0.978859)
+bones/95/rotation = Quaternion(0.305491, 0.0139596, 0.0266767, 0.951719)
+bones/96/rotation = Quaternion(0.183604, 0.010128, -0.00678366, 0.982925)
+bones/97/rotation = Quaternion(0.306246, 0.06582, 0.0412605, 0.948777)
+bones/98/rotation = Quaternion(0.421831, -0.0186489, 0.0437267, 0.905428)
+bones/99/rotation = Quaternion(0.286461, -0.0114414, 0.0295041, 0.957569)
+bones/100/rotation = Quaternion(-0.516832, -0.577721, -0.268476, 0.571877)
+bones/101/rotation = Quaternion(0.0929062, 0.14435, 0.00776548, 0.985125)
+bones/102/rotation = Quaternion(-0.0657976, 0.113654, 0.0306995, 0.990864)
+bones/103/rotation = Quaternion(-0.136378, 0.218949, 0.9613, -0.096771)
+bones/104/rotation = Quaternion(-0.0076195, 0.927126, -0.374257, 0.0176602)
+bones/105/rotation = Quaternion(0.0982528, 0.773577, -0.625936, 0.011382)
+bones/106/rotation = Quaternion(0.00207285, 0.958774, 0.284058, 0.00765372)
+bones/107/rotation = Quaternion(-0.0109495, 0.017631, 0.995722, -0.0900391)
+bones/108/rotation = Quaternion(-0.0172679, 0.987435, -0.117275, 0.104503)
+bones/109/rotation = Quaternion(-0.0680667, 0.644929, -0.760891, 0.0218701)
+bones/110/rotation = Quaternion(-0.0148662, 0.999852, 0.00868649, -0.000138697)
+
+[node name="Head" parent="jaime/GeneralSkeleton" index="4"]
+transform = Transform3D(0.895133, 0.138798, 0.423641, -0.14166, 0.989602, -0.0249043, -0.422692, -0.0377202, 0.905488, 0.0793938, 1.43315, -0.0342865)
+
+[node name="secondary" parent="jaime" index="2"]
+collider_groups = Array[ExtResource("3_mpwt1")]([SubResource("Resource_ihmao"), SubResource("Resource_g1dn7"), SubResource("Resource_n1urx"), SubResource("Resource_f4qny"), SubResource("Resource_e16fo"), SubResource("Resource_08dp3"), SubResource("Resource_q4y51"), SubResource("Resource_7cxud"), SubResource("Resource_1l238"), SubResource("Resource_0w2nj")])
+collider_library = Array[ExtResource("4_15x6w")]([SubResource("Resource_cwnsh"), SubResource("Resource_xk75i"), SubResource("Resource_ntvnk"), SubResource("Resource_32bqf"), SubResource("Resource_te01v"), SubResource("Resource_eh6l4"), SubResource("Resource_ym3b2"), SubResource("Resource_qr6qr"), SubResource("Resource_xw8ki"), SubResource("Resource_2gpkk"), SubResource("Resource_uectg"), SubResource("Resource_0smtd"), SubResource("Resource_xmjgm"), SubResource("Resource_6hvhp"), SubResource("Resource_lrdg8"), SubResource("Resource_7gnf1"), SubResource("Resource_wylud"), SubResource("Resource_vnkt2"), SubResource("Resource_v2spw"), SubResource("Resource_fslut"), SubResource("Resource_cusyu"), SubResource("Resource_gos61")])
+
+[node name="AnimationPlayer" parent="jaime" index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_mk4xi"),
+&"mixamo-female_locomotion": ExtResource("5_tdnqw")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.834891, 0)
+shape = SubResource("CapsuleShape3D_15x6w")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../jaime")
+tree_root = ExtResource("6_mpwt1")
+anim_player = NodePath("../jaime/AnimationPlayer")
+parameters/conditions/Dance = false
+parameters/conditions/Idle = true
+parameters/conditions/Pose = false
+parameters/Dance_BlendTree/Belly_Twerk/blend_amount = 0.66
+parameters/Idle_BlendTree/Straight_Relaxed/blend_amount = 0.47
+parameters/Poses_BlendTree/Pose1_Pose2/blend_amount = 0.05
+
+[editable path="jaime"]

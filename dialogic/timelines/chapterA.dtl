@@ -5,12 +5,19 @@ archlinux-chan: Select an option...
 - Dance
 	[signal arg_type="dict" arg="{"animation":"Dance","character":"ArchLinux-Chan"}"]
 	jump select
+- Dorita
+	[signal arg_type="dict" arg="{"animation":"Dance","character":"Dorita"}"]
+	jump select
+- Dorito
+	[signal arg_type="dict" arg="{"animation":"Dance","character":"Jaime"}"]
+	jump select
 - Pose
 	[signal arg_type="dict" arg="{"animation":"Pose","character":"ArchLinux-Chan"}"]
 	jump select
 - Wait
-	[signal arg_type="dict" arg="{"animation":"Idle","character":"ArchLinux-Chan"}"]
+	[signal arg_type="dict" arg="{"animation":"Idle","character":"All"}"]
 	jump select
+
 - Exit
 
 [end_timeline]
