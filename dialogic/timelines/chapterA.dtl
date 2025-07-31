@@ -3,13 +3,7 @@ archlinux-chan: Hello and welcome to[portrait=confused]...[pause=0.5] Wait? What
 label select
 archlinux-chan: Select an option...
 - Dance
-	[signal arg_type="dict" arg="{"animation":"Dance","character":"ArchLinux-Chan"}"]
-	jump select
-- Dorita
-	[signal arg_type="dict" arg="{"animation":"Dance","character":"Dorita"}"]
-	jump select
-- Dorito
-	[signal arg_type="dict" arg="{"animation":"Dance","character":"Jaime"}"]
+	[signal arg_type="dict" arg="{"animation":"Dance","character":"All"}"]
 	jump select
 - Pose
 	[signal arg_type="dict" arg="{"animation":"Pose","character":"ArchLinux-Chan"}"]
@@ -17,7 +11,13 @@ archlinux-chan: Select an option...
 - Wait
 	[signal arg_type="dict" arg="{"animation":"Idle","character":"All"}"]
 	jump select
-
 - Exit
 
 [end_timeline]
+
+#- Dorita
+#	[signal arg_type="dict" arg="{"animation":"Dance","character":"Dorita"}"]
+#	jump select
+#- Dorito
+#	[signal arg_type="dict" arg="{"animation":"Dance","character":"Jaime"}"]
+#	jump select
