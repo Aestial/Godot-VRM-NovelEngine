@@ -5,6 +5,9 @@ archlinux-chan: Select an option...
 - Dance
 	[signal arg_type="dict" arg="{"animation":"Dance","character":"ArchLinux-Chan"}"]
 	jump select
+- Pose
+	[signal arg_type="dict" arg="{"animation":"Pose","character":"ArchLinux-Chan"}"]
+	jump select
 - Wait
 	[signal arg_type="dict" arg="{"animation":"Idle","character":"ArchLinux-Chan"}"]
 	jump select
