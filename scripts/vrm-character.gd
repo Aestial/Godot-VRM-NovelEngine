@@ -28,8 +28,10 @@ func set_animation_condition(condition_name:String, value: bool):
 	
 	animation_tree.set(parameter_path, value)
 	initial_anim = condition_name
-	
-		
+
+## Process Dictionary signal sent from Dialogic	
+## Take Arguments:
+## Dictionary="{"animation":"Dance","character":"ArchLinux-Chan"}
 func _on_dialogic_dictionary_signal(argument: Dictionary):
 	
 	print("A Dictionary signal was fired from Dialogic: ", argument)
