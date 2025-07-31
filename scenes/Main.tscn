@@ -39,6 +39,8 @@ metadata/_custom_type_script = "uid://r317w7cq2oju"
 
 [node name="DoritaCorona_Character" parent="." instance=ExtResource("6_c01mt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.405933, -1.19209e-07, -0.441889)
+visible = false
 
 [node name="Jaime_Character" parent="." instance=ExtResource("7_nxtc6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.407886, -1.19209e-07, -0.341136)
+visible = false

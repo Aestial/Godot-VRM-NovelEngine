@@ -4,10 +4,31 @@ extends CharacterBody3D
 @export var character_name: String = "Char_Name"
 @export var initial_anim: String = "Idle"
 
+@export var relaxed_base: float = 0.25
+@export var twerk_blend_amount: float = -0.35
+
 @onready var animation_tree: AnimationTree = $AnimationTree
+
+var time = 0
+var relaxed_blend_path = "parameters/Idle_BlendTree/Straight_Relaxed/blend_amount"
+var belly_twerk_blend_path = "parameters/Dance_BlendTree/Belly_Twerk/blend_amount"
+
+func _process(delta):
+	time += delta
+	update_anim(time)
 
 func _ready():
 	Dialogic.signal_event.connect(_on_dialogic_dictionary_signal)
+	
+func update_anim(time: float):
+	var fnl = FastNoiseLite.new()
+	var noise = fnl.get_noise_1d(time)
+	var relaxed = clamp(noise / 2 + 0.5 + relaxed_base, 0, 1)
+	animation_tree.set(relaxed_blend_path, relaxed)	
+	
+	var twerk_blend = clamp (noise / 2 + 0.5 + twerk_blend_amount, 0, 1)
+	print("Belly Twerk blend amount: ", twerk_blend)
+	animation_tree.set(belly_twerk_blend_path, twerk_blend)
 	
 func set_animation_condition(condition_name:String, value: bool):
 	# Cancel previous anim
