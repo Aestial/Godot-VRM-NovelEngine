@@ -6,11 +6,14 @@ signal pause_toggle
 signal restarted
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
+
 var options_screen: CanvasLayer
 
 func _ready() -> void:
-	visible = false
+	audio_player.stop()
 	get_tree().paused = false
+	visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
@@ -22,10 +25,12 @@ func _toggle_pause() -> void:
 	var is_paused: bool = not get_tree().paused
 	if is_paused:
 		animation_player.play("pause_start")
+		audio_player.play()
 		Dialogic.Text.hide_textbox()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Dialogic.Text.show_textbox()
+		audio_player.stop()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	visible = is_paused
 	Dialogic.paused = is_paused

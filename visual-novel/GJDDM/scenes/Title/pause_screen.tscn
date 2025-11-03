@@ -201,7 +201,6 @@ speed_scale = 1.5
 process_mode = 2
 stream = ExtResource("2_wqpmg")
 volume_db = -3.0
-autoplay = true
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15

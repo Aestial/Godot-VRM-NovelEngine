@@ -154,16 +154,8 @@ func _set_forced_blink_value(value: float):
 func force_blink_single_eye(is_left_eye: bool, duration: float = 0.2):
 	# You could extend this to handle single eye blinking
 	# For now, we'll just do both eyes
-	force_blink(duration)
-
-# Test function - call this to trigger a blink
-func _input(event):
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_1:
-			force_blink(blink_duration)  # Force blink when space is pressed
-		elif event.keycode == KEY_2:
-			force_blink_with_tween(blink_duration)  # Alternative tween version
-
+	if is_left_eye: 
+		force_blink_with_tween(duration)
 
 ## Process Dictionary signal sent from Dialogic	
 ## Take Arguments:
@@ -180,3 +172,11 @@ func _on_dialogic_dictionary_signal(argument: Dictionary) -> void:
 		set(mood_amount_path, mood_amount)
 		set(mood_state_path, mood)
 		#print("Setting " + mood + " mood for " + character_name + ": " + mood + " with amount: " + str(mood_amount))
+
+# Test function - call this to trigger a blink
+#func _input(event):
+#	if event is InputEventKey and event.pressed:
+#		if event.keycode == KEY_1:
+#			force_blink(blink_duration)  # Force blink when space is pressed
+#		elif event.keycode == KEY_2:
+#			force_blink_with_tween(blink_duration)  # Alternative tween version

@@ -3,8 +3,7 @@ set {metro_talk_with_samuel} = true
 [character_3d character="Samuel" mood="happy" amount="0.3"]
 do CinematicManager.switch_to_camera("C1_PhantomCamera3D", 10)
 Samuel: Me alegro que hayas llegado!
-[wait_input]
-[wait time="0.2"]
+[wait time="0.3"]
 do CinematicManager.switch_back()
 
 [character_3d character="Samuel" mood="surprised" amount="0.2"]
@@ -23,7 +22,6 @@ Samuel: Cuál panteón?
 [character_3d character="Dani" mood="sad" amount="0.5"]
 Dani: El panteón alemán...
 do CinematicManager.switch_to_camera("C3_PhantomCamera3D", 10)
-[wait_input]
 [wait time="0.3"]
 
 [character_3d character="Samuel" mood="surprised" amount="0.25"]

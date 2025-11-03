@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c8oqm4oj4ku2f" path="res://visual-novel/GJDDM/scenes/Laberinto/PrimerLaberinto.tscn" id="2_a0iqd"]
 [ext_resource type="AudioStream" uid="uid://di7417f8o8shi" path="res://visual-novel/GJDDM/music/Metro_Panteones.ogg" id="3_0677m"]
 [ext_resource type="LightmapGIData" uid="uid://doxpkb7am7d7s" path="res://visual-novel/GJDDM/scenes/Metro/Metro.lmbake" id="4_304w4"]
-[ext_resource type="Script" uid="uid://bqrhd2pcq2sgo" path="res://visual-novel/scripts/audio/ambient_music_player.gd" id="4_a0iqd"]
+[ext_resource type="Script" uid="uid://d3fgevt1ftusm" path="res://visual-novel/scripts/audio/ambient_music_player.gd" id="4_a0iqd"]
 [ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://controller_examples/assets/textures/Sky.png" id="5_dfpb5"]
 [ext_resource type="PackedScene" uid="uid://dbg1prbc0j7t5" path="res://visual-novel/GJDDM/scenes/Title/pause_screen.tscn" id="6_82ycx"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_k80vs"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c3mkywf5liwxn" path="res://visual-novel/GJDDM/characters/packed/dani.scn" id="9_ig1qo"]
 [ext_resource type="Script" uid="uid://cve242f0ec8v" path="res://visual-novel/scripts/controllers/controller_player.gd" id="9_s84md"]
 [ext_resource type="PackedScene" uid="uid://56203yb3xiie" path="res://visual-novel/GJDDM/scenes/Metro/MetroPanteones_lowpoly/MetroPanteones.glb" id="10_hg0j6"]
-[ext_resource type="Script" uid="uid://dolmygaj003k5" path="res://visual-novel/scripts/actions/area_control_message.gd" id="11_qymc2"]
+[ext_resource type="Script" path="res://visual-novel/scripts/actions/area_control_message.gd" id="11_qymc2"]
 [ext_resource type="FontFile" uid="uid://be864bbfg1jpj" path="res://visual-novel/GJDDM/fonts/Lexend-VariableFont_wght.ttf" id="12_5ttf7"]
 [ext_resource type="Script" uid="uid://cyhet5seln3dr" path="res://visual-novel/scripts/text/rich_text_ghost.gd" id="13_gnjaq"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="14_kq5fm"]
@@ -62,8 +62,7 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [sub_resource type="Resource" id="Resource_k80vs"]
 script = ExtResource("15_vl85n")
-duration = 1.5
-transition = 4
+duration = 0.0
 
 [sub_resource type="Resource" id="Resource_uf1nu"]
 script = ExtResource("19_ig1qo")
@@ -72,8 +71,8 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [sub_resource type="Resource" id="Resource_0677m"]
 script = ExtResource("15_vl85n")
-duration = 0.25
-transition = 8
+duration = 2.0
+transition = 1
 
 [sub_resource type="Resource" id="Resource_304w4"]
 script = ExtResource("19_ig1qo")
@@ -185,7 +184,7 @@ dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(-0.7346249, 0.28824183, -0.61420155, 0, 0.9052687, 0.42483914, 0.6784737, 0.312097, -0.6650337, 14, 3.85, 1.75)
+transform = Transform3D(-0.7346249, 0.28824183, -0.61420166, 0, 0.9052687, 0.4248392, 0.6784737, 0.312097, -0.66503376, 14, 3.85, 1.75)
 script = ExtResource("14_kq5fm")
 look_at_mode = 2
 look_at_target = NodePath("../../Characters/Samuel")
