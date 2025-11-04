@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://o6ftp2me12xm" path="res://visual-novel/GJDDM/scenes/Title/title_screen.gd" id="1_h5chg"]
 [ext_resource type="AudioStream" uid="uid://bwtsrqq7ehdi6" path="res://visual-novel/GJDDM/music/TeatroMendoza_1.1.ogg" id="2_disog"]
-[ext_resource type="Script" uid="uid://uwu3rtv0q2cw" path="res://visual-novel/scripts/actions/pointer_release.gd" id="3_mk3lo"]
+[ext_resource type="Script" path="res://visual-novel/scripts/actions/pointer_release.gd" id="3_mk3lo"]
 [ext_resource type="Theme" uid="uid://ceus317shnq1c" path="res://visual-novel/GJDDM/scenes/Title/title_theme.tres" id="4_vdjla"]
 [ext_resource type="Texture2D" uid="uid://ucur5ommpudt" path="res://visual-novel/GJDDM/images/logo_Dani_nobg.png" id="5_cwna3"]
 [ext_resource type="Texture2D" uid="uid://con0qeebjjbx5" path="res://visual-novel/GJDDM/images/logo_MVerdad_nobg.png" id="6_wfivq"]

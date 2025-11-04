@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="12_caevh"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dgubwui2tiafd" path="res://visual-novel/animations/novel-character_blendtree.tres" id="13_dca5i"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="13_dkogs"]
-[ext_resource type="Script" uid="uid://cws751hb7y7gb" path="res://visual-novel/scripts/camera/portrait_camera.gd" id="14_g2ba7"]
+[ext_resource type="Script" path="res://visual-novel/scripts/camera/portrait_camera.gd" id="14_g2ba7"]
 [ext_resource type="Script" uid="uid://b76mxvtweu40c" path="res://visual-novel/scripts/character/character_animation_tree.gd" id="14_ps3kr"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="14_sel01"]
 [ext_resource type="Script" uid="uid://boe8j3nxneke" path="res://visual-novel/scripts/camera/third_person_camera.gd" id="15_7vat7"]
@@ -96,7 +96,6 @@ script = ExtResource("14_ps3kr")
 [node name="Camera3D" type="Camera3D" parent="."]
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4978504, 1.25)
-current = true
 fov = 50.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
@@ -117,6 +116,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.25)
 script = ExtResource("12_caevh")
 priority = 2
 tween_resource = SubResource("Resource_p1b4h")
+tween_on_load = false
 camera_3d_resource = SubResource("Resource_g43u5")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
@@ -138,6 +138,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
 script = ExtResource("12_caevh")
 priority = 1
 tween_resource = SubResource("Resource_dqhvf")
+tween_on_load = false
 camera_3d_resource = SubResource("Resource_dkogs")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 

@@ -9,6 +9,7 @@ signal restarted
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var options_screen: CanvasLayer
+var is_paused: bool = false
 
 func _ready() -> void:
 	audio_player.stop()
@@ -17,19 +18,19 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
-func _input(event: InputEvent) -> void: 
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		_toggle_pause()
 	
 func _toggle_pause() -> void:
-	var is_paused: bool = not get_tree().paused
+	is_paused = not get_tree().paused
 	if is_paused:
 		animation_player.play("pause_start")
 		audio_player.play()
-		Dialogic.Text.hide_textbox()
+#		Dialogic.Text.hide_textbox() # TODO: Check best way to hide: seems that needs an extra frame.
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
-		Dialogic.Text.show_textbox()
+#		Dialogic.Text.show_textbox()
 		audio_player.stop()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	visible = is_paused

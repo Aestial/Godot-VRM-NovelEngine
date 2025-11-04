@@ -1,11 +1,10 @@
-[gd_scene load_steps=44 format=3 uid="uid://bo1tni28i8w3i"]
+[gd_scene load_steps=43 format=3 uid="uid://bo1tni28i8w3i"]
 
-[ext_resource type="Script" uid="uid://cs4vhptasqvn8" path="res://visual-novel/GJDDM/scenes/Teatro/teatro_scene.gd" id="1_lh2u1"]
-[ext_resource type="PackedScene" uid="uid://n5itw40xq2ct" path="res://visual-novel/GJDDM/scenes/Title/title_screen.tscn" id="2_moqlh"]
+[ext_resource type="Script" path="res://visual-novel/GJDDM/scenes/Teatro/teatro_scene.gd" id="1_lh2u1"]
+[ext_resource type="PackedScene" uid="uid://c8oqm4oj4ku2f" path="res://visual-novel/GJDDM/scenes/Laberinto/PrimerLaberinto.tscn" id="2_iqxkc"]
 [ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://controller_examples/assets/textures/Sky.png" id="2_r44f8"]
 [ext_resource type="AudioStream" uid="uid://bwtsrqq7ehdi6" path="res://visual-novel/GJDDM/music/TeatroMendoza_1.1.ogg" id="3_lh2u1"]
 [ext_resource type="LightmapGIData" uid="uid://bilnxui2wser3" path="res://visual-novel/GJDDM/scenes/Teatro/Teatro.lmbake" id="3_moqlh"]
-[ext_resource type="Script" uid="uid://cdhj5gruoyjwg" path="res://visual-novel/scripts/actions/pointer_capture.gd" id="4_iqxkc"]
 [ext_resource type="Script" uid="uid://dmcynp0g0020r" path="res://visual-novel/scripts/controllers/controller_ai.gd" id="5_fke2d"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_fke2d"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_iqxkc"]
@@ -103,7 +102,7 @@ size = Vector3(3.9442592, 1.823548, 3.375733)
 
 [node name="Theatre" type="Node3D"]
 script = ExtResource("1_lh2u1")
-next_scene = ExtResource("2_moqlh")
+next_scene = ExtResource("2_iqxkc")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lh2u1")
@@ -149,16 +148,6 @@ environment = SubResource("Environment_ctwiv")
 
 [node name="Cameras" type="Node" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="Cameras"]
-transform = Transform3D(0.6401096, 0.0669603, 0.7653598, 0, 0.99619454, -0.08715572, -0.76828337, 0.055789225, 0.6376738, 7.47, 1.959, 13.465)
-fov = 49.0
-
-[node name="PhantomCameraHost" type="Node" parent="Cameras/Camera3D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("6_fke2d")
-metadata/_custom_type_script = "uid://bd046eokvcnu2"
-
 [node name="SpawnPhantomCamera3D" type="Node3D" parent="Cameras" groups=["CinematicCameras"]]
 transform = Transform3D(0.6401096, 0.0669603, 0.7653598, 0, 0.99619454, -0.08715572, -0.76828337, 0.055789225, 0.6376738, 7.47, 1.959, 13.465)
 script = ExtResource("6_iqxkc")
@@ -171,12 +160,13 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(-0.93176025, -0.044110034, -0.36038488, 0, 0.9925926, -0.12149038, 0.36307427, -0.11319989, -0.92485833, 0.25, 0.15, -3)
+[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target", "look_at_targets") groups=["CinematicCameras"]]
+transform = Transform3D(-0.93176043, -0.044110034, -0.36038488, 0, 0.9925926, -0.12149038, 0.36307433, -0.11319989, -0.92485833, 0.25, 0.15, -3)
 script = ExtResource("6_iqxkc")
 priority = 3
 look_at_mode = 3
 look_at_target = NodePath("../../Characters/Georgino")
+look_at_targets = [NodePath("../../Characters/Celia"), NodePath("../../Characters/Georgino"), NodePath("../../Characters/Dani (Player)")]
 tween_resource = SubResource("Resource_ltws0")
 camera_3d_resource = SubResource("Resource_l5vpx")
 follow_offset = Vector3(0, 1.4, 1)
@@ -186,21 +176,24 @@ dead_zone_width = 0.1
 look_at_offset = Vector3(0, 1.4, 0)
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(-0.96645343, 0.013288943, -0.25649852, 9.313226e-10, 0.9986602, 0.05173967, 0.25684255, 0.050003953, -0.96515894, 0.316, 0.245, -6.101)
+[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target", "look_at_targets") groups=["CinematicCameras"]]
+transform = Transform3D(-0.96645343, -0.022090139, -0.25589088, -1.8626454e-09, 0.99629414, -0.08600658, 0.25684258, -0.0831213, -0.96287227, 0.316, 0.245, -6.101)
 script = ExtResource("6_iqxkc")
+priority_override = true
 look_at_mode = 3
-look_at_target = NodePath("../../Level/Ataud")
+look_at_target = NodePath("../../Characters/Celia")
+look_at_targets = [NodePath("../../Characters/Celia"), NodePath("../../Characters/Georgino"), NodePath("../../Characters/Dani (Player)")]
 tween_resource = SubResource("Resource_ccqnx")
 camera_3d_resource = SubResource("Resource_kjm0u")
 follow_offset = Vector3(0, 1.4, 1)
 follow_damping = true
 follow_axis_lock = 3
 dead_zone_width = 0.1
+look_at_offset = Vector3(0, 1.47, 0)
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="C3_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(-0.998805, 0.016262285, 0.04606477, 0, 0.9429632, -0.33289513, -0.04885102, -0.3324977, -0.9418375, 0.074, 0.197, -12.013)
+transform = Transform3D(-0.99880517, 0.016262285, 0.046064775, 0, 0.9429632, -0.3328952, -0.048851028, -0.3324977, -0.94183755, 0.074, 0.197, -12.013)
 script = ExtResource("6_iqxkc")
 look_at_mode = 2
 look_at_target = NodePath("../../Level/Ataud")
@@ -213,9 +206,9 @@ dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="C4_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(0.99779576, -0.023320546, 0.062127337, 9.313226e-10, 0.93621594, 0.35142455, -0.06636004, -0.3506499, 0.93415236, 0, 3.25, 4)
+transform = Transform3D(1, 0, 0, 0, 0.9852517, 0.17110942, 0, -0.17110941, 0.98525184, 0, 3.25, 4)
 script = ExtResource("6_iqxkc")
-look_at_mode = 3
+look_at_mode = 2
 look_at_target = NodePath("../../Level/Ataud")
 tween_resource = SubResource("Resource_iqxkc")
 camera_3d_resource = SubResource("Resource_fke2d")
@@ -268,7 +261,6 @@ vrm_scene = ExtResource("20_xsr36")
 speed = 1.5
 
 [node name="Controllers" type="Node" parent="."]
-script = ExtResource("4_iqxkc")
 
 [node name="AIController" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
 script = ExtResource("5_fke2d")
@@ -304,6 +296,17 @@ mass = 10.0
 [node name="Pickup" parent="Level" instance=ExtResource("10_4xiyf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7499032, -1.321914, -3.238368)
 visible = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+physics_interpolation_mode = 1
+transform = Transform3D(-0.9664533, -0.022090148, -0.25589085, -1.8626451e-09, 0.99629456, -0.086006574, 0.25684255, -0.08312134, -0.96287215, 0.316, 0.245, -6.101)
+fov = 45.0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("6_fke2d")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("24_r44f8")]
 

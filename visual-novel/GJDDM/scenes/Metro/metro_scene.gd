@@ -7,13 +7,14 @@ const dialogic_var: String = "metro_talk_with_samuel"
 @onready var quest_canvas_layer: QuestCanvasLayer = $QuestCanvasLayer 
 
 func _ready() -> void:
-	Dialogic.VAR.set_variable(dialogic_var, false) # TODO: Replace with save state
-	quest_canvas_layer.visible = not Dialogic.VAR.get_variable(dialogic_var)
 	Dialogic.VAR.variable_changed.connect(_on_var_changed)
+	Dialogic.VAR.set_variable(dialogic_var, false) # TODO: Replace with save state
+	quest_canvas_layer.visible = true # not Dialogic.VAR.get_variable(dialogic_var)
+#	request_ready()
 	
 func _on_var_changed(info: Dictionary) -> void:
 	if info["variable"] == dialogic_var:
-		print("Updating " + dialogic_var)
+		print("Updating " + dialogic_var + " with value " + str(info["new_value"]))
 		quest_canvas_layer.is_completed = info["new_value"]
 
 func _on_next_scene_body_entered(body: Node3D) -> void:

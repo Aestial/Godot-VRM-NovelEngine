@@ -8,7 +8,7 @@ class_name QuestCanvasLayer extends CanvasLayer
 	set = _set_is_displayed,
 	get = _get_is_displayed
 
-var is_completed:= false:
+@export var is_completed:= false:
 	set = _set_is_completed,
 	get = _get_is_completed
 	
@@ -23,9 +23,7 @@ func _get_is_completed() -> bool:
 	return is_completed	
 	
 func _set_is_displayed(value: bool) -> void:
-	if is_completed: 
-		return
-	is_displayed = value
+	is_displayed = value or not is_completed
 	visible = value
 
 func _get_is_displayed() -> bool:

@@ -1,11 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://c1ssm1pwte6yj"]
+[gd_scene load_steps=25 format=3 uid="uid://c1ssm1pwte6yj"]
 
 [ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://controller_examples/assets/textures/Sky.png" id="1_gtwdc"]
-[ext_resource type="Script" uid="uid://cdhj5gruoyjwg" path="res://visual-novel/scripts/actions/pointer_capture.gd" id="2_tjttc"]
+[ext_resource type="Script" path="res://visual-novel/scripts/actions/pointer_capture.gd" id="2_tjttc"]
 [ext_resource type="Script" uid="uid://b5jsh373vm15" path="res://visual-novel/scripts/controllers/controller_player_third_person.gd" id="3_ysntx"]
 [ext_resource type="Script" uid="uid://dmcynp0g0020r" path="res://visual-novel/scripts/controllers/controller_ai.gd" id="4_1ox6j"]
-[ext_resource type="Texture2D" uid="uid://b8q44ipg8a3cq" path="res://controller_examples/assets/textures/Black.png" id="4_wqukl"]
 [ext_resource type="Texture2D" uid="uid://6wofk4ae5yf3" path="res://controller_examples/assets/textures/White.png" id="5_1ox6j"]
+[ext_resource type="PackedScene" uid="uid://ckofxiaqdf81f" path="res://visual-novel/scenarios/floor.tscn" id="5_ysntx"]
 [ext_resource type="Texture2D" uid="uid://dkpqh8de7tb3n" path="res://controller_examples/assets/textures/Green.png" id="6_4csst"]
 [ext_resource type="PackedScene" uid="uid://cqe35jnafmlk" path="res://controller_examples/scenes/DashPickup.tscn" id="7_i1567"]
 [ext_resource type="PackedScene" uid="uid://dcjpkqhi816nl" path="res://visual-novel/characters/novel_character_base.tscn" id="8_sk686"]
@@ -27,18 +27,6 @@ background_energy_multiplier = 0.85
 sky = SubResource("Sky_5ngqa")
 tonemap_mode = 3
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajchh"]
-albedo_texture = ExtResource("4_wqukl")
-uv1_triplanar = true
-texture_filter = 5
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_mmup0"]
-material = SubResource("StandardMaterial3D_ajchh")
-size = Vector2(50, 50)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_26ptr"]
-data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkvud"]
 albedo_color = Color(0.156, 0.78, 0.6656, 1)
@@ -94,14 +82,7 @@ controlled_obj = NodePath("../../Characters/Celia")
 
 [node name="Level" type="Node" parent="."]
 
-[node name="Floor" type="MeshInstance3D" parent="Level"]
-mesh = SubResource("PlaneMesh_mmup0")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Level/Floor"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Floor/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_26ptr")
+[node name="Floor" parent="Level" instance=ExtResource("5_ysntx")]
 
 [node name="Wall" type="MeshInstance3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -12.273128)
@@ -224,6 +205,15 @@ vrm_scene = ExtResource("11_4csst")
 [node name="AnimationTree" parent="Characters/Dani" index="1"]
 root_node = NodePath("../CollisionShape3D/ModelContainer/Nadia")
 anim_player = NodePath("../CollisionShape3D/ModelContainer/Nadia/AnimationPlayer")
+
+[node name="Camera3D" parent="Characters/Dani" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.526396, 1.25)
+
+[node name="ThirdPersonCamera" parent="Characters/Dani" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.526396, 0)
+
+[node name="PortraitCamera" parent="Characters/Dani/CollisionShape3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5450617, 0)
 
 [node name="GazeTarget" parent="Characters/Dani" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3737564, -0.75)

@@ -1,10 +1,10 @@
-[gd_scene load_steps=47 format=4 uid="uid://c8oqm4oj4ku2f"]
+[gd_scene load_steps=46 format=4 uid="uid://c8oqm4oj4ku2f"]
 
 [ext_resource type="AudioStream" uid="uid://c1gnuhcoqng01" path="res://visual-novel/GJDDM/music/more tracks.mp3" id="1_pa80t"]
 [ext_resource type="Script" path="res://visual-novel/GJDDM/scenes/Laberinto/maze1_scene.gd" id="1_ygn2f"]
+[ext_resource type="PackedScene" uid="uid://n5itw40xq2ct" path="res://visual-novel/GJDDM/scenes/Title/title_screen.tscn" id="2_kdbmg"]
 [ext_resource type="LightmapGIData" uid="uid://oxdlvuawk3s6" path="res://visual-novel/GJDDM/scenes/Laberinto/PrimerLaberinto.lmbake" id="2_nr84j"]
 [ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://controller_examples/assets/textures/Sky.png" id="3_kdbmg"]
-[ext_resource type="Script" path="res://visual-novel/scripts/actions/pointer_capture.gd" id="4_siao4"]
 [ext_resource type="Script" uid="uid://b5jsh373vm15" path="res://visual-novel/scripts/controllers/controller_player_third_person.gd" id="5_2fk5y"]
 [ext_resource type="PackedScene" uid="uid://dcjpkqhi816nl" path="res://visual-novel/characters/novel_character_base.tscn" id="6_j3tyg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_nr84j"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_siao4"]
 [ext_resource type="PackedScene" uid="uid://c3mkywf5liwxn" path="res://visual-novel/GJDDM/characters/packed/dani.scn" id="8_ygn2f"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="9_2fk5y"]
-[ext_resource type="PackedScene" uid="uid://bo1tni28i8w3i" path="res://visual-novel/GJDDM/scenes/Teatro/Teatro.tscn" id="10_spmur"]
 [ext_resource type="Texture2D" uid="uid://dvar72mo5xo53" path="res://visual-novel/GJDDM/scenes/Laberinto/textures/Wood24b.JPG" id="14_ygn2f"]
 [ext_resource type="MeshLibrary" uid="uid://n7u3cctqnsi2" path="res://visual-novel/GJDDM/scenes/Laberinto/hall_maze_meshlibrary.tres" id="15_k0j6u"]
 [ext_resource type="Texture2D" uid="uid://bukj87xokogkx" path="res://visual-novel/GJDDM/scenes/Laberinto/textures/Wall36_256x512.jpg" id="15_xejsl"]
@@ -571,11 +570,11 @@ size = Vector3(3, 2, 3)
 
 [node name="PrimerLaberinto" type="Node3D"]
 script = ExtResource("1_ygn2f")
-next_scene = ExtResource("10_spmur")
+next_scene = ExtResource("2_kdbmg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_pa80t")
-volume_db = 0.25
+volume_db = 5.0
 pitch_scale = 0.8
 autoplay = true
 
@@ -662,7 +661,6 @@ vrm_scene = ExtResource("8_ygn2f")
 fov = 2
 
 [node name="Controllers" type="Node" parent="."]
-script = ExtResource("4_siao4")
 
 [node name="PlayerController" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
 script = ExtResource("5_2fk5y")

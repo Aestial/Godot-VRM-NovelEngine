@@ -39,17 +39,18 @@ directories/dch_directory={
 "jaime": "res://dialogic/characters/jaime.dch"
 }
 directories/dtl_directory={
-"metro_samuel": "res://dialogic/timelines/metro_samuel.dtl",
+"metro_cinematica": "res://dialogic/timelines/metro_cinematica.dtl",
 "presentation": "res://dialogic/timelines/presentation.dtl",
 "teatro_cinematica01": "res://dialogic/timelines/teatro_cinematica01.dtl",
-"test": "res://dialogic/timelines/test.dtl"
+"welcome": "res://dialogic/timelines/welcome.dtl"
 }
 glossary/default_case_sensitive=true
 layout/style_list=["res://dialogic/styles/my_new_style.tres"]
 layout/default_style="res://dialogic/styles/my_new_style.tres"
 variables={
 "metro_talk_with_samuel": false,
-"theatre_talk_with_celia": false
+"theatre_talk_with_celia": false,
+"welcome_monologue": false
 }
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01

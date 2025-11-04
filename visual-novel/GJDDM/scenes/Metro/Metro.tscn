@@ -1,7 +1,7 @@
 [gd_scene load_steps=43 format=3 uid="uid://blu4mw3t0n8rs"]
 
 [ext_resource type="Script" uid="uid://bibyrurha2rr5" path="res://visual-novel/GJDDM/scenes/Metro/metro_scene.gd" id="1_ig1qo"]
-[ext_resource type="PackedScene" uid="uid://c8oqm4oj4ku2f" path="res://visual-novel/GJDDM/scenes/Laberinto/PrimerLaberinto.tscn" id="2_a0iqd"]
+[ext_resource type="PackedScene" uid="uid://bo1tni28i8w3i" path="res://visual-novel/GJDDM/scenes/Teatro/Teatro.tscn" id="2_a0iqd"]
 [ext_resource type="AudioStream" uid="uid://di7417f8o8shi" path="res://visual-novel/GJDDM/music/Metro_Panteones.ogg" id="3_0677m"]
 [ext_resource type="LightmapGIData" uid="uid://doxpkb7am7d7s" path="res://visual-novel/GJDDM/scenes/Metro/Metro.lmbake" id="4_304w4"]
 [ext_resource type="Script" uid="uid://d3fgevt1ftusm" path="res://visual-novel/scripts/audio/ambient_music_player.gd" id="4_a0iqd"]
@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="15_vl85n"]
 [ext_resource type="PackedScene" uid="uid://dcjpkqhi816nl" path="res://visual-novel/characters/novel_character_base.tscn" id="16_ppuyq"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="19_ig1qo"]
-[ext_resource type="Resource" uid="uid://oygcpypq6kpq" path="res://dialogic/timelines/metro_samuel.dtl" id="19_n5fj1"]
+[ext_resource type="Resource" uid="uid://oygcpypq6kpq" path="res://dialogic/timelines/metro_cinematica.dtl" id="19_n5fj1"]
 [ext_resource type="Resource" path="res://dialogic/characters/Samuel.dch" id="20_lha4i"]
 [ext_resource type="PackedScene" uid="uid://do1f5t0qor5r5" path="res://visual-novel/GJDDM/characters/packed/samuel.scn" id="21_g47qq"]
 [ext_resource type="PackedScene" uid="uid://by06s53b5eiiq" path="res://visual-novel/canvas/quest_canvas_layer.tscn" id="21_ig1qo"]
@@ -145,22 +145,12 @@ environment = SubResource("Environment_ctwiv")
 
 [node name="Cameras" type="Node" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="Cameras"]
-transform = Transform3D(0.034899496, 0, -0.99939084, 0, 1, 0, 0.99939084, 0, 0.034899496, -6.66, 2, 3.795)
-fov = 21.5
-
-[node name="PhantomCameraHost" type="Node" parent="Cameras/Camera3D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("7_k80vs")
-metadata/_custom_type_script = "uid://bd046eokvcnu2"
-
 [node name="SpawnPhantomCamera3D" type="Node3D" parent="Cameras" groups=["CinematicCameras"]]
 transform = Transform3D(0.034899496, 0, -0.99939084, 0, 1, 0, 0.99939084, 0, 0.034899496, -6.66, 2, 3.795)
-top_level = true
 script = ExtResource("14_kq5fm")
 priority = 3
 tween_resource = SubResource("Resource_82ycx")
+tween_on_load = false
 camera_3d_resource = SubResource("Resource_dfpb5")
 follow_offset = Vector3(0, 1.4, 1)
 follow_damping = true
@@ -184,7 +174,7 @@ dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(-0.7346249, 0.28824183, -0.61420166, 0, 0.9052687, 0.4248392, 0.6784737, 0.312097, -0.66503376, 14, 3.85, 1.75)
+transform = Transform3D(-0.7346249, 0.28824183, -0.6142026, 0, 0.9052687, 0.42483985, 0.6784737, 0.312097, -0.66503483, 14, 3.85, 1.75)
 script = ExtResource("14_kq5fm")
 look_at_mode = 2
 look_at_target = NodePath("../../Characters/Samuel")
@@ -368,6 +358,16 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/NextScene"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.019907, -0.16024971, -2.5208473)
 shape = SubResource("BoxShape3D_funw1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.034899496, 0, -0.99939084, 0, 1, 0, 0.99939084, 0, 0.034899496, -6.66, 2, 3.795)
+fov = 21.5
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("7_k80vs")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("6_82ycx")]
 

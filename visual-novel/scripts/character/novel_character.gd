@@ -14,6 +14,8 @@ enum CharacterType {
 @export_category("Dialogic")
 @export var dialogic_character: DialogicCharacter
 @export var character_timeline: DialogicTimeline
+@export var has_monologue: bool
+
 @export_category("VRM")
 @export var vrm_scene: PackedScene : set = _set_vrm_scene
 
@@ -74,15 +76,14 @@ func _validate_property(property: Dictionary) -> void:
 	################
 	## Player
 	################
+	if property.name == "has_monologue" and character_type == CharacterType.NPC:
+		property.usage = PROPERTY_USAGE_NO_EDITOR
 	if property.name == "camera_distance" and character_type == CharacterType.NPC:
-			property.usage = PROPERTY_USAGE_NO_EDITOR
-
+		property.usage = PROPERTY_USAGE_NO_EDITOR
 	if property.name == "fov" and character_type == CharacterType.NPC:
-		property.usage = PROPERTY_USAGE_NO_EDITOR
-		
+		property.usage = PROPERTY_USAGE_NO_EDITOR		
 	if property.name == "use_override_camera" and character_type == CharacterType.NPC:
-		property.usage = PROPERTY_USAGE_NO_EDITOR
-	
+		property.usage = PROPERTY_USAGE_NO_EDITOR	
 	if property.name == "override_camera" and character_type == CharacterType.NPC:
 		property.usage = PROPERTY_USAGE_NO_EDITOR
 
@@ -124,11 +125,16 @@ func _ready() -> void:
 	## TODO: Replace with signal of custom event (Cameras)?
 	Dialogic.Text.speaker_updated.connect(_on_dialogic_speaker_updated) # This is working
 	# Dialogic.Portraits.character_joined.connect(_on_dialogic_character_joined) # TODO: Use this as reference for Custom Event
+	
 		
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:	
 	if _can_wake and character_type == CharacterType.PLAYER:	
 		_can_wake = false
 		reset_camera()
+		
+	if character_timeline and has_monologue:
+		start_dialogue(character_timeline)
+		return
 	
 	if character_type == CharacterType.PLAYER and can_interact and \
 			event.is_action_pressed("interact"):
@@ -321,12 +327,11 @@ func _on_dialogic_timeline_started() -> void:
 	is_busy = true
 	_animation_tree.reset()
 	_stop_movement()
-	interaction_toggle.emit(true)
-	if character_type == CharacterType.PLAYER:
-		_move_to_socket()
+	
+	if character_type == CharacterType.NPC or has_monologue:
 		return
-		call_deferred("_move_to_socket")
-		get_tree().create_timer(250).timeout.connect(_move_to_socket)
+	_move_to_socket()
+	interaction_toggle.emit(true)
 	
 func _on_interaction_area_3d_body_entered(body: Node3D) -> void:
 	if is_busy or character_type == CharacterType.PLAYER or \

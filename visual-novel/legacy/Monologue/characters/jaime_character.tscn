@@ -1,13 +1,13 @@
 [gd_scene load_steps=89 format=3 uid="uid://bvk8jqxm5vvqc"]
 
-[ext_resource type="Script" uid="uid://bgnmwonlivjeg" path="res://visual-novel/legacy/FirstPrototype_Dialogic/scripts/vrm-character.gd" id="1_15x6w"]
+[ext_resource type="Script" uid="uid://bgnmwonlivjeg" path="res://visual-novel/legacy/Monologue/scripts/vrm-character.gd" id="1_15x6w"]
 [ext_resource type="PackedScene" uid="uid://by6iaxdb0bhia" path="res://character_samples/vrm/jaime.vrm" id="1_iijpr"]
 [ext_resource type="Script" uid="uid://bh0kts1q2t2iu" path="res://addons/vrm/vrm_spring_bone.gd" id="2_tdnqw"]
 [ext_resource type="Script" uid="uid://k0tkdr1fej6k" path="res://addons/vrm/vrm_collider_group.gd" id="3_mpwt1"]
 [ext_resource type="Script" uid="uid://p4cpsh67l24x" path="res://addons/vrm/vrm_collider.gd" id="4_15x6w"]
 [ext_resource type="AnimationLibrary" uid="uid://w6ygba13mihu" path="res://visual-novel/animations/legacy/mixamo-female_locomotion.res" id="5_tdnqw"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://4obcxtn7pipn" path="res://visual-novel/animations/legacy/vrm-mood_blendtree.res" id="7_2q65d"]
-[ext_resource type="Script" uid="uid://dofuv8cgmsp48" path="res://visual-novel/legacy/FirstPrototype_Dialogic/scripts/vrm-animation_tree.gd" id="8_2q65d"]
+[ext_resource type="Script" uid="uid://dofuv8cgmsp48" path="res://visual-novel/legacy/Monologue/scripts/vrm-animation_tree.gd" id="8_2q65d"]
 
 [sub_resource type="Resource" id="Resource_6fh47"]
 resource_name = "Hood"
