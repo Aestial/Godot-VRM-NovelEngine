@@ -1,3 +1,4 @@
+@tool 
 class_name CharacterAnimationTree extends AnimationTree
 
 @export_category("Blinking")
@@ -8,28 +9,39 @@ class_name CharacterAnimationTree extends AnimationTree
 @export var blink_threshold: float = 0.26  # Higher = fewer but more pronounced blinks
 @export var asymmetry_offset: float = 0.2  # Time offset between left/right eyes
 
-@onready var novel_character: NovelCharacter = get_parent() as NovelCharacter
-@onready var dialogic_character: DialogicCharacter = novel_character.dialogic_character
-@onready var character_name: String = dialogic_character.display_name
-
-var mood_state_path: String           = "parameters/FaceExpression/mood/transition_request"	
-var mood_amount_path: String          = "parameters/FaceExpression/mood_amount/blend_amount"
-var viseme_state_path: String         = "parameters/FaceExpression/viseme/transition_request"
-var viseme_amount_path: String        = "parameters/FaceExpression/viseme_amount/blend_amount"
-var motion_amount: String 			  = "parameters/Locomotion/Motion/blend_position"
-var left_eye_blink_amount: String	  = "parameters/LeftBlink/blend_position"
-var right_eye_blink_amount: String	  = "parameters/RightBlink/blend_position"
+const mood_state_path: String           = "parameters/FaceExpression/mood/transition_request"	
+const mood_amount_path: String          = "parameters/FaceExpression/mood_amount/blend_amount"
+const viseme_state_path: String         = "parameters/FaceExpression/viseme/transition_request"
+const viseme_amount_path: String        = "parameters/FaceExpression/viseme_amount/blend_amount"
+const motion_amount: String 			= "parameters/Locomotion/Motion/blend_position"
+const left_eye_blink_amount: String	  	= "parameters/LeftBlink/blend_position"
+const right_eye_blink_amount: String	= "parameters/RightBlink/blend_position"
+const locomotion_blend_path: String			= "parameters/LocomotionBlend/blend_amount"
+const pose_transition_path: String 	  	= "parameters/Pose/transition_request"
+const dancing_speed_path: String 		= "parameters/DancingSpeed/scale"
 
 # Random animation
 var fnl: FastNoiseLite
 var total_time: float = 0.0
+var current_pose_amount: float = 1.0 
 # Forced blink control
 var is_forced_blink: bool = false
 var forced_blink_value: float = 0.0
 
+@onready var novel_character: NovelCharacter = get_parent() as NovelCharacter
+@onready var dialogic_character: DialogicCharacter = novel_character.dialogic_character
+@onready var character_name: String = dialogic_character.display_name
+
 func _ready():
-	setup_noise()	
+	setup_noise()
+	if Engine.is_editor_hint():
+		return
 	Dialogic.signal_event.connect(_on_dialogic_dictionary_signal)
+	
+func set_pose(pose_name: String, amount: float = 1.0) -> void:
+	set(pose_transition_path, pose_name)
+	set(locomotion_blend_path, 1 - amount)
+	current_pose_amount = amount
 	
 func setup_noise():
 	fnl = FastNoiseLite.new()
@@ -46,12 +58,11 @@ func reset() -> void:
 
 func _process(delta):
 	total_time += delta
-	
 	# Get eyelid values
 	var left_eyelid: float = get_smooth_eyelid_value(0.0, 0.0)
 	var right_eyelid: float = get_smooth_eyelid_value(1.0, asymmetry_offset)
-
 	apply_eyelid_values(left_eyelid, right_eyelid)
+	
 	
 func apply_eyelid_values(left_value: float, right_value: float):
 	"""

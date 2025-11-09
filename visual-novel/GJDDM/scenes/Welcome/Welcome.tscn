@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c3mkywf5liwxn" path="res://visual-novel/GJDDM/characters/packed/dani.scn" id="5_02nfc"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="8_4x8kj"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_yk8to"]
-[ext_resource type="Texture2D" uid="uid://b8q44ipg8a3cq" path="res://controller_examples/assets/textures/Black.png" id="10_eaoyb"]
+[ext_resource type="Texture2D" uid="uid://b8q44ipg8a3cq" path="res://samples/controller_examples/assets/textures/Black.png" id="10_eaoyb"]
 [ext_resource type="PackedScene" uid="uid://dbg1prbc0j7t5" path="res://visual-novel/GJDDM/scenes/Title/pause_screen.tscn" id="13_eaoyb"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="13_kxjsl"]
 
@@ -73,6 +73,7 @@ character_type = 1
 character_timeline = ExtResource("4_m1kjg")
 has_monologue = true
 vrm_scene = ExtResource("5_02nfc")
+default_pose_name = "idle"
 
 [node name="Floor" parent="." instance=ExtResource("2_tntyt")]
 mesh = SubResource("PlaneMesh_kxjsl")

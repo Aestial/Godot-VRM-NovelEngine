@@ -18,6 +18,11 @@ enum CharacterType {
 
 @export_category("VRM")
 @export var vrm_scene: PackedScene : set = _set_vrm_scene
+@export var current_animation: Animation
+
+@export_category("Pose")
+@export var default_pose_name: String = "idle"
+@export var default_pose_amount: float = 1.0
 
 @export_category("Override camera")
 @export var use_override_camera: bool = false
@@ -109,6 +114,9 @@ func _ready() -> void:
 	if vrm_scene:
 		_vrm_model = _instantiate_model(vrm_scene)
 		_adjust_camera_nodes()
+		
+	if _animation_tree:
+		_animation_tree.set_pose(default_pose_name, default_pose_amount)
 	
 	if Engine.is_editor_hint():
 		return

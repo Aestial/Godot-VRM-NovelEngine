@@ -36,9 +36,11 @@ directories/dch_directory={
 "Natalia": "res://dialogic/characters/Natalia.dch",
 "Samuel": "res://dialogic/characters/Samuel.dch",
 "archlinux-chan": "res://dialogic/characters/archlinux-chan.dch",
+"dancer-metro": "res://dialogic/characters/dancer-metro.dch",
 "jaime": "res://dialogic/characters/jaime.dch"
 }
 directories/dtl_directory={
+"dancer-metro_metro": "res://dialogic/timelines/dancer-metro_metro.dtl",
 "metro_cinematica": "res://dialogic/timelines/metro_cinematica.dtl",
 "presentation": "res://dialogic/timelines/presentation.dtl",
 "teatro_cinematica01": "res://dialogic/timelines/teatro_cinematica01.dtl",

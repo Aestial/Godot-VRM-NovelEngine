@@ -3,11 +3,11 @@
 [ext_resource type="MeshLibrary" uid="uid://c2of5rggx7uer" path="res://addons/timchi_maze_generation/assets/maze.tres" id="1_674ht"]
 [ext_resource type="AudioStream" uid="uid://c1gnuhcoqng01" path="res://visual-novel/GJDDM/music/more tracks.mp3" id="1_n7uqn"]
 [ext_resource type="LightmapGIData" uid="uid://doxpkb7am7d7s" path="res://visual-novel/GJDDM/scenes/Metro/Metro.lmbake" id="3_utgqc"]
-[ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://controller_examples/assets/textures/Sky.png" id="4_b07c7"]
-[ext_resource type="Script" uid="uid://cdhj5gruoyjwg" path="res://visual-novel/scripts/actions/pointer_capture.gd" id="5_5t5el"]
+[ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://samples/controller_examples/assets/textures/Sky.png" id="4_b07c7"]
+[ext_resource type="Script" path="res://visual-novel/scripts/actions/pointer_capture.gd" id="5_5t5el"]
 [ext_resource type="Script" uid="uid://b5jsh373vm15" path="res://visual-novel/scripts/controllers/controller_player_third_person.gd" id="6_5rkmi"]
 [ext_resource type="PackedScene" uid="uid://dcjpkqhi816nl" path="res://visual-novel/characters/novel_character_base.tscn" id="7_dju37"]
-[ext_resource type="Script" uid="uid://ctpibhc6cx70y" path="res://visual-novel/scripts/character/player.gd" id="8_7k8ah"]
+[ext_resource type="Script" path="res://visual-novel/scripts/character/player.gd" id="8_7k8ah"]
 [ext_resource type="Resource" uid="uid://cc3s0aeroky4r" path="res://dialogic/characters/Celia.dch" id="9_n1mu4"]
 [ext_resource type="PackedScene" uid="uid://b7xheyflqsu7l" path="res://visual-novel/GJDDM/characters/packed/celia.scn" id="10_st7fd"]
 [ext_resource type="Script" uid="uid://bh0kts1q2t2iu" path="res://addons/vrm/vrm_spring_bone.gd" id="11_nvxai"]
@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ddduyoxnfnhse" path="res://addons/timchi_maze_generation/assets/basic_maze_REDBRICKS.png" id="15_5rkmi"]
 [ext_resource type="Texture2D" uid="uid://b7g12kiqnwp8" path="res://addons/timchi_maze_generation/assets/basic_maze_HEXAGONS.png" id="16_dju37"]
 [ext_resource type="Script" uid="uid://dt3jo0v5y4sy5" path="res://visual-novel/scripts/actions/next_scene_area.gd" id="17_dju37"]
-[ext_resource type="PackedScene" uid="uid://b8jxdrxgy40ka" path="res://visual-novel/GJDDM/scenes/Title/title_screen.tscn" id="18_dju37"]
+[ext_resource type="PackedScene" uid="uid://n5itw40xq2ct" path="res://visual-novel/GJDDM/scenes/Title/title_screen.tscn" id="18_dju37"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7k8ah"]
 panorama = ExtResource("4_b07c7")
