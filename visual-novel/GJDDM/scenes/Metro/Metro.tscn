@@ -1,25 +1,31 @@
-[gd_scene load_steps=43 format=3 uid="uid://blu4mw3t0n8rs"]
+[gd_scene format=3 uid="uid://blu4mw3t0n8rs"]
 
 [ext_resource type="Script" uid="uid://bibyrurha2rr5" path="res://visual-novel/GJDDM/scenes/Metro/metro_scene.gd" id="1_ig1qo"]
-[ext_resource type="PackedScene" uid="uid://c8oqm4oj4ku2f" path="res://visual-novel/GJDDM/scenes/Laberinto/PrimerLaberinto.tscn" id="2_a0iqd"]
+[ext_resource type="PackedScene" uid="uid://bo1tni28i8w3i" path="res://visual-novel/GJDDM/scenes/Teatro/Teatro.tscn" id="2_a0iqd"]
 [ext_resource type="AudioStream" uid="uid://di7417f8o8shi" path="res://visual-novel/GJDDM/music/Metro_Panteones.ogg" id="3_0677m"]
 [ext_resource type="LightmapGIData" uid="uid://doxpkb7am7d7s" path="res://visual-novel/GJDDM/scenes/Metro/Metro.lmbake" id="4_304w4"]
-[ext_resource type="Script" uid="uid://bqrhd2pcq2sgo" path="res://visual-novel/scripts/audio/ambient_music_player.gd" id="4_a0iqd"]
-[ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://controller_examples/assets/textures/Sky.png" id="5_dfpb5"]
+[ext_resource type="Script" uid="uid://d3fgevt1ftusm" path="res://visual-novel/scripts/audio/ambient_music_player.gd" id="4_a0iqd"]
+[ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://samples/controller_examples/assets/textures/Sky.png" id="5_dfpb5"]
 [ext_resource type="PackedScene" uid="uid://dbg1prbc0j7t5" path="res://visual-novel/GJDDM/scenes/Title/pause_screen.tscn" id="6_82ycx"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_k80vs"]
 [ext_resource type="Script" uid="uid://dmcynp0g0020r" path="res://visual-novel/scripts/controllers/controller_ai.gd" id="8_uf1nu"]
 [ext_resource type="PackedScene" uid="uid://c3mkywf5liwxn" path="res://visual-novel/GJDDM/characters/packed/dani.scn" id="9_ig1qo"]
 [ext_resource type="Script" uid="uid://cve242f0ec8v" path="res://visual-novel/scripts/controllers/controller_player.gd" id="9_s84md"]
 [ext_resource type="PackedScene" uid="uid://56203yb3xiie" path="res://visual-novel/GJDDM/scenes/Metro/MetroPanteones_lowpoly/MetroPanteones.glb" id="10_hg0j6"]
-[ext_resource type="Script" uid="uid://dolmygaj003k5" path="res://visual-novel/scripts/actions/area_control_message.gd" id="11_qymc2"]
+[ext_resource type="Script" path="res://visual-novel/scripts/actions/area_control_message.gd" id="11_qymc2"]
 [ext_resource type="FontFile" uid="uid://be864bbfg1jpj" path="res://visual-novel/GJDDM/fonts/Lexend-VariableFont_wght.ttf" id="12_5ttf7"]
+[ext_resource type="Resource" uid="uid://bqn3cdod80gsl" path="res://dialogic/timelines/dancer-metro_metro.dtl" id="12_82ycx"]
 [ext_resource type="Script" uid="uid://cyhet5seln3dr" path="res://visual-novel/scripts/text/rich_text_ghost.gd" id="13_gnjaq"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="14_kq5fm"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="15_vl85n"]
+[ext_resource type="Resource" uid="uid://bji0tf7m5xn6r" path="res://dialogic/characters/brayan-metro.dch" id="16_82ycx"]
+[ext_resource type="PackedScene" uid="uid://86sf8j00aa7p" path="res://samples/character_samples/packed/errand_x_1.scn" id="16_304w4"]
+[ext_resource type="PackedScene" uid="uid://bbcsdxjc4wu" path="res://samples/character_samples/packed/brayan_mty.scn" id="16_dfpb5"]
 [ext_resource type="PackedScene" uid="uid://dcjpkqhi816nl" path="res://visual-novel/characters/novel_character_base.tscn" id="16_ppuyq"]
+[ext_resource type="Resource" uid="uid://ccviid6hf7yrn" path="res://dialogic/characters/brayan-metro_metro.dtl" id="17_k80vs"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="19_ig1qo"]
-[ext_resource type="Resource" uid="uid://oygcpypq6kpq" path="res://dialogic/timelines/metro_samuel.dtl" id="19_n5fj1"]
+[ext_resource type="Resource" uid="uid://oygcpypq6kpq" path="res://dialogic/timelines/metro_cinematica.dtl" id="19_n5fj1"]
+[ext_resource type="Resource" uid="uid://db5uatqntdvrb" path="res://dialogic/characters/devs-metro.dch" id="19_uf1nu"]
 [ext_resource type="Resource" path="res://dialogic/characters/Samuel.dch" id="20_lha4i"]
 [ext_resource type="PackedScene" uid="uid://do1f5t0qor5r5" path="res://visual-novel/GJDDM/characters/packed/samuel.scn" id="21_g47qq"]
 [ext_resource type="PackedScene" uid="uid://by06s53b5eiiq" path="res://visual-novel/canvas/quest_canvas_layer.tscn" id="21_ig1qo"]
@@ -62,8 +68,7 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [sub_resource type="Resource" id="Resource_k80vs"]
 script = ExtResource("15_vl85n")
-duration = 1.5
-transition = 4
+duration = 0.0
 
 [sub_resource type="Resource" id="Resource_uf1nu"]
 script = ExtResource("19_ig1qo")
@@ -72,8 +77,8 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [sub_resource type="Resource" id="Resource_0677m"]
 script = ExtResource("15_vl85n")
-duration = 0.25
-transition = 8
+duration = 2.0
+transition = 1
 
 [sub_resource type="Resource" id="Resource_304w4"]
 script = ExtResource("19_ig1qo")
@@ -87,6 +92,15 @@ duration = 0.0
 [sub_resource type="Resource" id="Resource_a0iqd"]
 script = ExtResource("19_ig1qo")
 fov = 40.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="Resource" id="Resource_qymc2"]
+script = ExtResource("15_vl85n")
+transition = 4
+
+[sub_resource type="Resource" id="Resource_5ttf7"]
+script = ExtResource("19_ig1qo")
+fov = 60.5
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_berkl"]
@@ -108,18 +122,18 @@ size = Vector3(12.934795, 3.7187867, 0.79493713)
 [sub_resource type="BoxShape3D" id="BoxShape3D_funw1"]
 size = Vector3(26.907635, 2.7002044, 0.6650467)
 
-[node name="Metro" type="Node3D"]
+[node name="Metro" type="Node3D" unique_id=1872270199]
 script = ExtResource("1_ig1qo")
 next_scene = ExtResource("2_a0iqd")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1855982548]
 stream = ExtResource("3_0677m")
 volume_db = -1.0
 pitch_scale = 0.85
 autoplay = true
 script = ExtResource("4_a0iqd")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1209147559]
 transform = Transform3D(1, 0, 0, 0, 0.7357071, 0.6772998, 0, -0.6772998, 0.7357071, 0, 2.9475758, 0)
 light_color = Color(0.90671605, 0.94047564, 0.8134223, 1)
 light_energy = 0.5
@@ -129,39 +143,29 @@ directional_shadow_mode = 0
 directional_shadow_max_distance = 125.0
 sky_mode = 1
 
-[node name="LightmapGI" type="LightmapGI" parent="."]
+[node name="LightmapGI" type="LightmapGI" parent="." unique_id=1064854193]
 supersampling = true
 interior = true
 max_texture_size = 2048
 generate_probes_subdiv = 1
 light_data = ExtResource("4_304w4")
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+[node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=1848681386]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 15.755188, 2.5835783, 2.6792662)
 size = Vector3(10.108871, 6.564144, 63.259476)
 interior = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1145766277]
 environment = SubResource("Environment_ctwiv")
 
-[node name="Cameras" type="Node" parent="."]
+[node name="Cameras" type="Node" parent="." unique_id=881437385]
 
-[node name="Camera3D" type="Camera3D" parent="Cameras"]
+[node name="SpawnPhantomCamera3D" type="Node3D" parent="Cameras" unique_id=367152046 groups=["CinematicCameras"]]
 transform = Transform3D(0.034899496, 0, -0.99939084, 0, 1, 0, 0.99939084, 0, 0.034899496, -6.66, 2, 3.795)
-fov = 21.5
-
-[node name="PhantomCameraHost" type="Node" parent="Cameras/Camera3D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("7_k80vs")
-metadata/_custom_type_script = "uid://bd046eokvcnu2"
-
-[node name="SpawnPhantomCamera3D" type="Node3D" parent="Cameras" groups=["CinematicCameras"]]
-transform = Transform3D(0.034899496, 0, -0.99939084, 0, 1, 0, 0.99939084, 0, 0.034899496, -6.66, 2, 3.795)
-top_level = true
 script = ExtResource("14_kq5fm")
 priority = 3
 tween_resource = SubResource("Resource_82ycx")
+tween_on_load = false
 camera_3d_resource = SubResource("Resource_dfpb5")
 follow_offset = Vector3(0, 1.4, 1)
 follow_damping = true
@@ -169,7 +173,7 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("follow_target") groups=["CinematicCameras"]]
+[node name="PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=49140267 node_paths=PackedStringArray("follow_target") groups=["CinematicCameras"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48738194, 2.379788, 7.174062)
 top_level = true
 script = ExtResource("14_kq5fm")
@@ -184,8 +188,8 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(-0.7346249, 0.28824183, -0.61420155, 0, 0.9052687, 0.42483914, 0.6784737, 0.312097, -0.6650337, 14, 3.85, 1.75)
+[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=1707168541 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
+transform = Transform3D(-0.533197, -0.027034765, 0.8455596, 0, 0.9994876, 0.031956382, -0.8459918, 0.017039003, -0.53292465, 35.732655, 2.7211475, 1.0502386)
 script = ExtResource("14_kq5fm")
 look_at_mode = 2
 look_at_target = NodePath("../../Characters/Samuel")
@@ -195,10 +199,11 @@ follow_offset = Vector3(0, 1.4, 1)
 follow_damping = true
 follow_axis_lock = 3
 dead_zone_width = 0.1
+look_at_offset = Vector3(-1.3, 1.355, -1.095)
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("follow_targets") groups=["CinematicCameras"]]
-transform = Transform3D(0.99999964, 0, 0, 0, 0.9999997, 0, 0, 0, 0.99999887, 8.718884, 2.532394, 7.58703)
+[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=299010544 node_paths=PackedStringArray("follow_targets") groups=["CinematicCameras"]]
+transform = Transform3D(0.99999964, 0, 0, 0, 0.9999997, 0, 0, 0, 0.99999887, 15.214578, 2.532394, 7.58703)
 top_level = true
 script = ExtResource("14_kq5fm")
 follow_mode = 3
@@ -211,8 +216,8 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C3_PhantomCamera3D" type="Node3D" parent="Cameras" groups=["CinematicCameras"]]
-transform = Transform3D(0.020942422, -0.038379386, 0.9990435, 0, 0.9992628, 0.0383878, -0.9997805, -0.0008039337, 0.020926984, 24.102, 2, 3.975)
+[node name="C3_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=1915900706 groups=["CinematicCameras"]]
+transform = Transform3D(0.020942422, -0.038379386, 0.9990435, 0, 0.9992628, 0.0383878, -0.9997805, -0.0008039337, 0.020926984, 38.137867, 2.2472427, 3.975)
 script = ExtResource("14_kq5fm")
 tween_resource = SubResource("Resource_berkl")
 camera_3d_resource = SubResource("Resource_a0iqd")
@@ -222,63 +227,112 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="Characters" type="Node" parent="."]
+[node name="C4_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=622582126 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
+transform = Transform3D(0.95416456, -0.014609751, -0.298928, -4.656616e-10, 0.9988074, -0.04881563, 0.29928482, 0.04657807, 0.95302695, 7.078, 2.038, 5.552)
+script = ExtResource("14_kq5fm")
+look_at_mode = 2
+look_at_target = NodePath("../../Characters/Dancer")
+tween_resource = SubResource("Resource_qymc2")
+camera_3d_resource = SubResource("Resource_5ttf7")
+follow_offset = Vector3(0, 1.4, 1)
+follow_damping = true
+follow_axis_lock = 3
+dead_zone_width = 0.1
+look_at_offset = Vector3(0, 1.065, -1)
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="Dani (Player)" parent="Characters" node_paths=PackedStringArray("override_camera") instance=ExtResource("16_ppuyq")]
+[node name="C5_PhantomCamera3D2" type="Node3D" parent="Cameras" unique_id=1491309321 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
+transform = Transform3D(0.8754195, 0.123456016, 0.4673336, 0, 0.96683294, -0.2554096, -0.4833655, 0.22359022, 0.8463843, 8.735, 1.278, 5.147)
+script = ExtResource("14_kq5fm")
+look_at_mode = 2
+look_at_target = NodePath("../../Characters/Dancer")
+tween_resource = SubResource("Resource_qymc2")
+camera_3d_resource = SubResource("Resource_5ttf7")
+follow_offset = Vector3(0, 1.4, 1)
+follow_damping = true
+follow_axis_lock = 3
+dead_zone_width = 0.1
+look_at_offset = Vector3(0, 0.585, 0)
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Characters" type="Node" parent="." unique_id=1952259284]
+
+[node name="Dani (Player)" parent="Characters" unique_id=436807209 node_paths=PackedStringArray("override_camera") instance=ExtResource("16_ppuyq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48738194, 1.129788, 5.174062)
 character_type = 1
 vrm_scene = ExtResource("9_ig1qo")
+default_pose_name = "crying"
+default_pose_amount = 0.0
 use_override_camera = true
 override_camera = NodePath("../../Cameras/PhantomCamera3D")
 camera_distance = 1.0
 speed = 2.25
 jump_strength = 3.75
 
-[node name="Samuel" parent="Characters" instance=ExtResource("16_ppuyq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.92515, 1.135, 6)
+[node name="Samuel" parent="Characters" unique_id=1394299178 instance=ExtResource("16_ppuyq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.916536, 1.135, 6)
 dialogic_character = ExtResource("20_lha4i")
 character_timeline = ExtResource("19_n5fj1")
 vrm_scene = ExtResource("21_g47qq")
+default_pose_amount = 0.0
 speed = 1.5
 
-[node name="Controllers" type="Node" parent="."]
+[node name="Dancer" parent="Characters" unique_id=1782697982 instance=ExtResource("16_ppuyq")]
+transform = Transform3D(0.7867091, 0, -0.61732435, 0, 1, 0, 0.61732435, 0, 0.7867091, 7.9593296, 1.1169232, 3.74219)
+character_timeline = ExtResource("12_82ycx")
+default_pose_name = "dancing"
 
-[node name="AIController-PatrolLine" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
+[node name="Brayan" parent="Characters" unique_id=931139128 instance=ExtResource("16_ppuyq")]
+transform = Transform3D(0.1319798, 0, -0.99125266, 0, 1, 0, 0.99125266, 0, 0.1319798, 10.446279, 1.1169235, 5.3332744)
+dialogic_character = ExtResource("16_82ycx")
+character_timeline = ExtResource("17_k80vs")
+vrm_scene = ExtResource("16_dfpb5")
+default_pose_name = "metro_standing"
+
+[node name="Dev" parent="Characters" unique_id=1876071220 instance=ExtResource("16_ppuyq")]
+transform = Transform3D(0.056109577, 0.9982595, 0.018160775, -0.9497508, 0.05897543, -0.30740207, -0.30793804, 0, 0.9514067, 18.925804, 1.3856218, 5.557081)
+dialogic_character = ExtResource("19_uf1nu")
+vrm_scene = ExtResource("16_304w4")
+default_pose_name = "metro_standing"
+
+[node name="Controllers" type="Node" parent="." unique_id=2020904216]
+
+[node name="AIController-PatrolLine" type="Node" parent="Controllers" unique_id=1359928559 node_paths=PackedStringArray("controlled_obj")]
 script = ExtResource("8_uf1nu")
 INPUT_DELAY = 2.5
 rotation_angle = 180.0
 controlled_obj = NodePath("../../Characters/Samuel")
 
-[node name="PlayerController" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
+[node name="PlayerController" type="Node" parent="Controllers" unique_id=1080218746 node_paths=PackedStringArray("controlled_obj")]
 script = ExtResource("9_s84md")
 controlled_obj = NodePath("../../Characters/Dani (Player)")
 
-[node name="Level" type="Node" parent="."]
+[node name="Level" type="Node" parent="." unique_id=1114159195]
 
-[node name="MetroPanteones" parent="Level" instance=ExtResource("10_hg0j6")]
+[node name="MetroPanteones" parent="Level" unique_id=369908782 instance=ExtResource("10_hg0j6")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.00056767464, -0.008535385, 0.009282351)
 
-[node name="Limits" type="Node" parent="Level"]
+[node name="Limits" type="Node" parent="Level" unique_id=97552770]
 
-[node name="Rail1_StaticBody3D" type="StaticBody3D" parent="Level/Limits"]
+[node name="Rail1_StaticBody3D" type="StaticBody3D" parent="Level/Limits" unique_id=789865766]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7219191, 1.2193948)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Limits/Rail1_StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Limits/Rail1_StaticBody3D" unique_id=497486881]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.226642, 0.49927878, 0.01802063)
 shape = SubResource("BoxShape3D_berkl")
 
-[node name="Rail1_LimitWarning" type="Area3D" parent="Level/Limits"]
+[node name="Rail1_LimitWarning" type="Area3D" parent="Level/Limits" unique_id=780447718]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7219191, 1.8545952)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_qymc2")
 message_text = "[shake rate=20.0 level=5 connected=1][color=gold]No caigas a las vías![/color][/shake]"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Limits/Rail1_LimitWarning"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Limits/Rail1_LimitWarning" unique_id=300992376]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13483, 0.23923564, 0.17852211)
 shape = SubResource("BoxShape3D_uu0ky")
 
-[node name="Control" type="Control" parent="Level/Limits/Rail1_LimitWarning"]
+[node name="Control" type="Control" parent="Level/Limits/Rail1_LimitWarning" unique_id=1855628194]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -287,7 +341,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Level/Limits/Rail1_LimitWarning/Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Level/Limits/Rail1_LimitWarning/Control" unique_id=993234040]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -310,25 +364,25 @@ horizontal_alignment = 1
 vertical_alignment = 1
 custom_effects = [SubResource("RichTextEffect_berkl")]
 
-[node name="Rail2_StaticBody3D" type="StaticBody3D" parent="Level/Limits"]
+[node name="Rail2_StaticBody3D" type="StaticBody3D" parent="Level/Limits" unique_id=1869348566]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.561382, 1.7219191, 1.2193948)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Limits/Rail2_StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Limits/Rail2_StaticBody3D" unique_id=2081844269]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.908844, 0.029134274, 0.038951874)
 shape = SubResource("BoxShape3D_jr3gu")
 
-[node name="Rail2_LimitWarning" type="Area3D" parent="Level/Limits"]
+[node name="Rail2_LimitWarning" type="Area3D" parent="Level/Limits" unique_id=973267082]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.561382, 1.7219191, 1.8545952)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("11_qymc2")
 message_text = "[shake rate=20.0 level=5 connected=1][color=gold]No caigas a las vías![/color][/shake]"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Limits/Rail2_LimitWarning"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Limits/Rail2_LimitWarning" unique_id=1805743226]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1487465, 0.23923564, 0.082206726)
 shape = SubResource("BoxShape3D_2i0kx")
 
-[node name="Control" type="Control" parent="Level/Limits/Rail2_LimitWarning"]
+[node name="Control" type="Control" parent="Level/Limits/Rail2_LimitWarning" unique_id=461400723]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -338,7 +392,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Level/Limits/Rail2_LimitWarning/Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Level/Limits/Rail2_LimitWarning/Control" unique_id=1233419323]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -361,18 +415,28 @@ horizontal_alignment = 1
 vertical_alignment = 1
 custom_effects = [SubResource("RichTextEffect_berkl")]
 
-[node name="NextScene" type="Area3D" parent="Level"]
+[node name="NextScene" type="Area3D" parent="Level" unique_id=103980389]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.020721, 2.3869772, 4.4704065)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/NextScene"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/NextScene" unique_id=2004354020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.019907, -0.16024971, -2.5208473)
 shape = SubResource("BoxShape3D_funw1")
 
-[node name="PauseCanvasLayer" parent="." instance=ExtResource("6_82ycx")]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=611444632]
+transform = Transform3D(0.034899496, 0, -0.99939084, 0, 1, 0, 0.99939084, 0, 0.034899496, -6.66, 2, 3.795)
+fov = 21.5
 
-[node name="QuestCanvasLayer" parent="." instance=ExtResource("21_ig1qo")]
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1038511948]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("7_k80vs")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="PauseCanvasLayer" parent="." unique_id=162373772 instance=ExtResource("6_82ycx")]
+
+[node name="QuestCanvasLayer" parent="." unique_id=808051161 instance=ExtResource("21_ig1qo")]
 text_content = "Habla con Samuel"
 
 [connection signal="body_entered" from="Level/Limits/Rail1_LimitWarning" to="Level/Limits/Rail1_LimitWarning" method="_on_body_entered"]

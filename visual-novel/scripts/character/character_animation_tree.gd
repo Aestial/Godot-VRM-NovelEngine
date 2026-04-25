@@ -1,3 +1,4 @@
+@tool 
 class_name CharacterAnimationTree extends AnimationTree
 
 @export_category("Blinking")
@@ -8,28 +9,39 @@ class_name CharacterAnimationTree extends AnimationTree
 @export var blink_threshold: float = 0.26  # Higher = fewer but more pronounced blinks
 @export var asymmetry_offset: float = 0.2  # Time offset between left/right eyes
 
-@onready var novel_character: NovelCharacter = get_parent() as NovelCharacter
-@onready var dialogic_character: DialogicCharacter = novel_character.dialogic_character
-@onready var character_name: String = dialogic_character.display_name
-
-var mood_state_path: String           = "parameters/FaceExpression/mood/transition_request"	
-var mood_amount_path: String          = "parameters/FaceExpression/mood_amount/blend_amount"
-var viseme_state_path: String         = "parameters/FaceExpression/viseme/transition_request"
-var viseme_amount_path: String        = "parameters/FaceExpression/viseme_amount/blend_amount"
-var motion_amount: String 			  = "parameters/Locomotion/Motion/blend_position"
-var left_eye_blink_amount: String	  = "parameters/LeftBlink/blend_position"
-var right_eye_blink_amount: String	  = "parameters/RightBlink/blend_position"
+const mood_state_path: String           = "parameters/FaceExpression/mood/transition_request"	
+const mood_amount_path: String          = "parameters/FaceExpression/mood_amount/blend_amount"
+const viseme_state_path: String         = "parameters/FaceExpression/viseme/transition_request"
+const viseme_amount_path: String        = "parameters/FaceExpression/viseme_amount/blend_amount"
+const motion_amount: String 			= "parameters/Locomotion/Motion/blend_position"
+const left_eye_blink_amount: String	  	= "parameters/LeftBlink/blend_position"
+const right_eye_blink_amount: String	= "parameters/RightBlink/blend_position"
+const locomotion_blend_path: String			= "parameters/LocomotionBlend/blend_amount"
+const pose_transition_path: String 	  	= "parameters/Pose/transition_request"
+const dancing_speed_path: String 		= "parameters/DancingSpeed/scale"
 
 # Random animation
 var fnl: FastNoiseLite
 var total_time: float = 0.0
+var current_pose_amount: float = 1.0 
 # Forced blink control
 var is_forced_blink: bool = false
 var forced_blink_value: float = 0.0
 
-func _ready():
-	setup_noise()	
+@onready var novel_character: NovelCharacter = get_parent() as NovelCharacter
+@onready var dialogic_character: DialogicCharacter = novel_character.dialogic_character
+@onready var character_name: String = dialogic_character.display_name
+
+func _ready() -> void:
+	setup_noise()
+	if Engine.is_editor_hint():
+		return
 	Dialogic.signal_event.connect(_on_dialogic_dictionary_signal)
+	
+func set_pose(pose_name: String, amount: float = 1.0) -> void:
+	set(pose_transition_path, pose_name)
+	set(locomotion_blend_path, 1 - amount)
+	current_pose_amount = amount
 	
 func setup_noise():
 	fnl = FastNoiseLite.new()
@@ -46,12 +58,11 @@ func reset() -> void:
 
 func _process(delta):
 	total_time += delta
-	
 	# Get eyelid values
 	var left_eyelid: float = get_smooth_eyelid_value(0.0, 0.0)
 	var right_eyelid: float = get_smooth_eyelid_value(1.0, asymmetry_offset)
-
 	apply_eyelid_values(left_eyelid, right_eyelid)
+	
 	
 func apply_eyelid_values(left_value: float, right_value: float):
 	"""
@@ -71,8 +82,8 @@ func get_smooth_eyelid_value(x_position: float, time_offset: float = 0.0) -> flo
 	if is_forced_blink:
 		return forced_blink_value
 		
-	var current_time = total_time + time_offset
-	var base_input = x_position + current_time
+	var current_time: float = total_time + time_offset
+	var base_input: float = x_position + current_time
 	
 	# Sample multiple points and average for smoother transitions
 	var samples: int = 3
@@ -81,15 +92,15 @@ func get_smooth_eyelid_value(x_position: float, time_offset: float = 0.0) -> flo
 	for i in range(samples):
 		var sample_offset = (i - (samples - 1) * 0.5) * 0.1
 		var noise_input = base_input + sample_offset
-		var raw_value = fnl.get_noise_1d(noise_input)
-		var normalized_value = (raw_value + 1.0) / 2.0
-		var peak_value = 1.0 - normalized_value
+		var raw_value: float = fnl.get_noise_1d(noise_input)
+		var normalized_value: float = (raw_value + 1.0) / 2.0
+		var peak_value: float = 1.0 - normalized_value
 		total += process_eyelid_peak(peak_value)
 		
 	return total / samples
 	
 func process_eyelid_peak(raw_peak: float) -> float:
-	var sharp_peak = pow(raw_peak, blink_sharpness)
+	var sharp_peak: float = pow(raw_peak, blink_sharpness)
 	if sharp_peak < blink_threshold:
 		return 0.0
 	force_blink(blink_duration) # TODO: Fix forced blink
@@ -104,7 +115,7 @@ func force_blink(duration: float = 0.2):
 func _blink_coroutine(duration: float):
 	is_forced_blink = true
 	
-	var half_duration = duration * 0.5
+	var half_duration: float = duration * 0.5
 	
 	# Eyelids closing (0.0 to 1.0)
 	var t: float = 0.0
@@ -134,7 +145,7 @@ func _blink_coroutine(duration: float):
 func force_blink_with_tween(duration: float = 0.2):
 	is_forced_blink = true
 	
-	var tween = create_tween()
+	var tween: Tween = create_tween()
 	tween.set_parallel(true)
 	
 	# Close eyes
@@ -154,16 +165,8 @@ func _set_forced_blink_value(value: float):
 func force_blink_single_eye(is_left_eye: bool, duration: float = 0.2):
 	# You could extend this to handle single eye blinking
 	# For now, we'll just do both eyes
-	force_blink(duration)
-
-# Test function - call this to trigger a blink
-func _input(event):
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_1:
-			force_blink(blink_duration)  # Force blink when space is pressed
-		elif event.keycode == KEY_2:
-			force_blink_with_tween(blink_duration)  # Alternative tween version
-
+	if is_left_eye: 
+		force_blink_with_tween(duration)
 
 ## Process Dictionary signal sent from Dialogic	
 ## Take Arguments:
@@ -180,3 +183,11 @@ func _on_dialogic_dictionary_signal(argument: Dictionary) -> void:
 		set(mood_amount_path, mood_amount)
 		set(mood_state_path, mood)
 		#print("Setting " + mood + " mood for " + character_name + ": " + mood + " with amount: " + str(mood_amount))
+
+# Test function - call this to trigger a blink
+#func _input(event):
+#	if event is InputEventKey and event.pressed:
+#		if event.keycode == KEY_1:
+#			force_blink(blink_duration)  # Force blink when space is pressed
+#		elif event.keycode == KEY_2:
+#			force_blink_with_tween(blink_duration)  # Alternative tween version

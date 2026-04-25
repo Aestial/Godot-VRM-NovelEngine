@@ -14,8 +14,15 @@ enum CharacterType {
 @export_category("Dialogic")
 @export var dialogic_character: DialogicCharacter
 @export var character_timeline: DialogicTimeline
+@export var has_monologue: bool
+
 @export_category("VRM")
 @export var vrm_scene: PackedScene : set = _set_vrm_scene
+@export var current_animation: Animation
+
+@export_category("Pose")
+@export var default_pose_name: String = "idle"
+@export var default_pose_amount: float = 1.0
 
 @export_category("Override camera")
 @export var use_override_camera: bool = false
@@ -74,15 +81,14 @@ func _validate_property(property: Dictionary) -> void:
 	################
 	## Player
 	################
+	if property.name == "has_monologue" and character_type == CharacterType.NPC:
+		property.usage = PROPERTY_USAGE_NO_EDITOR
 	if property.name == "camera_distance" and character_type == CharacterType.NPC:
-			property.usage = PROPERTY_USAGE_NO_EDITOR
-
+		property.usage = PROPERTY_USAGE_NO_EDITOR
 	if property.name == "fov" and character_type == CharacterType.NPC:
-		property.usage = PROPERTY_USAGE_NO_EDITOR
-		
+		property.usage = PROPERTY_USAGE_NO_EDITOR		
 	if property.name == "use_override_camera" and character_type == CharacterType.NPC:
-		property.usage = PROPERTY_USAGE_NO_EDITOR
-	
+		property.usage = PROPERTY_USAGE_NO_EDITOR	
 	if property.name == "override_camera" and character_type == CharacterType.NPC:
 		property.usage = PROPERTY_USAGE_NO_EDITOR
 
@@ -100,7 +106,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func _ready() -> void:
 	if not _model_container:
-		var container = Node3D.new()
+		var container: Node3D = Node3D.new()
 		container.name = "ModelContainer"
 		collision_shape.add_child(container)
 		container.set_owner(get_tree().edited_scene_root)
@@ -108,6 +114,9 @@ func _ready() -> void:
 	if vrm_scene:
 		_vrm_model = _instantiate_model(vrm_scene)
 		_adjust_camera_nodes()
+		
+	if _animation_tree:
+		_animation_tree.set_pose(default_pose_name, default_pose_amount)
 	
 	if Engine.is_editor_hint():
 		return
@@ -124,11 +133,16 @@ func _ready() -> void:
 	## TODO: Replace with signal of custom event (Cameras)?
 	Dialogic.Text.speaker_updated.connect(_on_dialogic_speaker_updated) # This is working
 	# Dialogic.Portraits.character_joined.connect(_on_dialogic_character_joined) # TODO: Use this as reference for Custom Event
+	
 		
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:	
 	if _can_wake and character_type == CharacterType.PLAYER:	
 		_can_wake = false
 		reset_camera()
+		
+	if character_timeline and has_monologue:
+		start_dialogue(character_timeline)
+		return
 	
 	if character_type == CharacterType.PLAYER and can_interact and \
 			event.is_action_pressed("interact"):
@@ -182,7 +196,7 @@ func _instantiate_model(scene: PackedScene) -> Node3D:
 	for child in _model_container.get_children():
 		child.queue_free()	
 	# Instantiate and add the new model
-	var new_model = scene.instantiate()
+	var new_model: Node = scene.instantiate()
 	_model_container.add_child(new_model)
 	_connect_animation_player(new_model)
 	return new_model
@@ -240,8 +254,8 @@ func _calculate_character_height() -> float:
 func _get_character_aabb() -> AABB:
 	var aabb: AABB
 	for mesh in _get_all_mesh_instances():
-		var mesh_transform = mesh.global_transform
-		var mesh_aabb = mesh.get_aabb()
+		var mesh_transform: Transform3D = mesh.global_transform
+		var mesh_aabb: AABB = mesh.get_aabb()
 		mesh_aabb = AABB(mesh_transform * mesh_aabb.position, mesh_aabb.size)
 #		print("Mesh name: " + mesh.name + " with volume: " + str(mesh_aabb.get_volume()))
 		if aabb.has_volume():
@@ -265,9 +279,9 @@ func _collect_mesh_instances(node: Node, meshes: Array[MeshInstance3D]) -> void:
 
 func _update_node_heights(height: float) -> void:
 	# Top of head + small offset
-	var adjusted_height = height + camera_height_offset
+	var adjusted_height: float = height + camera_height_offset
 	# Adjusted height to face ratio
-	var face_height = adjusted_height * face_height_ratio
+	var face_height: float = adjusted_height * face_height_ratio
 	# Adjust camera pivots 
 	if third_person_camera:
 		third_person_camera.position.y = adjusted_height 
@@ -321,12 +335,11 @@ func _on_dialogic_timeline_started() -> void:
 	is_busy = true
 	_animation_tree.reset()
 	_stop_movement()
-	interaction_toggle.emit(true)
-	if character_type == CharacterType.PLAYER:
-		_move_to_socket()
+	
+	if character_type == CharacterType.NPC or has_monologue:
 		return
-		call_deferred("_move_to_socket")
-		get_tree().create_timer(250).timeout.connect(_move_to_socket)
+	_move_to_socket()
+	interaction_toggle.emit(true)
 	
 func _on_interaction_area_3d_body_entered(body: Node3D) -> void:
 	if is_busy or character_type == CharacterType.PLAYER or \

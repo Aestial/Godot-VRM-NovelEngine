@@ -7,6 +7,7 @@ var can_load: bool = true
 func _ready() -> void:
 	next_scene = SceneLoader.next_scene
 	ResourceLoader.load_threaded_request(next_scene)
+	request_ready() #TODO: Verify
 	
 func _process(delta: float) -> void:
 	var status: Array[Variant] = []

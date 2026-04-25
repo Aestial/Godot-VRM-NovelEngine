@@ -201,7 +201,6 @@ speed_scale = 1.5
 process_mode = 2
 stream = ExtResource("2_wqpmg")
 volume_db = -3.0
-autoplay = true
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -292,6 +291,7 @@ theme = ExtResource("5_m2464")
 text = "Opciones"
 
 [node name="Restart" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0

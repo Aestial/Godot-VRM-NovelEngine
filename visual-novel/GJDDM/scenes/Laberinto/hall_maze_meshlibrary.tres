@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=34 format=4 uid="uid://n7u3cctqnsi2"]
+[gd_resource type="MeshLibrary" format=4 uid="uid://n7u3cctqnsi2"]
 
 [ext_resource type="Texture2D" uid="uid://dvar72mo5xo53" path="res://visual-novel/GJDDM/scenes/Laberinto/textures/Wood24b.JPG" id="1_2i0oq"]
 [ext_resource type="Texture2D" uid="uid://bukj87xokogkx" path="res://visual-novel/GJDDM/scenes/Laberinto/textures/Wall36_256x512.jpg" id="2_fh3ww"]

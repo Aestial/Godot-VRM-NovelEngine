@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd3vlwlcbgpd7"]
+
+[ext_resource type="PackedScene" uid="uid://b6uru0j3wwlxv" path="res://visual-novel/legacy/Monologue/scenes/dialogic_control.tscn" id="1_si3bg"]
+[ext_resource type="Environment" uid="uid://loc7egiabhbn" path="res://visual-novel/GJDDM/scenes/Welcome/main_environment.tres" id="2_8rn72"]
+[ext_resource type="CameraAttributesPractical" uid="uid://griw7imxte1w" path="res://visual-novel/legacy/Monologue/scenes/main_camera_attributes_practical.tres" id="3_nlxvk"]
+[ext_resource type="PackedScene" uid="uid://bvk8jqxm5vvqc" path="res://visual-novel/legacy/Monologue/characters/jaime_character.tscn" id="4_tc5e5"]
+
+[node name="Base" type="Node3D"]
+
+[node name="DialogicControl" parent="." instance=ExtResource("1_si3bg")]
+visible = true
+timeline_name = "presentation"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_8rn72")
+camera_attributes = ExtResource("3_nlxvk")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 1)
+keep_aspect = 0
+projection = 1
+current = true
+size = 0.85
+near = 0.01
+far = 500.0
+
+[node name="Jaime_Character" parent="." instance=ExtResource("4_tc5e5")]
+dancing_offset = -0.25
+relaxed_offset = 0.0

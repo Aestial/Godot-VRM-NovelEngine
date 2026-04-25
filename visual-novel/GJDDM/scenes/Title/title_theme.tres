@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://ceus317shnq1c"]
+[gd_resource type="Theme" format=3 uid="uid://ceus317shnq1c"]
 
 [ext_resource type="FontFile" uid="uid://be864bbfg1jpj" path="res://visual-novel/GJDDM/fonts/Lexend-VariableFont_wght.ttf" id="1_o3mfu"]
 [ext_resource type="StyleBox" uid="uid://ccfttpjihxvf" path="res://visual-novel/GJDDM/scenes/Title/button_hover_style-box-flat.tres" id="2_eivay"]

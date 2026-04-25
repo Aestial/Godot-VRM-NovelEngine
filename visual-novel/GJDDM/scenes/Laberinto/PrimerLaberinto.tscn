@@ -1,20 +1,24 @@
-[gd_scene load_steps=36 format=4 uid="uid://c8oqm4oj4ku2f"]
+[gd_scene load_steps=46 format=4 uid="uid://c8oqm4oj4ku2f"]
 
 [ext_resource type="AudioStream" uid="uid://c1gnuhcoqng01" path="res://visual-novel/GJDDM/music/more tracks.mp3" id="1_pa80t"]
-[ext_resource type="Script" uid="uid://b6av5wcf5pl2e" path="res://visual-novel/GJDDM/scenes/Laberinto/maze1_scene.gd" id="1_ygn2f"]
+[ext_resource type="Script" path="res://visual-novel/GJDDM/scenes/Laberinto/maze1_scene.gd" id="1_ygn2f"]
+[ext_resource type="PackedScene" uid="uid://2vtrjter7tpk" path="res://visual-novel/GJDDM/scenes/Title/credits_screen.tscn" id="2_kdbmg"]
 [ext_resource type="LightmapGIData" uid="uid://oxdlvuawk3s6" path="res://visual-novel/GJDDM/scenes/Laberinto/PrimerLaberinto.lmbake" id="2_nr84j"]
-[ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://controller_examples/assets/textures/Sky.png" id="3_kdbmg"]
-[ext_resource type="Script" uid="uid://cdhj5gruoyjwg" path="res://visual-novel/scripts/actions/pointer_capture.gd" id="4_siao4"]
+[ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://samples/controller_examples/assets/textures/Sky.png" id="3_kdbmg"]
 [ext_resource type="Script" uid="uid://b5jsh373vm15" path="res://visual-novel/scripts/controllers/controller_player_third_person.gd" id="5_2fk5y"]
 [ext_resource type="PackedScene" uid="uid://dcjpkqhi816nl" path="res://visual-novel/characters/novel_character_base.tscn" id="6_j3tyg"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_nr84j"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="7_kdbmg"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_siao4"]
 [ext_resource type="PackedScene" uid="uid://c3mkywf5liwxn" path="res://visual-novel/GJDDM/characters/packed/dani.scn" id="8_ygn2f"]
-[ext_resource type="PackedScene" uid="uid://bo1tni28i8w3i" path="res://visual-novel/GJDDM/scenes/Teatro/Teatro.tscn" id="10_spmur"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="9_2fk5y"]
 [ext_resource type="Texture2D" uid="uid://dvar72mo5xo53" path="res://visual-novel/GJDDM/scenes/Laberinto/textures/Wood24b.JPG" id="14_ygn2f"]
 [ext_resource type="MeshLibrary" uid="uid://n7u3cctqnsi2" path="res://visual-novel/GJDDM/scenes/Laberinto/hall_maze_meshlibrary.tres" id="15_k0j6u"]
 [ext_resource type="Texture2D" uid="uid://bukj87xokogkx" path="res://visual-novel/GJDDM/scenes/Laberinto/textures/Wall36_256x512.jpg" id="15_xejsl"]
 [ext_resource type="PackedScene" uid="uid://dbg1prbc0j7t5" path="res://visual-novel/GJDDM/scenes/Title/pause_screen.tscn" id="15_ygn2f"]
 [ext_resource type="Texture2D" uid="uid://cs1xqd67rbgha" path="res://visual-novel/GJDDM/scenes/Laberinto/textures/Wood17a.jpg" id="16_pa80t"]
 [ext_resource type="PackedScene" uid="uid://by06s53b5eiiq" path="res://visual-novel/canvas/quest_canvas_layer.tscn" id="16_ygn2f"]
+[ext_resource type="PackedScene" uid="uid://d38vwqjs15urc" path="res://visual-novel/GJDDM/scenes/Laberinto/cabeza_olmeca/olmec_head_statue.glb" id="18_kdbmg"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_7k8ah"]
 panorama = ExtResource("3_kdbmg")
@@ -28,8 +32,33 @@ fog_enabled = true
 fog_light_color = Color(0.4, 0.316, 0.31739998, 1)
 fog_density = 0.05
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_n1mu4"]
-size = Vector3(3, 2, 3)
+[sub_resource type="Resource" id="Resource_j3tyg"]
+script = ExtResource("8_siao4")
+duration = 0.0
+
+[sub_resource type="Resource" id="Resource_kw1c7"]
+script = ExtResource("9_2fk5y")
+fov = 32.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="Resource" id="Resource_466nk"]
+script = ExtResource("8_siao4")
+duration = 0.0
+
+[sub_resource type="Resource" id="Resource_poa4i"]
+script = ExtResource("9_2fk5y")
+fov = 58.9
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[sub_resource type="Resource" id="Resource_sxcs6"]
+script = ExtResource("8_siao4")
+duration = 2.0
+transition = 1
+
+[sub_resource type="Resource" id="Resource_xwwus"]
+script = ExtResource("9_2fk5y")
+fov = 52.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3apkk"]
 resource_name = "Floor"
@@ -536,13 +565,16 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAwQAAkECjCy/CAACAwAAAkEAAADDCAACAwAAAkECjCy/CAAAAwQAAkEAAADDCAACAwAAAkEBd9CDCAAAAwQAAkEAAACDCAAAAwQAAkEBd9CDCAACAwAAAkEAAACDCAACAwE8EkECjCy/CAAAAwU8EkEBd9CDCAAAAwU8EkECjCy/CAACAwE8EkEBd9CDCAAAAwU8EkEBd9CDCAAAAwU8EkEAAACDCAAAAwU8EkEAAADDCAACAwE8EkECjCy/CAACAwE8EkEAAACDCAACAwE8EkEBd9CDCAACAwE8EkECjCy/CAACAwE8EkEAAADDCAACAwE8EkEAAACDCAAAAwU8EkEBd9CDCAAAAwU8EkEAAADDCAAAAwU8EkECjCy/CAABAwQAAkECjCy/CAAAAwQAAkEAAADDCAAAAwQAAkECjCy/CAABAwQAAkEAAADDCAAAAwQAAkEBd9CDCAABAwQAAkEAAACDCAABAwQAAkEBd9CDCAAAAwQAAkEAAACDCAAAAwU8EkECjCy/CAABAwU8EkEBd9CDCAABAwU8EkECjCy/CAAAAwU8EkEBd9CDCAABAwU8EkEBd9CDCAABAwU8EkEAAACDCAABAwU8EkEAAADDCAAAAwU8EkECjCy/CAAAAwU8EkEAAACDCAAAAwU8EkEBd9CDCAAAAwU8EkECjCy/CAAAAwU8EkEAAADDCAAAAwU8EkEAAACDCAABAwU8EkEBd9CDCAABAwU8EkEAAADDCAABAwU8EkECjCy/CAACAwQAAkECjCy/CAABAwQAAkEAAADDCAABAwQAAkECjCy/CAACAwQAAkEAAADDCAABAwQAAkEBd9CDCAACAwQAAkEAAACDCAACAwQAAkEBd9CDCAABAwQAAkEAAACDCAABAwU8EkECjCy/CAACAwU8EkEBd9CDCAACAwU8EkECjCy/CAABAwU8EkEBd9CDCAACAwU8EkEBd9CDCAACAwU8EkEAAACDCAACAwU8EkEAAADDCAABAwU8EkECjCy/CAABAwU8EkEAAACDCAABAwU8EkEBd9CDCAABAwU8EkECjCy/CAABAwU8EkEAAADDCAABAwU8EkEAAACDCAACAwU8EkEBd9CDCAACAwU8EkEAAADDCAACAwU8EkECjCy/CAACgwQAAkECjCy/CAACAwQAAkEAAADDCAACAwQAAkECjCy/CAACgwQAAkEAAADDCAACAwQAAkEBd9CDCAACgwQAAkEAAACDCAACgwQAAkEBd9CDCAACAwQAAkEAAACDCAACAwU8EkECjCy/CAACgwU8EkEBd9CDCAACgwU8EkECjCy/CAACAwU8EkEBd9CDCAACgwU8EkEBd9CDCAACgwU8EkEAAACDCAACgwU8EkEAAADDCAACAwU8EkECjCy/CAACAwU8EkEAAACDCAACAwU8EkEBd9CDCAACAwU8EkECjCy/CAACAwU8EkEAAADDCAACAwU8EkEAAACDCAACgwU8EkEBd9CDCAACgwU8EkEAAADDCAACgwU8EkECjCy/CAADAwQAAkECjCy/CAACgwQAAkEAAADDCAACgwQAAkECjCy/CAADAwQAAkEAAADDCAACgwQAAkEBd9CDCAADAwQAAkEAAACDCAADAwQAAkEBd9CDCAACgwQAAkEAAACDCAACgwU8EkECjCy/CAADAwU8EkEBd9CDCAADAwU8EkECjCy/CAACgwU8EkEBd9CDCAADAwU8EkEBd9CDCAADAwU8EkEAAACDCAADAwU8EkEAAADDCAACgwU8EkECjCy/CAACgwU8EkEAAACDCAACgwU8EkEBd9CDCAACgwU8EkECjCy/CAACgwU8EkEAAADDCAACgwU8EkEAAACDCAADAwU8EkEBd9CDCAADAwU8EkEAAADDCAADAwU8EkECjCy/CAADgwQAAkECjCy/CAADAwQAAkEAAADDCAADAwQAAkECjCy/CAADgwQAAkEAAADDCAADAwQAAkEBd9CDCAADgwQAAkEAAACDCAADgwQAAkEBd9CDCAADAwQAAkEAAACDCAADAwU8EkECjCy/CAADgwU8EkEBd9CDCAADgwU8EkECjCy/CAADAwU8EkEBd9CDCAADgwU8EkEBd9CDCAADgwU8EkEAAACDCAADgwU8EkEAAADDCAADAwU8EkECjCy/CAADAwU8EkEAAACDCAADAwU8EkEBd9CDCAADAwU8EkECjCy/CAADAwU8EkEAAADDCAADAwU8EkEAAACDCAADgwU8EkEBd9CDCAADgwU8EkEAAADDCAADgwU8EkECjCy/CuujhwQAAkEAAAEDCAADgwQAAkEAAADDCuujhwQAAkEAAADDCAADgwQAAkEAAAEDCRhf+wQAAkEAAADDCAAAAwgAAkEAAAEDCRhf+wQAAkEAAAEDCAAAAwgAAkEAAADDCuujhwU8EkEAAADDCRhf+wU8EkEAAAEDCuujhwU8EkEAAAEDCRhf+wU8EkEAAADDCRhf+wU8EkEAAAEDCAAAAwk8EkEAAAEDCAADgwU8EkEAAAEDCuujhwU8EkEAAADDCAAAAwk8EkEAAADDCRhf+wU8EkEAAADDCuujhwU8EkEAAADDCAADgwU8EkEAAADDCAAAAwk8EkEAAADDCRhf+wU8EkEAAAEDCAADgwU8EkEAAAEDCuujhwU8EkEAAAEDCuujhwQAAkEAAAFDCAADgwQAAkEAAAEDCuujhwQAAkEAAAEDCAADgwQAAkEAAAFDCRhf+wQAAkEAAAEDCAAAAwgAAkEAAAFDCRhf+wQAAkEAAAFDCAAAAwgAAkEAAAEDCuujhwU8EkEAAAEDCRhf+wU8EkEAAAFDCuujhwU8EkEAAAFDCRhf+wU8EkEAAAEDCRhf+wU8EkEAAAFDCAAAAwk8EkEAAAFDCAADgwU8EkEAAAFDCuujhwU8EkEAAAEDCAAAAwk8EkEAAAEDCRhf+wU8EkEAAAEDCuujhwU8EkEAAAEDCAADgwU8EkEAAAEDCAAAAwk8EkEAAAEDCRhf+wU8EkEAAAFDCAADgwU8EkEAAAFDCuujhwU8EkEAAAFDCQF10vgAAkEAAAEDCAAAAAAAAkEAAADDCQF10vgAAkEAAADDCAAAAAAAAkEAAAEDCLLpwwAAAkEAAADDCAACAwAAAkEAAAEDCLLpwwAAAkEAAAEDCAACAwAAAkEAAADDCQF10vk8EkEAAADDCLLpwwE8EkEAAAEDCQF10vk8EkEAAAEDCLLpwwE8EkEAAADDCLLpwwE8EkEAAAEDCAACAwE8EkEAAAEDCAAAAAE8EkEAAAEDCQF10vk8EkEAAADDCAACAwE8EkEAAADDCLLpwwE8EkEAAADDCQF10vk8EkEAAADDCAAAAAE8EkEAAADDCAACAwE8EkEAAADDCLLpwwE8EkEAAAEDCAAAAAE8EkEAAAEDCQF10vk8EkEAAAEDCRhf+wQAAkECjC1/CAADgwQAAkEAAAGDCuujhwQAAkECjC1/CAADgwQAAkEAAAFDCRhf+wQAAkECjC1/CAAAAwgAAkEAAAGDCRhf+wQAAkEAAAFDCAAAAwgAAkEAAAFDCuujhwQAAkECjC1/CAADgwQAAkEAAAFDCuujhwQAAkEAAAFDCRhf+wU8EkECjC1/CuujhwU8EkEAAAFDCRhf+wU8EkEAAAFDCuujhwU8EkECjC1/CuujhwU8EkEAAAFDCAADgwU8EkEAAAFDCAAAAwk8EkEAAAFDCuujhwU8EkEAAAFDCAAAAwk8EkEAAAFDCRhf+wU8EkEAAAFDCwOjhwU8EkEBR9CDCXRf+wU8EkECfCy/CwOjhwU8EkECfCy/C/v/fwU8EkEAAADDC/v/fwU8EkEAAACDC/v//wU8EkEAAADDC/v//wU8EkEAAACDCXRf+wU8EkEBR9CDC8bpwwE8EkEBg9EDC8GB0vk8EkECuC0/C8GB0vk8EkEBg9EDCAAAAAE8EkED//z/CAACAwE8EkED//z/CAAAAAE8EkED//0/CAACAwE8EkED//0/C8bpwwE8EkECuC0/CAAAAAAAAkEBR9CDCIgCAwAAAkEAAACDCIgCAwAAAkEBR9CDCAAAAAAAAkEAAACDCMHF0vk8EkEBR9CDCMLtwwE8EkECfCy/CMHF0vk8EkECfCy/CAACAuE8EkEAAADDCAACAuE8EkEAAACDCIgCAwE8EkEAAADDCIgCAwE8EkEAAACDCMLtwwE8EkEBR9CDC/3/+/4VC/7//f/7/h8H/v/9//v8PxP+//3/+//8//7//f/7/hUL/v/9//v+Hwf+//3/+/w/E/7//f/7//z//v/9//v//f/+//3/+//9//7//f/7//3//v/9//v//f/+//3/+//9//7//f/7/AID/v/9//v8AgP+//v//fwAA/7/+//9/AAD/v/7//38AAP+//3/+/wAA/z//f/7/AAD/P/9//v8AAP8/AAAAgAAA/78AAACAAAD/vwAAAIAAAP+//3/+/4VC/7//f/7/h8H/v/9//v8PxP+//3/+//8//7//f/7/hUL/v/9//v+Hwf+//3/+/w/E/7//f/7//z//v/9//v//f/+//3/+//9//7//f/7//3//v/9//v//f/+//3/+//9//7//f/7/AID/v/9//v8AgP+//v//fwAA/7/+//9/AAD/v/7//38AAP+//3/+/wAA/z//f/7/AAD/P/9//v8AAP8/AAAAgAAA/78AAACAAAD/vwAAAIAAAP+//3/+/4VC/7//f/7/h8H/v/9//v8PxP+//3/+//8//7//f/7/hUL/v/9//v+Hwf+//3/+/w/E/7//f/7//z//v/9//v//f/+//3/+//9//7//f/7//3//v/9//v//f/+//3/+//9//7//f/7/AID/v/9//v8AgP+//v//fwAA/7/+//9/AAD/v/7//38AAP+//3/+/wAA/z//f/7/AAD/P/9//v8AAP8/AAAAgAAA/78AAACAAAD/vwAAAIAAAP+//3/+/4VC/7//f/7/h8H/v/9//v8PxP+//3/+//8//7//f/7/hUL/v/9//v+Hwf+//3/+/w/E/7//f/7//z//v/9//v//f/+//3/+//9//7//f/7//3//v/9//v//f/+//3/+//9//7//f/7/AID/v/9//v8AgP+//v//fwAA/7/+//9/AAD/v/7//38AAP+//3/+/wAA/z//f/7/AAD/P/9//v8AAP8/AAAAgAAA/78AAACAAAD/vwAAAIAAAP+//3/+/4VC/7//f/7/h8H/v/9//v8PxP+//3/+//8//7//f/7/hUL/v/9//v+Hwf+//3/+/w/E/7//f/7//z//v/9//v//f/+//3/+//9//7//f/7//3//v/9//v//f/+//3/+//9//7//f/7/AID/v/9//v8AgP+//v//fwAA/7/+//9/AAD/v/7//38AAP+//3/+/wAA/z//f/7/AAD/P/9//v8AAP8/AAAAgAAA/78AAACAAAD/vwAAAIAAAP+//3/+/4VC/7//f/7/h8H/v/9//v8PxP+//3/+//8//7//f/7/hUL/v/9//v+Hwf+//3/+/w/E/7//f/7//z//v/9//v//f/+//3/+//9//7//f/7//3//v/9//v//f/+//3/+//9//7//f/7/AID/v/9//v8AgP+//v//fwAA/7/+//9/AAD/v/7//38AAP+//3/+/wAA/z//f/7/AAD/P/9//v8AAP8/AAAAgAAA/78AAACAAAD/vwAAAIAAAP+//3/+/wAAvN7/f/7/h0H/v/9//v8QRP+//3/+/wAA/9//f/7/AAC83v9//v+HQf+//3/+/xBE/7//f/7/AAD/3/9//v8AAP+//3/+/wAA/7//f/7/AAD/v/9//v8AAP+//3/+/wAA/7//f/7/AAD/v/9//v8AAP+//3//fwAA/v//f/9/AAD+//9//38AAP7//3/+////AAD/f/7///8AAP9//v///wAAAAD+/wAA/v8AAP7/AAD+/wAA/v8AAP7//3/+/wAAvN7/f/7/h0H/v/9//v8QRP+//3/+/wAA/9//f/7/AAC83v9//v+HQf+//3/+/xBE/7//f/7/AAD/3/9//v8AAP+//3/+/wAA/7//f/7/AAD/v/9//v8AAP+//3/+/wAA/7//f/7/AAD/v/9//v8AAP+//3//fwAA/v//f/9/AAD+//9//38AAP7//3/+////AAD/f/7///8AAP9//v///wAAAAD+/wAA/v8AAP7/AAD+/wAA/v8AAP7//3/+/wAAvN7/f/7/h0H/v/9//v8QRP+//3/+/wAA/9//f/7/AAC83v9//v+HQf+//3/+/xBE/7//f/7/AAD/3/9//v8AAP+//3/+/wAA/7//f/7/AAD/v/9//v8AAP+//3/+/wAA/7//f/7/AAD/v/9//v8AAP+//3//fwAA/v//f/9/AAD+//9//38AAP7//3/+////AAD/f/7///8AAP9//v///wAAAAD+/wAA/v8AAP7/AAD+/wAA/v8AAP7/AID+/////78AgP7/////vwCA/v////+/AID+/////78AgP7///8fwgCA/v///0nAAID+/9nB/78AgP7//7//vwCA/v///wzhAID+////DOEAgP7///8M4QCA/v////+/AID+/////78AgP7/////vwCA/v////+/AID+/////78AgP7/////vwCA/v////+/AID/fwCA/78AgP9/AID/vwCA/38AgP+/AoD+/wAA/78CgP7/AAD/vwKA/v8AAP+/AoD+/wAA/78CgP7/AAD/vwKA/v8AAP+/AoD+/wAA/78CgP7/AAD/vwGA+/8AAP7/AYD7/wAA/v8BgPv/AAD+/wGA+/8AAP7/AYD7/wAA/v8BgPv/AAD+/wGA+/8AAP7/AYD7/wAA/v8CgP7/AAD/vwKA/v8AAP+/AoD+/wAA/78CgP7/AAD/vwKA/v8AAP+/AoD+/wAA/78CgP7/AAD/vwKA/v8AAP+/AoD+/wAA/78CgP7/AAD/vwKA/v8AAP+/AoD+/wAA/78=")
 }]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_n1mu4"]
+size = Vector3(3, 2, 3)
+
 [node name="PrimerLaberinto" type="Node3D"]
 script = ExtResource("1_ygn2f")
-next_scene = ExtResource("10_spmur")
+next_scene = ExtResource("2_kdbmg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_pa80t")
-volume_db = 0.25
+volume_db = 5.0
 pitch_scale = 0.8
 autoplay = true
 
@@ -563,35 +595,81 @@ generate_probes_subdiv = 1
 light_data = ExtResource("2_nr84j")
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.384928, 1.6875229, -16.37517)
-size = Vector3(64, 8.772034, 66)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26.607277, 2.6291418, -28.64299)
+size = Vector3(119.92142, 8.623604, 125.62341)
 interior = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_st7fd")
 
-[node name="Controllers" type="Node" parent="."]
-script = ExtResource("4_siao4")
+[node name="Cameras" type="Node" parent="."]
 
-[node name="PlayerController" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
-script = ExtResource("5_2fk5y")
-controlled_obj = NodePath("../../Player")
+[node name="Camera3D" type="Camera3D" parent="Cameras"]
+transform = Transform3D(0.97591674, 0.007613089, -0.21801035, 0, 0.99939084, 0.034899496, 0.21814324, -0.034059003, 0.97532225, -3.131, 2.295, 2.921)
+fov = 32.0
 
-[node name="Player" parent="." instance=ExtResource("6_j3tyg")]
+[node name="PhantomCameraHost" type="Node" parent="Cameras/Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("6_nr84j")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="SpawnPhantomCamera3D" type="Node3D" parent="Cameras" groups=["CinematicCameras"]]
+transform = Transform3D(0.97591674, 0.007613089, -0.21801035, 0, 0.99939084, 0.034899496, 0.21814324, -0.034059003, 0.97532225, -3.131, 2.295, 2.921)
+script = ExtResource("7_kdbmg")
+priority = 3
+tween_resource = SubResource("Resource_j3tyg")
+camera_3d_resource = SubResource("Resource_kw1c7")
+follow_offset = Vector3(0, 1.4, 1)
+follow_damping = true
+follow_axis_lock = 3
+dead_zone_width = 0.1
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" groups=["CinematicCameras"]]
+transform = Transform3D(0.12403484, -0.2612184, 0.9572785, -1.4901163e-08, 0.9647269, 0.26325157, -0.99227804, -0.032652315, 0.11965989, 14, 3.85, 1.75)
+script = ExtResource("7_kdbmg")
+look_at_mode = 2
+tween_resource = SubResource("Resource_466nk")
+camera_3d_resource = SubResource("Resource_poa4i")
+follow_offset = Vector3(0, 1.4, 1)
+follow_damping = true
+follow_axis_lock = 3
+dead_zone_width = 0.1
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("follow_targets") groups=["CinematicCameras"]]
+transform = Transform3D(0.99999964, 0, 0, 0, 0.9999997, 0, 0, 0, 0.99999887, 8.718884, 2.532394, 7.58703)
+top_level = true
+script = ExtResource("7_kdbmg")
+follow_mode = 3
+follow_targets = [null, null]
+tween_resource = SubResource("Resource_sxcs6")
+camera_3d_resource = SubResource("Resource_xwwus")
+follow_offset = Vector3(0, 1.4, 1)
+follow_damping = true
+follow_axis_lock = 3
+dead_zone_width = 0.1
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="Player" parent="Characters" instance=ExtResource("6_j3tyg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5542009, 1)
 character_type = 1
 vrm_scene = ExtResource("8_ygn2f")
+default_pose_name = "crying"
 fov = 2
 
-[node name="NextScene" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.5, -54)
-collision_layer = 0
-collision_mask = 2
+[node name="Controllers" type="Node" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NextScene"]
-shape = SubResource("BoxShape3D_n1mu4")
+[node name="PlayerController" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
+script = ExtResource("5_2fk5y")
+controlled_obj = NodePath("../../Characters/Player")
 
-[node name="Maze1" type="GridMap" parent="."]
+[node name="Level" type="Node" parent="."]
+
+[node name="Maze1" type="GridMap" parent="Level"]
 mesh_library = ExtResource("15_k0j6u")
 cell_size = Vector3(4, 1, 4)
 cell_scale = 2.0
@@ -600,11 +678,34 @@ data = {
 "cells": PackedInt32Array(65535, 0, 1048576, 65535, 65535, 1048578, 65535, 65534, 1048578, 0, 65533, 2, 1, 65533, 2, 2, 65533, 2, 3, 65533, 2, 4, 65533, 2, 5, 65534, 1441794, 5, 65535, 1441794, 5, 0, 1441794, 5, 1, 1441794, 3, 3, 1441794, 3, 4, 1441794, 4, 2, 655362, 6, 2, 655362, 7, 2, 655362, 8, 2, 655362, 9, 2, 655362, 10, 2, 655362, 11, 2, 655362, 13, 2, 655362, 14, 3, 1048578, 14, 4, 1048578, 13, 5, 2, 12, 5, 2, 11, 5, 2, 10, 5, 2, 9, 5, 2, 8, 5, 2, 7, 5, 2, 6, 5, 2, 5, 5, 2, 4, 5, 2, 12, 1, 1441794, 12, 0, 1441794, 12, 65535, 1441794, 12, 65534, 1441794, 12, 65533, 1441794, 12, 65532, 1441794, 12, 65531, 1441794, 12, 65530, 1441794, 12, 65529, 1441794, 13, 65528, 655362, 14, 65528, 655362, 15, 65528, 655362, 16, 65528, 655362, 17, 65528, 655362, 18, 65528, 655362, 19, 65528, 655362, 20, 65527, 1048578, 20, 65526, 1048578, 20, 65525, 1048578, 20, 65524, 1048578, 20, 65523, 1048578, 20, 65522, 1048578, 20, 65521, 1048578, 20, 65519, 1048578, 20, 65518, 1048578, 20, 65517, 1048578, 20, 65516, 1048578, 13, 65519, 1048578, 13, 65518, 1048578, 13, 65517, 1048578, 13, 65516, 1048578, 14, 65515, 2, 15, 65515, 2, 16, 65515, 2, 17, 65515, 2, 18, 65515, 2, 19, 65515, 2, 14, 65520, 2, 15, 65520, 2, 16, 65520, 2, 17, 65520, 2, 18, 65520, 2, 19, 65520, 2, 12, 65524, 1441794, 12, 65525, 1441794, 12, 65526, 1441794, 12, 65527, 1441794, 11, 65528, 655362, 10, 65528, 655362, 9, 65528, 655362, 8, 65528, 655362, 7, 65528, 655362, 6, 65528, 655362, 11, 65523, 655362, 10, 65523, 655362, 9, 65523, 655362, 8, 65523, 655362, 6, 65523, 655362, 5, 65523, 655362, 4, 65523, 655362, 3, 65523, 655362, 2, 65523, 655362, 1, 65523, 655362, 0, 65523, 655362, 6, 65525, 655362, 5, 65525, 655362, 4, 65525, 655362, 3, 65525, 655362, 2, 65525, 655362, 1, 65525, 655362, 0, 65525, 655362, 65534, 65525, 655362, 65533, 65525, 655362, 65532, 65525, 655362, 65531, 65525, 655362, 65530, 65525, 655362, 65529, 65525, 655362, 65528, 65524, 1048578, 65528, 65523, 1048578, 65535, 65524, 1048578, 7, 65524, 1048578, 5, 65529, 1048578, 5, 65530, 1048578, 5, 65531, 1048578, 5, 65532, 1048578, 65528, 65522, 1441792, 65528, 65525, 1048577, 65535, 65523, 1, 7, 65525, 655361, 12, 65523, 1441793, 20, 65528, 655361, 20, 65515, 1441793, 13, 65515, 1, 13, 65520, 1048577, 5, 65528, 1, 3, 2, 1, 14, 2, 1441793, 14, 5, 655361, 3, 5, 1048577, 65535, 65533, 1, 20, 65520, 655363, 7, 65523, 1441795, 65535, 65525, 1048579, 5, 65533, 655363, 5, 2, 1048579, 12, 2, 1048579, 12, 65528, 1048580)
 }
 
+[node name="NextScene" type="Area3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.5, -54)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/NextScene"]
+shape = SubResource("BoxShape3D_n1mu4")
+
+[node name="OlmecHead" parent="Level/NextScene" instance=ExtResource("18_kdbmg")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Level/NextScene"]
+transform = Transform3D(1, 0, 0, 0, 0.9836753, -0.17995262, 0, 0.17995262, 0.9836753, 0, 0, 1.595478)
+light_color = Color(0.944, 1, 0.86, 1)
+light_energy = 1.223
+light_bake_mode = 1
+shadow_enabled = true
+shadow_opacity = 0.9
+spot_range = 4.5
+spot_attenuation = 0.33
+spot_angle = 54.47
+spot_angle_attenuation = 1.866066
+
 [node name="PauseCanvasLayer" parent="." instance=ExtResource("15_ygn2f")]
 
 [node name="QuestCanvasLayer" parent="." instance=ExtResource("16_ygn2f")]
 text_content = "Sal del laberinto"
 
-[connection signal="body_entered" from="NextScene" to="." method="_on_next_scene_body_entered"]
+[connection signal="body_entered" from="Level/NextScene" to="." method="_on_next_scene_body_entered"]
 [connection signal="pause_toggle" from="PauseCanvasLayer" to="." method="_on_pause_canvas_layer_pause_toggle"]
 [connection signal="restarted" from="PauseCanvasLayer" to="." method="_on_pause_canvas_layer_restarted"]

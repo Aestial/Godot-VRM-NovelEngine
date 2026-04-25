@@ -1,0 +1,24 @@
+[character_3d character="Dani" mood="happy" amount="0.5"]
+Dani: ¡Hola! Soy Dani, tal vez me recuerden de mi juego anterior, "El Tesoro de Boturini".
+[character_3d character="Dani" mood="surprised" amount="0.6"]
+Dani: Mis creadores decidieron ponerme dentro de otra aventura, ¡ahora en 3D!
+[character_3d character="Dani" mood="relaxed" amount="0.3"]
+Dani: Vivo en la Ciudad de México y me gusta viajar en el Metro.
+[character_3d character="Dani" mood="happy" amount="0.4"]
+Dani: ¡Es el mejor medio de transporte colectivo!
+[character_3d character="Dani" mood="angry" amount="0.5"]
+Dani: Hablando de colectivos, esta vez mis creadores no lograron ponerse de acuerdo para terminar mi historia.
+[character_3d character="Dani" mood="sad" amount="0.4"]
+Dani: Por lo tanto, esta novela visual contiene solo una pequeña prueba del primer capítulo de la trama...
+[character_3d character="Dani" mood="surprised" amount="0.65"]
+Dani: lo que significa que este es el ¡episodio piloto!
+[character_3d character="Dani" mood="relaxed" amount="0.7"]
+Dani: ¡Espero que sea de su agrado!
+[character_3d character="Dani" mood="happy" amount="0.6"]
+Dani: De ser así, no olviden darnos mucho amor y colaborar con nosotros.
+[character_3d character="Dani" mood="relaxed" amount="0.7"]
+Dani: En Tamal Rosita les gusta mucho experimentar con las tecnologías de videojuegos, ¡sobretodo si son libres y de código abierto!
+[character_3d character="Dani" mood="happy" amount="0.3"]
+Dani: ¡Bienvenidos! Quédense conmigo para disfrutar de ésta, su juego-novela, "Dani: Mi Verdad".
+set {welcome_monologue} = true
+[end_timeline]

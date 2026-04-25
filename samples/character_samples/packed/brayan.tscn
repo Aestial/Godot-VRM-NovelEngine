@@ -1,0 +1,701 @@
+[gd_scene load_steps=30 format=3 uid="uid://demck0s258hkp"]
+
+[ext_resource type="PackedScene" uid="uid://btfw5xpglxhl8" path="res://samples/character_samples/vrm/Brayan.vrm" id="1_dv18x"]
+[ext_resource type="AnimationLibrary" uid="uid://dvg207ufqs3jh" path="res://visual-novel/animations/basic-dancing_library.res" id="2_s05h3"]
+[ext_resource type="AnimationLibrary" uid="uid://dcqciprq58now" path="res://visual-novel/animations/basic-locomotion_library.res" id="3_bvt21"]
+[ext_resource type="AnimationLibrary" uid="uid://df6mxd8sv1wkv" path="res://visual-novel/animations/female_idle_actions_library.res" id="4_yt02j"]
+[ext_resource type="AnimationLibrary" uid="uid://w6ygba13mihu" path="res://visual-novel/animations/legacy/mixamo-female_locomotion.res" id="5_5rwdm"]
+
+[sub_resource type="Animation" id="Animation_2h0uf"]
+resource_name = "aa"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_A")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_ljcwi"]
+resource_name = "angry"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Angry")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_0ytlu"]
+resource_name = "blink"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_21h1e"]
+resource_name = "blinkLeft"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close_L")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_cm1gf"]
+resource_name = "blinkRight"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close_R")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_nyvfe"]
+resource_name = "ee"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_E")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_3vnrr"]
+resource_name = "happy"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Joy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_0f04t"]
+resource_name = "ih"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_I")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_0mnjw"]
+resource_name = "lookDownRaw"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_5wi8b"]
+resource_name = "lookLeftRaw"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_yfywk"]
+resource_name = "lookRightRaw"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_peiau"]
+resource_name = "lookUpRaw"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_y5y3x"]
+resource_name = "neutral"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Neutral")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_xmk1i"]
+resource_name = "oh"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_O")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_x8a0b"]
+resource_name = "ou"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_U")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_x7bks"]
+resource_name = "relaxed"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Fun")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_yibh1"]
+resource_name = "sad"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Sorrow")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_6ul03"]
+resource_name = "surprised"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Surprised")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.99999)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+metadata/vrm_is_binary = false
+metadata/vrm_override_blink = "none"
+metadata/vrm_override_look_at = "none"
+metadata/vrm_override_mouth = "none"
+
+[sub_resource type="Animation" id="Animation_pwf57"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.5, 1, 0.70613766, 0.03700711, -0.03700711, 0.70613766)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.5, 1, 0.70613766, 0.03700711, -0.03700711, 0.70613766)
+
+[sub_resource type="Animation" id="Animation_eub7f"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.5, 1, 0.70613766, -0.03700711, 0.03700711, 0.70613766)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.5, 1, 0.70613766, -0.03700711, 0.03700711, 0.70613766)
+
+[sub_resource type="Animation" id="Animation_218r8"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.5, 1, 0.6755902, 0, 0, 0.7372773)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.5, 1, 0.6755902, 0, 0, 0.7372773)
+
+[sub_resource type="Animation" id="Animation_t7jne"]
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.5, 1, 0.7372773, 0, 0, 0.6755902)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.5, 1, 0.7372773, 0, 0, 0.6755902)
+
+[sub_resource type="Animation" id="Animation_r3f0j"]
+resource_name = "RESET"
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_A")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0)
+tracks/1/type = "blend_shape"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Angry")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0)
+tracks/2/type = "blend_shape"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0)
+tracks/3/type = "blend_shape"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close_L")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0)
+tracks/4/type = "blend_shape"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%GeneralSkeleton/Face:Fcl_EYE_Close_R")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0)
+tracks/5/type = "blend_shape"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_E")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0)
+tracks/6/type = "blend_shape"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Joy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, 0)
+tracks/7/type = "blend_shape"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_I")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0)
+tracks/8/type = "blend_shape"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Neutral")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0)
+tracks/9/type = "blend_shape"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_O")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0)
+tracks/10/type = "blend_shape"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("%GeneralSkeleton/Face:Fcl_MTH_U")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0)
+tracks/11/type = "blend_shape"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Fun")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0)
+tracks/12/type = "blend_shape"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Sorrow")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 0)
+tracks/13/type = "blend_shape"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("%GeneralSkeleton/Face:Fcl_ALL_Surprised")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 0)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("%GeneralSkeleton:LeftEye")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("%GeneralSkeleton:RightEye")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, 0.7071067, 0, 0, 0.7071067)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1p07b"]
+_data = {
+&"RESET": SubResource("Animation_r3f0j"),
+&"aa": SubResource("Animation_2h0uf"),
+&"angry": SubResource("Animation_ljcwi"),
+&"blink": SubResource("Animation_0ytlu"),
+&"blinkLeft": SubResource("Animation_21h1e"),
+&"blinkRight": SubResource("Animation_cm1gf"),
+&"ee": SubResource("Animation_nyvfe"),
+&"happy": SubResource("Animation_3vnrr"),
+&"ih": SubResource("Animation_0f04t"),
+&"lookDown": SubResource("Animation_t7jne"),
+&"lookDownRaw": SubResource("Animation_0mnjw"),
+&"lookLeft": SubResource("Animation_pwf57"),
+&"lookLeftRaw": SubResource("Animation_5wi8b"),
+&"lookRight": SubResource("Animation_eub7f"),
+&"lookRightRaw": SubResource("Animation_yfywk"),
+&"lookUp": SubResource("Animation_218r8"),
+&"lookUpRaw": SubResource("Animation_peiau"),
+&"neutral": SubResource("Animation_y5y3x"),
+&"oh": SubResource("Animation_xmk1i"),
+&"ou": SubResource("Animation_x8a0b"),
+&"relaxed": SubResource("Animation_x7bks"),
+&"sad": SubResource("Animation_yibh1"),
+&"surprised": SubResource("Animation_6ul03")
+}
+
+[node name="Brayan" instance=ExtResource("1_dv18x")]
+update_in_editor = true
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_1p07b"),
+&"basic-dancing_library": ExtResource("2_s05h3"),
+&"basic-locomotion_library": ExtResource("3_bvt21"),
+&"female_idle_actions_library": ExtResource("4_yt02j"),
+&"mixamo-female_locomotion": ExtResource("5_5rwdm")
+}

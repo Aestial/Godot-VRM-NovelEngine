@@ -1,0 +1,35 @@
+set {metro_talk_with_samuel} = true
+
+[character_3d character="Samuel" mood="happy" amount="0.3"]
+do CinematicManager.switch_to_camera("C1_PhantomCamera3D", 10)
+Samuel: Me alegro que hayas llegado!
+[wait time="0.3"]
+do CinematicManager.switch_back()
+
+[character_3d character="Samuel" mood="surprised" amount="0.2"]
+do CinematicManager.switch_to_camera("C2_PhantomCamera3D", 10)
+Samuel: Vamos un poco tarde al funeral, lo bueno es que el metro viene vacío.
+[wait_input]
+[wait time="0.2"]
+
+[character_3d character="Dani" mood="sad" amount="0.4"]
+Dani: Perdona que te haya hecho esperar tanto tiempo, me perdí en el panteón.
+do CinematicManager.switch_back()
+
+[character_3d character="Samuel" mood="surprised" amount="0.4"]
+Samuel: Cuál panteón?
+
+[character_3d character="Dani" mood="sad" amount="0.5"]
+Dani: El panteón alemán...
+do CinematicManager.switch_to_camera("C3_PhantomCamera3D", 10)
+[wait time="0.3"]
+
+[character_3d character="Samuel" mood="surprised" amount="0.25"]
+Samuel: No te preocupes! estás lista?
+[wait time="0.2"]
+
+[character_3d character="Dani" mood="sad" amount="0.65"]
+Dani: Vamos! hay una cosa que quiero contarte en el camino.
+do CinematicManager.switch_back()
+
+[end_timeline]

@@ -1,0 +1,92 @@
+[gd_scene load_steps=20 format=3 uid="uid://cny5gnymtd4vd"]
+
+[ext_resource type="AudioStream" uid="uid://bwtsrqq7ehdi6" path="res://visual-novel/GJDDM/music/TeatroMendoza_1.1.ogg" id="1_kxjsl"]
+[ext_resource type="Script" uid="uid://cv3qpihv8041w" path="res://visual-novel/GJDDM/scenes/Welcome/welcome_scene.gd" id="1_siix6"]
+[ext_resource type="Environment" uid="uid://loc7egiabhbn" path="res://visual-novel/GJDDM/scenes/Welcome/main_environment.tres" id="2_bms17"]
+[ext_resource type="PackedScene" uid="uid://blu4mw3t0n8rs" path="res://visual-novel/GJDDM/scenes/Metro/Metro.tscn" id="2_jf8h7"]
+[ext_resource type="Script" uid="uid://d3fgevt1ftusm" path="res://visual-novel/scripts/audio/ambient_music_player.gd" id="2_ohmfc"]
+[ext_resource type="PackedScene" uid="uid://ckofxiaqdf81f" path="res://visual-novel/scenarios/floor.tscn" id="2_tntyt"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_tntyt"]
+[ext_resource type="PackedScene" uid="uid://dcjpkqhi816nl" path="res://visual-novel/characters/novel_character_base.tscn" id="4_02nfc"]
+[ext_resource type="Resource" uid="uid://d4dw7q8b2ogmi" path="res://dialogic/timelines/welcome.dtl" id="4_m1kjg"]
+[ext_resource type="PackedScene" uid="uid://c3mkywf5liwxn" path="res://visual-novel/GJDDM/characters/packed/dani.scn" id="5_02nfc"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="8_4x8kj"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_yk8to"]
+[ext_resource type="Texture2D" uid="uid://b8q44ipg8a3cq" path="res://samples/controller_examples/assets/textures/Black.png" id="10_eaoyb"]
+[ext_resource type="PackedScene" uid="uid://dbg1prbc0j7t5" path="res://visual-novel/GJDDM/scenes/Title/pause_screen.tscn" id="13_eaoyb"]
+[ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="13_kxjsl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajchh"]
+albedo_texture = ExtResource("10_eaoyb")
+uv1_triplanar = true
+texture_filter = 5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kxjsl"]
+material = SubResource("StandardMaterial3D_ajchh")
+size = Vector2(3, 3)
+
+[sub_resource type="Resource" id="Resource_ohmfc"]
+script = ExtResource("9_yk8to")
+duration = 0.0
+
+[sub_resource type="Resource" id="Resource_siix6"]
+script = ExtResource("13_kxjsl")
+fov = 29.0
+metadata/_custom_type_script = "uid://b8hhnqsugykly"
+
+[node name="Welcome" type="Node3D" node_paths=PackedStringArray("character")]
+script = ExtResource("1_siix6")
+next_scene = ExtResource("2_jf8h7")
+character = NodePath("NovelCharacter")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_kxjsl")
+volume_db = -7.0
+pitch_scale = 0.45
+autoplay = true
+script = ExtResource("2_ohmfc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.35836795, 0.93358046, 0, -0.93358046, -0.35836795, 0, 10, 0)
+light_color = Color(0.98, 0.97608, 0.90160006, 1)
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_bms17")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.99904823, 0, 0.04361929, 0, 1, 0, -0.04361929, 0, -0.99904823, 0, 1.4, -1)
+fov = 29.0
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_tntyt")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="NovelCharacter" parent="." instance=ExtResource("4_02nfc")]
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+character_type = 1
+character_timeline = ExtResource("4_m1kjg")
+has_monologue = true
+vrm_scene = ExtResource("5_02nfc")
+default_pose_name = "idle"
+
+[node name="Floor" parent="." instance=ExtResource("2_tntyt")]
+mesh = SubResource("PlaneMesh_kxjsl")
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+transform = Transform3D(-0.99904823, 0, 0.04361929, 0, 1, 0, -0.04361929, 0, -0.99904823, 0, 1.4, -1)
+script = ExtResource("8_4x8kj")
+priority = 10
+tween_resource = SubResource("Resource_ohmfc")
+tween_on_load = false
+camera_3d_resource = SubResource("Resource_siix6")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="PauseCanvasLayer" parent="." instance=ExtResource("13_eaoyb")]
+
+[connection signal="pause_toggle" from="PauseCanvasLayer" to="." method="_on_pause_canvas_layer_pause_toggle"]
