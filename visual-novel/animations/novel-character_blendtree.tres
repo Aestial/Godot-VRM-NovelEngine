@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=32 format=3 uid="uid://dgubwui2tiafd"]
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dgubwui2tiafd"]
 
 [ext_resource type="AnimationNodeBlendSpace2D" uid="uid://b8y7ptxnl4w76" path="res://visual-novel/animations/face-emotions_blend-space2d.tres" id="1_rfivk"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://cqttxdeqj08lr" path="res://visual-novel/animations/face-animation_blendtree.res" id="2_jnvbf"]

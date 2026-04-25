@@ -32,7 +32,7 @@ var forced_blink_value: float = 0.0
 @onready var dialogic_character: DialogicCharacter = novel_character.dialogic_character
 @onready var character_name: String = dialogic_character.display_name
 
-func _ready():
+func _ready() -> void:
 	setup_noise()
 	if Engine.is_editor_hint():
 		return
@@ -82,8 +82,8 @@ func get_smooth_eyelid_value(x_position: float, time_offset: float = 0.0) -> flo
 	if is_forced_blink:
 		return forced_blink_value
 		
-	var current_time = total_time + time_offset
-	var base_input = x_position + current_time
+	var current_time: float = total_time + time_offset
+	var base_input: float = x_position + current_time
 	
 	# Sample multiple points and average for smoother transitions
 	var samples: int = 3
@@ -92,15 +92,15 @@ func get_smooth_eyelid_value(x_position: float, time_offset: float = 0.0) -> flo
 	for i in range(samples):
 		var sample_offset = (i - (samples - 1) * 0.5) * 0.1
 		var noise_input = base_input + sample_offset
-		var raw_value = fnl.get_noise_1d(noise_input)
-		var normalized_value = (raw_value + 1.0) / 2.0
-		var peak_value = 1.0 - normalized_value
+		var raw_value: float = fnl.get_noise_1d(noise_input)
+		var normalized_value: float = (raw_value + 1.0) / 2.0
+		var peak_value: float = 1.0 - normalized_value
 		total += process_eyelid_peak(peak_value)
 		
 	return total / samples
 	
 func process_eyelid_peak(raw_peak: float) -> float:
-	var sharp_peak = pow(raw_peak, blink_sharpness)
+	var sharp_peak: float = pow(raw_peak, blink_sharpness)
 	if sharp_peak < blink_threshold:
 		return 0.0
 	force_blink(blink_duration) # TODO: Fix forced blink
@@ -115,7 +115,7 @@ func force_blink(duration: float = 0.2):
 func _blink_coroutine(duration: float):
 	is_forced_blink = true
 	
-	var half_duration = duration * 0.5
+	var half_duration: float = duration * 0.5
 	
 	# Eyelids closing (0.0 to 1.0)
 	var t: float = 0.0
@@ -145,7 +145,7 @@ func _blink_coroutine(duration: float):
 func force_blink_with_tween(duration: float = 0.2):
 	is_forced_blink = true
 	
-	var tween = create_tween()
+	var tween: Tween = create_tween()
 	tween.set_parallel(true)
 	
 	# Close eyes

@@ -8,12 +8,18 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="VRM-NovelEngine"
+config/tags=PackedStringArray("engine", "visualnovel")
 run/main_scene="uid://n5itw40xq2ct"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0.1882353, 0.20392157, 0.27450982, 1)
+boot_splash/stretch_mode=0
 boot_splash/image="uid://d2bbfkl2ymk7"
 config/icon="uid://bklxfuuu03836"
 
@@ -22,7 +28,7 @@ config/icon="uid://bklxfuuu03836"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 SignalLens="*res://addons/signal_lens/autoload/signal_lens_autoload.gd"
 SceneLoader="*res://visual-novel/scripts/globals/scene_loader.gd"
-PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+PhantomCameraManager="*uid://duq6jhf6unyis"
 CinematicManager="*res://visual-novel/scripts/globals/cinematic_manager.gd"
 
 [dialogic]
@@ -80,7 +86,7 @@ text/autopauses={}
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Godot-MToon-Shader/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/orbit_camera/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/plenticons/plugin.cfg", "res://addons/signal_lens/plugin.cfg", "res://addons/timchi_maze_generation/plugin.cfg", "res://addons/vrm/plugin.cfg")
+enabled=PackedStringArray("res://addons/Godot-MToon-Shader/plugin.cfg", "res://addons/asset_placer/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/orbit_camera/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/plenticons/plugin.cfg", "res://addons/signal_lens/plugin.cfg", "res://addons/timchi_maze_generation/plugin.cfg", "res://addons/vrm/plugin.cfg")
 
 [global_group]
 

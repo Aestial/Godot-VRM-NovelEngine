@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bec4erylyjcm0"]
+[gd_scene format=3 uid="uid://bec4erylyjcm0"]
 
 [ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://samples/controller_examples/assets/textures/Sky.png" id="1_04w15"]
 [ext_resource type="Script" path="res://visual-novel/scripts/actions/pointer_capture.gd" id="2_t7s7c"]
@@ -69,12 +69,12 @@ data = PackedVector3Array(-12.5, 2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5, 2.5, -12.
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qj2g"]
 albedo_color = Color(0.95, 0.665, 0.66975, 1)
 
-[node name="prototype" type="Node3D"]
+[node name="prototype" type="Node3D" unique_id=2068261990]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1364277687]
 environment = SubResource("Environment_ctwiv")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1116417680]
 transform = Transform3D(-0.866026, -0.4330126, 0.24999937, 0.5, -0.7500002, 0.4330121, -1.4901168e-07, 0.499999, 0.86602587, 0, 0, 0)
 shadow_enabled = true
 directional_shadow_split_1 = 0.07
@@ -82,143 +82,143 @@ directional_shadow_split_2 = 0.12
 directional_shadow_split_3 = 0.2
 directional_shadow_blend_splits = true
 
-[node name="Controllers" type="Node" parent="."]
+[node name="Controllers" type="Node" parent="." unique_id=1070058723]
 script = ExtResource("2_t7s7c")
 
-[node name="PlayerController" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
+[node name="PlayerController" type="Node" parent="Controllers" unique_id=738331913 node_paths=PackedStringArray("controlled_obj")]
 script = ExtResource("3_887p6")
 controlled_obj = NodePath("../../Characters/Dani")
 
-[node name="AIController" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
+[node name="AIController" type="Node" parent="Controllers" unique_id=914300049 node_paths=PackedStringArray("controlled_obj")]
 script = ExtResource("4_5oadw")
 controlled_obj = NodePath("../../Characters/Celia")
 
-[node name="Level" type="Node" parent="."]
+[node name="Level" type="Node" parent="." unique_id=1938943072]
 
-[node name="Floor" type="MeshInstance3D" parent="Level"]
+[node name="Floor" type="MeshInstance3D" parent="Level" unique_id=1912482845]
 mesh = SubResource("PlaneMesh_mmup0")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Level/Floor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/Floor" unique_id=1887691077]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Floor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Floor/StaticBody3D" unique_id=698335842]
 shape = SubResource("ConcavePolygonShape3D_26ptr")
 
-[node name="Wall" type="MeshInstance3D" parent="Level"]
+[node name="Wall" type="MeshInstance3D" parent="Level" unique_id=1554020220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -12.273128)
 mesh = SubResource("BoxMesh_plpqy")
 skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Level/Wall"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/Wall" unique_id=1337915821]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Wall/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Wall/StaticBody3D" unique_id=530496769]
 shape = SubResource("ConcavePolygonShape3D_v7prx")
 
-[node name="Slope" type="MeshInstance3D" parent="Level"]
+[node name="Slope" type="MeshInstance3D" parent="Level" unique_id=1001706074]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 4)
 mesh = SubResource("PrismMesh_0l7qq")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_pfpgv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Level/Slope"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Level/Slope" unique_id=1249385912]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Slope/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Slope/StaticBody3D" unique_id=1030311123]
 shape = SubResource("ConcavePolygonShape3D_rit6o")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Level" unique_id=1221099216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1.15, 4)
 use_collision = true
 size = Vector3(1, 2.3, 3)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Level" unique_id=1626950583]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0.5, 7)
 use_collision = true
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D8" type="CSGBox3D" parent="Level" unique_id=1864916590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 1.8, 6)
 use_collision = true
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D9" type="CSGBox3D" parent="Level" unique_id=1700756668]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1587386, 1.15, -3.6777086)
 use_collision = true
 size = Vector3(1, 2.3, 3)
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D10" type="CSGBox3D" parent="Level" unique_id=1525546171]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1587386, 0.5, -0.6777086)
 use_collision = true
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D11" type="CSGBox3D" parent="Level" unique_id=262201671]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1587386, 1.8, -1.6777086)
 use_collision = true
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level" unique_id=1873179485]
 transform = Transform3D(1, 0, 0, 0, 0.642788, -0.766045, 0, 0.766045, 0.642788, -1.14192, 0.318018, 9.56882)
 use_collision = true
 size = Vector3(1, 2.3, 1)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Level" unique_id=350442607]
 transform = Transform3D(1, 0, 0, 0, 0.819152, -0.573577, 0, 0.573577, 0.819152, -2.14192, 0.508237, 9.39007)
 use_collision = true
 size = Vector3(1, 2.3, 1)
 material = SubResource("StandardMaterial3D_1qj2g")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level" unique_id=349401454]
 transform = Transform3D(1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, -0.141925, 0.0390427, 9.49878)
 use_collision = true
 size = Vector3(1, 2.3, 1)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Level" unique_id=2065158371]
 transform = Transform3D(1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, 0.858075, -0.237046, 9.49878)
 use_collision = true
 size = Vector3(1, 2.3, 1)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Level" unique_id=1332265496]
 transform = Transform3D(1, 0, 0, 0, 0.173648, -0.984808, 0, 0.984808, 0.173648, 1.85808, -0.327185, 9.49878)
 use_collision = true
 size = Vector3(1, 2.3, 1)
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Level"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Level" unique_id=4333970]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.51662, -0.3, 7.01275)
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Level/CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Level/CSGCombiner3D" unique_id=20928206]
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Level/CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level/CSGCombiner3D" unique_id=853763130]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.2)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Level/CSGCombiner3D"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level/CSGCombiner3D" unique_id=532271018]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.4)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Level/CSGCombiner3D"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Level/CSGCombiner3D" unique_id=133455200]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.6)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Level/CSGCombiner3D"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Level/CSGCombiner3D" unique_id=930367163]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -0.8)
 
-[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="Level"]
+[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="Level" unique_id=195219760]
 transform = Transform3D(-0.0121996, 0, 0.999926, 0, 1, 0, -0.999926, 0, -0.0121996, -5.21009, -0.3, 2.09944)
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Level/CSGCombiner3D2"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Level/CSGCombiner3D2" unique_id=187040793]
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Level/CSGCombiner3D2"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Level/CSGCombiner3D2" unique_id=541869699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.2)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Level/CSGCombiner3D2"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Level/CSGCombiner3D2" unique_id=422234966]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -0.4)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Level/CSGCombiner3D2"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Level/CSGCombiner3D2" unique_id=433360769]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.6)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Level/CSGCombiner3D2"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Level/CSGCombiner3D2" unique_id=54565136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -0.8)
 
-[node name="DashPickup" parent="." instance=ExtResource("8_klm4w")]
+[node name="DashPickup" parent="." unique_id=1818662004 instance=ExtResource("8_klm4w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.78498, 0, -1.4562)
 
-[node name="Characters" type="Node" parent="."]
+[node name="Characters" type="Node" parent="." unique_id=303485329]
 
-[node name="Dani" parent="Characters" instance=ExtResource("9_2fy52")]
+[node name="Dani" parent="Characters" unique_id=1167571988 instance=ExtResource("9_2fy52")]
 character_type = 1
 vrm_scene = ExtResource("11_aun2a")
 
@@ -240,29 +240,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5450617, 0)
 [node name="GazeTarget" parent="Characters/Dani" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3737564, -0.75)
 
-[node name="Celia" parent="Characters" instance=ExtResource("9_2fy52")]
+[node name="Celia" parent="Characters" unique_id=1595019788 instance=ExtResource("9_2fy52")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0464168, 0, -6.4039307)
 dialogic_character = ExtResource("17_i841j")
 vrm_scene = ExtResource("18_cui87")
 camera_height_offset = -0.085
 
-[node name="Cameras" type="Node" parent="."]
+[node name="Cameras" type="Node" parent="." unique_id=1903860539]
 
-[node name="CinematicCamera" type="Camera3D" parent="Cameras"]
+[node name="CinematicCamera" type="Camera3D" parent="Cameras" unique_id=1764327827]
 transform = Transform3D(-0.8507096, -0.027090535, 0.5249374, 8.370282e-11, 0.9986711, 0.051538605, -0.52563596, 0.043844383, -0.84957904, 0.94658566, 1.3046398, 2.5475743)
 script = ExtResource("19_38na4")
 
-[node name="CinematicCamera2" type="Camera3D" parent="Cameras"]
+[node name="CinematicCamera2" type="Camera3D" parent="Cameras" unique_id=48417281]
 transform = Transform3D(0.0031589572, 0.17020866, -0.985403, 6.6087464e-09, 0.9854079, 0.17020951, 0.99999505, -0.00053769106, 0.00311286, -2.6623623, 1.753995, 4.1197286)
 fov = 30.0
 script = ExtResource("19_38na4")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=326433831]
 stream = ExtResource("20_j8d6i")
 pitch_scale = 0.8
 autoplay = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1926782803]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.5667894e-09, 1.4674457, -0.5935325)
 current = true
 fov = 30.0

@@ -106,7 +106,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func _ready() -> void:
 	if not _model_container:
-		var container = Node3D.new()
+		var container: Node3D = Node3D.new()
 		container.name = "ModelContainer"
 		collision_shape.add_child(container)
 		container.set_owner(get_tree().edited_scene_root)
@@ -196,7 +196,7 @@ func _instantiate_model(scene: PackedScene) -> Node3D:
 	for child in _model_container.get_children():
 		child.queue_free()	
 	# Instantiate and add the new model
-	var new_model = scene.instantiate()
+	var new_model: Node = scene.instantiate()
 	_model_container.add_child(new_model)
 	_connect_animation_player(new_model)
 	return new_model
@@ -254,8 +254,8 @@ func _calculate_character_height() -> float:
 func _get_character_aabb() -> AABB:
 	var aabb: AABB
 	for mesh in _get_all_mesh_instances():
-		var mesh_transform = mesh.global_transform
-		var mesh_aabb = mesh.get_aabb()
+		var mesh_transform: Transform3D = mesh.global_transform
+		var mesh_aabb: AABB = mesh.get_aabb()
 		mesh_aabb = AABB(mesh_transform * mesh_aabb.position, mesh_aabb.size)
 #		print("Mesh name: " + mesh.name + " with volume: " + str(mesh_aabb.get_volume()))
 		if aabb.has_volume():
@@ -279,9 +279,9 @@ func _collect_mesh_instances(node: Node, meshes: Array[MeshInstance3D]) -> void:
 
 func _update_node_heights(height: float) -> void:
 	# Top of head + small offset
-	var adjusted_height = height + camera_height_offset
+	var adjusted_height: float = height + camera_height_offset
 	# Adjusted height to face ratio
-	var face_height = adjusted_height * face_height_ratio
+	var face_height: float = adjusted_height * face_height_ratio
 	# Adjust camera pivots 
 	if third_person_camera:
 		third_person_camera.position.y = adjusted_height 
