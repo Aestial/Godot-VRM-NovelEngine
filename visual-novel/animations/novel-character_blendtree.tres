@@ -132,7 +132,7 @@ input_3/break_loop_at_end = false
 input_3/reset = true
 
 [resource]
-graph_offset = Vector2(-910.05444, -301.8717)
+graph_offset = Vector2(-647.2097, -293.09872)
 nodes/output/position = Vector2(1600, 0)
 nodes/BaseEmotion/node = ExtResource("1_rfivk")
 nodes/BaseEmotion/position = Vector2(300, 140)

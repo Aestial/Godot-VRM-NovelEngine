@@ -71,12 +71,15 @@ func _physics_process(delta: float) -> void:
 		
 	
 	if _animation_tree:
-		var move_anim_speed = remap (speed, 0.15, 1.5, 0.0, 1.0)		
+		var move_anim_speed: float = remap (speed, 0.15, 1.5, 0.0, 1.0)		
 		# print(owner.name + ": " + str(was_on_floor))
-		# TODO: Fix this with jump status.
-		_animation_tree.set("parameters/Locomotion/Motion/blend_position", move_anim_speed)
-		_animation_tree.set("parameters/Locomotion/Jump/blend_position", move_anim_speed)		
+		# print(owner.name + ": " + str(move_anim_speed))
+		
+		_animation_tree.set("parameters/LocomotionBlend/blend_amount", clamp(move_anim_speed, 0.0, 1.0))
 		_animation_tree.set("parameters/Locomotion/conditions/JUMP", !was_on_floor)
+		_animation_tree.set("parameters/Locomotion/Jump/blend_position", move_anim_speed)		
+		_animation_tree.set("parameters/Locomotion/Motion/blend_position", move_anim_speed)
+		# TODO: Fix this with jump status.
 
 
 #region Movement Modification

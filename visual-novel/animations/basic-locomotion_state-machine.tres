@@ -49,4 +49,4 @@ states/Motion/node = SubResource("AnimationNodeBlendSpace1D_aihfo")
 states/Motion/position = Vector2(192, 182)
 states/Start/position = Vector2(-46, 100)
 transitions = ["Motion", "Jump", SubResource("AnimationNodeStateMachineTransition_jvanm"), "Jump", "Motion", SubResource("AnimationNodeStateMachineTransition_rip2l"), "Start", "Motion", SubResource("AnimationNodeStateMachineTransition_08lbb")]
-graph_offset = Vector2(-471, -132)
+graph_offset = Vector2(-480, -351)
