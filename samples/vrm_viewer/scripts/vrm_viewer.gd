@@ -15,6 +15,7 @@ extends Node3D
 @onready var reference_label: Label = $UI/Control/MetaPanel/VBoxContainer/ReferenceLabel
 @onready var thumbnail_rect: TextureRect = $UI/Control/MetaPanel/VBoxContainer/ThumbnailRect
 @onready var version_option: OptionButton = $UI/Control/VersionOption
+@onready var toggle_meta_button: Button = $UI/Control/ToggleMetaButton
 
 var current_model: Node3D = null
 
@@ -31,10 +32,16 @@ var is_panning: bool = false
 func _ready() -> void:
 	load_button.pressed.connect(_on_load_button_pressed)
 	file_dialog.file_selected.connect(_on_file_selected)
+	toggle_meta_button.pressed.connect(_on_toggle_meta_button_pressed)
 	error_label.text = ""
 	meta_panel.hide()
+	toggle_meta_button.hide()
 	# Load default model
 	_on_file_selected("res://samples/character_samples/vrm/Brayan.vrm")
+
+func _on_toggle_meta_button_pressed() -> void:
+	meta_panel.visible = not meta_panel.visible
+	toggle_meta_button.text = "Hide Info" if meta_panel.visible else "Show Info"
 
 func _on_load_button_pressed() -> void:
 	error_label.text = ""
@@ -60,6 +67,8 @@ func _on_file_selected(path: String) -> void:
 		current_model = ps.instantiate()
 		
 		model_pivot.add_child(current_model)
+		model_pivot.rotation.y = PI # Rotate pivot to face camera
+		
 		error_label.add_theme_color_override("font_color", Color(0.3, 1.0, 0.3))
 		error_label.text = "Loaded successfully!"
 		
@@ -91,6 +100,11 @@ func _input(event: InputEvent) -> void:
 		if is_dragging:
 			var delta: Vector2 = event.position - last_mouse_pos
 			model_pivot.rotate_y(delta.x * 0.01)
+			
+			# Rotate camera pivot for vertical rotation (clamped to prevent flipping)
+			var new_rot_x = camera_pivot.rotation.x - (delta.y * 0.01)
+			camera_pivot.rotation.x = clamp(new_rot_x, -PI / 2.5, PI / 2.5)
+			
 			last_mouse_pos = event.position
 		elif is_panning:
 			var delta: Vector2 = event.position - last_mouse_pos
@@ -111,9 +125,12 @@ func _display_metadata(model: Node3D) -> void:
 	# populate it (e.g. the VRM file lacks a meta block), so we check the title field.
 	if vrm_meta == null or not (vrm_meta is Resource):
 		print("[VRMViewer] vrm_meta unavailable for this model (type: ", typeof(vrm_meta), ")")
+		toggle_meta_button.hide()
 		return
 	
 	meta_panel.show()
+	toggle_meta_button.show()
+	toggle_meta_button.text = "Hide Info"
 	
 	var title: String = vrm_meta.get("title") if vrm_meta.get("title") else ""
 	title_label.text = "Title: " + (title if not title.is_empty() else "Unknown")
