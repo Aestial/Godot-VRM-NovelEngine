@@ -49,7 +49,7 @@ static func check_vrm_version(absolute_file_path: String) -> int:
 ## Loads a .vrm file from the file system at runtime.
 ## Returns a Dictionary with the following structure:
 ## { "success": bool, "error_msg": String, "node": Node3D (or null) }
-static func load_vrm(absolute_file_path: String) -> Dictionary:
+static func load_vrm(absolute_file_path: String, force_version: int = 0) -> Dictionary:
 	var result: Dictionary[Variant, Variant] = {
 		"success": false,
 		"error_msg": "",
@@ -61,6 +61,11 @@ static func load_vrm(absolute_file_path: String) -> Dictionary:
 		return result
 
 	var vrm_version := check_vrm_version(absolute_file_path)
+	if force_version == 1:
+		vrm_version = 0
+	elif force_version == 2:
+		vrm_version = 1
+		
 	print("VRM Version: ", vrm_version)
 	if vrm_version == -1:
 		result["error_msg"] = "File is not a valid VRM or GLB file: " + absolute_file_path

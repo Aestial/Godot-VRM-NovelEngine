@@ -13,8 +13,10 @@ corner_radius_bottom_left = 8
 script = ExtResource("1_vrmv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1485858070]
-transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 3, 0)
+transform = Transform3D(0.25881907, 0.95125145, 0.16773118, 0, -0.17364824, 0.9848072, 0.9659258, -0.25488707, -0.04494344, 0, 3, 0)
+light_color = Color(0.96, 0.9773333, 1, 1)
 shadow_enabled = true
+shadow_bias = 1.0
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=780848643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
@@ -43,6 +45,21 @@ offset_right = 140.0
 offset_bottom = 60.0
 text = "Load VRM"
 
+[node name="VersionOption" type="OptionButton" parent="UI/Control" unique_id=2022707543]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 60.0
+selected = 0
+item_count = 3
+popup/item_0/text = "Auto Detect"
+popup/item_0/id = 0
+popup/item_1/text = "Force VRM 0.0"
+popup/item_1/id = 1
+popup/item_2/text = "Force VRM 1.0"
+popup/item_2/id = 2
+
 [node name="ErrorLabel" type="Label" parent="UI/Control" unique_id=554453283]
 layout_mode = 1
 anchors_preset = 7
@@ -68,7 +85,7 @@ anchor_right = 1.0
 offset_left = -270.0
 offset_top = 20.0
 offset_right = -20.0
-offset_bottom = 160.0
+offset_bottom = 450.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
@@ -103,6 +120,17 @@ autowrap_mode = 2
 layout_mode = 2
 text = "License: "
 autowrap_mode = 2
+
+[node name="ReferenceLabel" type="Label" parent="UI/Control/MetaPanel/VBoxContainer" unique_id=427677473]
+layout_mode = 2
+text = "Reference: "
+autowrap_mode = 2
+
+[node name="ThumbnailRect" type="TextureRect" parent="UI/Control/MetaPanel/VBoxContainer" unique_id=1505305002]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="FileDialog" type="FileDialog" parent="UI" unique_id=1309118911]
 oversampling_override = 1.0

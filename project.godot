@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="VRM-NovelEngine"
 config/tags=PackedStringArray("engine", "visualnovel")
-run/main_scene="uid://n5itw40xq2ct"
+run/main_scene="uid://djab1vrmviewr"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0.1882353, 0.20392157, 0.27450982, 1)
 boot_splash/stretch_mode=0

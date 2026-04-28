@@ -12,6 +12,9 @@ extends Node3D
 @onready var author_label: Label = $UI/Control/MetaPanel/VBoxContainer/AuthorLabel
 @onready var version_label: Label = $UI/Control/MetaPanel/VBoxContainer/VersionLabel
 @onready var license_label: Label = $UI/Control/MetaPanel/VBoxContainer/LicenseLabel
+@onready var reference_label: Label = $UI/Control/MetaPanel/VBoxContainer/ReferenceLabel
+@onready var thumbnail_rect: TextureRect = $UI/Control/MetaPanel/VBoxContainer/ThumbnailRect
+@onready var version_option: OptionButton = $UI/Control/VersionOption
 
 var current_model: Node3D = null
 
@@ -48,7 +51,8 @@ func _on_file_selected(path: String) -> void:
 	
 	await get_tree().process_frame
 	
-	var result: Dictionary = VRMLoader.load_vrm(path)
+	var force_version: int = version_option.get_selected_id()
+	var result: Dictionary = VRMLoader.load_vrm(path, force_version)
 	
 	if result["success"]:
 		var ps: PackedScene = PackedScene.new()
@@ -122,3 +126,13 @@ func _display_metadata(model: Node3D) -> void:
 	
 	var license: String = vrm_meta.get("license_name") if vrm_meta.get("license_name") else ""
 	license_label.text = "License: " + (license if not license.is_empty() else "Unknown")
+
+	var reference: String = vrm_meta.get("reference_information") if vrm_meta.get("reference_information") else ""
+	reference_label.text = "Reference: " + (reference if not reference.is_empty() else "Unknown")
+	
+	var thumbnail: Texture = vrm_meta.get("thumbnail_image")
+	if thumbnail:
+		thumbnail_rect.texture = thumbnail
+		thumbnail_rect.show()
+	else:
+		thumbnail_rect.hide()
