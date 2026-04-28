@@ -30,6 +30,8 @@ func _ready() -> void:
 	file_dialog.file_selected.connect(_on_file_selected)
 	error_label.text = ""
 	meta_panel.hide()
+	# Load default model
+	_on_file_selected("res://samples/character_samples/vrm/Brayan.vrm")
 
 func _on_load_button_pressed() -> void:
 	error_label.text = ""
@@ -48,7 +50,7 @@ func _on_file_selected(path: String) -> void:
 	
 	var result: Dictionary = VRMLoader.load_vrm(path)
 	
-	if result["success"]:		
+	if result["success"]:
 		var ps: PackedScene = PackedScene.new()
 		ps.pack(result["node"])
 		current_model = ps.instantiate()
