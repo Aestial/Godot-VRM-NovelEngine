@@ -4,13 +4,13 @@ extends RefCounted
 ## Utility class to handle runtime loading of VRM models.
 ## Relies on the V-Sekai godot-vrm plugin's GLTFDocumentExtension.
 
-const VRM_EXTENSION_PATH = "res://addons/vrm/vrm_extension.gd"
+const VRM_EXTENSION_PATH: String = "res://addons/vrm/vrm_extension.gd"
 
 ## Loads a .vrm file from the file system at runtime.
 ## Returns a Dictionary with the following structure:
 ## { "success": bool, "error_msg": String, "node": Node3D (or null) }
 static func load_vrm(absolute_file_path: String) -> Dictionary:
-	var result = {
+	var result: Dictionary[Variant, Variant] = {
 		"success": false,
 		"error_msg": "",
 		"node": null
@@ -25,23 +25,29 @@ static func load_vrm(absolute_file_path: String) -> Dictionary:
 	
 	# Load and register the VRM extension
 	var vrm_ext: GLTFDocumentExtension = load(VRM_EXTENSION_PATH).new()
-	gltf.register_gltf_document_extension(vrm_ext, true)
+	
+	GLTFDocument.register_gltf_document_extension(vrm_ext, true)
 	
 	# Keep images in memory for runtime instead of extracting to disk
 	state.handle_binary_image = GLTFState.HANDLE_BINARY_EMBED_AS_UNCOMPRESSED
+	
+	state.set_additional_data(&"vrm/head_hiding_method", 0)
+	state.set_additional_data(&"vrm/first_person_layers", 2)
+	state.set_additional_data(&"vrm/third_person_layers", 4)
+#	state.set_additional_data(&"vrm/already_processed", false)
 	
 	# Parse the file
 	var err: int = gltf.append_from_file(absolute_file_path, state)
 	if err != OK:
 		result["error_msg"] = "Failed to parse GLTF/VRM file. Error code: " + str(err)
-		gltf.unregister_gltf_document_extension(vrm_ext)
+		GLTFDocument.unregister_gltf_document_extension(vrm_ext)
 		return result
 		
 	# Generate the node tree
 	var vrm_node: Node3D = gltf.generate_scene(state)
 	
 	# Cleanup registration
-	gltf.unregister_gltf_document_extension(vrm_ext)
+	GLTFDocument.unregister_gltf_document_extension(vrm_ext)
 	
 	if not vrm_node:
 		result["error_msg"] = "Failed to generate scene from parsed data."

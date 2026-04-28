@@ -46,10 +46,13 @@ func _on_file_selected(path: String) -> void:
 	
 	await get_tree().process_frame
 	
-	var result = VRMLoader.load_vrm(path)
+	var result: Dictionary = VRMLoader.load_vrm(path)
 	
-	if result["success"]:
-		current_model = result["node"]
+	if result["success"]:		
+		var ps: PackedScene = PackedScene.new()
+		ps.pack(result["node"])
+		current_model = ps.instantiate()
+		
 		model_pivot.add_child(current_model)
 		error_label.add_theme_color_override("font_color", Color(0.3, 1.0, 0.3))
 		error_label.text = "Loaded successfully!"
@@ -80,11 +83,11 @@ func _input(event: InputEvent) -> void:
 			
 	elif event is InputEventMouseMotion:
 		if is_dragging:
-			var delta = event.position - last_mouse_pos
+			var delta: Vector2 = event.position - last_mouse_pos
 			model_pivot.rotate_y(delta.x * 0.01)
 			last_mouse_pos = event.position
 		elif is_panning:
-			var delta = event.position - last_mouse_pos
+			var delta: Vector2 = event.position - last_mouse_pos
 			# Pan the camera pivot
 			camera_pivot.position.x -= delta.x * pan_speed
 			camera_pivot.position.y += delta.y * pan_speed
