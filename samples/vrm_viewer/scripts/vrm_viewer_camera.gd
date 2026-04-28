@@ -5,8 +5,8 @@ extends Node3D
 
 var is_dragging: bool = false
 var last_mouse_pos: Vector2
-var zoom_level: float = 2.0
-var min_zoom: float = 0.5
+var zoom_level: float = 1.0
+var min_zoom: float = 0.2
 var max_zoom: float = 5.0
 var zoom_speed: float = 0.2
 var pan_speed: float = 0.005
@@ -16,9 +16,9 @@ func _ready() -> void:
 	_update_camera_zoom()
 
 func reset_camera() -> void:
-	zoom_level = 2.0
+	zoom_level = 1.0
 	_update_camera_zoom()
-	position = Vector3(0, 1.2, 0)
+	position = Vector3(0, 1.5, 0)
 	rotation = Vector3.ZERO
 	if target_model_pivot:
 		target_model_pivot.rotation = Vector3(0, PI, 0)
