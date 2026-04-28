@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://djab1vrmviewr"]
 
 [ext_resource type="Script" uid="uid://48p5tfa036s3" path="res://samples/vrm_viewer/scripts/vrm_viewer.gd" id="1_vrmv"]
+[ext_resource type="Script" uid="uid://bfiqyv0wkrcn5" path="res://samples/vrm_viewer/scripts/vrm_viewer_camera.gd" id="2_cam"]
+[ext_resource type="Script" uid="uid://ckoc32gf5m1ox" path="res://samples/vrm_viewer/scripts/vrm_viewer_ui_meta.gd" id="3_meta"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.1, 0.1, 0.1, 0.8)
@@ -20,6 +22,7 @@ shadow_bias = 1.0
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=780848643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+script = ExtResource("2_cam")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=418550326]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
@@ -60,6 +63,14 @@ popup/item_1/id = 1
 popup/item_2/text = "Force VRM 1.0"
 popup/item_2/id = 2
 
+[node name="HomeButton" type="Button" parent="UI/Control" unique_id=1257515146]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 20.0
+offset_right = 440.0
+offset_bottom = 60.0
+text = "Home"
+
 [node name="ErrorLabel" type="Label" parent="UI/Control" unique_id=554453283]
 layout_mode = 1
 anchors_preset = 7
@@ -76,8 +87,7 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
 horizontal_alignment = 1
 
-[node name="MetaPanel" type="Panel" parent="UI/Control" unique_id=134894505]
-visible = false
+[node name="MetaContainer" type="VBoxContainer" parent="UI/Control" unique_id=1625657488]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -85,23 +95,17 @@ anchor_right = 1.0
 offset_left = -270.0
 offset_top = 20.0
 offset_right = -20.0
-offset_bottom = 450.0
+offset_bottom = 490.0
 grow_horizontal = 0
+
+[node name="MetaPanel" type="Panel" parent="UI/Control/MetaContainer" unique_id=1260229533]
+clip_contents = true
+custom_minimum_size = Vector2(0, 430)
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+script = ExtResource("3_meta")
 
-[node name="ToggleMetaButton" type="Button" parent="UI/Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -150.0
-offset_top = 460.0
-offset_right = -20.0
-offset_bottom = 500.0
-grow_horizontal = 0
-text = "Hide Info"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/MetaPanel" unique_id=1198207462]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/MetaContainer/MetaPanel" unique_id=655327195]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,36 +117,40 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleLabel" type="Label" parent="UI/Control/MetaPanel/VBoxContainer" unique_id=2043031797]
+[node name="TitleLabel" type="Label" parent="UI/Control/MetaContainer/MetaPanel/VBoxContainer" unique_id=983400250]
 layout_mode = 2
 text = "Title: "
 autowrap_mode = 2
 
-[node name="AuthorLabel" type="Label" parent="UI/Control/MetaPanel/VBoxContainer" unique_id=1974953284]
+[node name="AuthorLabel" type="Label" parent="UI/Control/MetaContainer/MetaPanel/VBoxContainer" unique_id=312046456]
 layout_mode = 2
 text = "Author: "
 autowrap_mode = 2
 
-[node name="VersionLabel" type="Label" parent="UI/Control/MetaPanel/VBoxContainer" unique_id=854533118]
+[node name="VersionLabel" type="Label" parent="UI/Control/MetaContainer/MetaPanel/VBoxContainer" unique_id=679167341]
 layout_mode = 2
 text = "Version: "
 autowrap_mode = 2
 
-[node name="LicenseLabel" type="Label" parent="UI/Control/MetaPanel/VBoxContainer" unique_id=1139988606]
+[node name="LicenseLabel" type="Label" parent="UI/Control/MetaContainer/MetaPanel/VBoxContainer" unique_id=1637655745]
 layout_mode = 2
 text = "License: "
 autowrap_mode = 2
 
-[node name="ReferenceLabel" type="Label" parent="UI/Control/MetaPanel/VBoxContainer" unique_id=427677473]
+[node name="ReferenceLabel" type="Label" parent="UI/Control/MetaContainer/MetaPanel/VBoxContainer" unique_id=1010117588]
 layout_mode = 2
 text = "Reference: "
 autowrap_mode = 2
 
-[node name="ThumbnailRect" type="TextureRect" parent="UI/Control/MetaPanel/VBoxContainer" unique_id=1505305002]
+[node name="ThumbnailRect" type="TextureRect" parent="UI/Control/MetaContainer/MetaPanel/VBoxContainer" unique_id=1793468926]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ToggleMetaButton" type="Button" parent="UI/Control/MetaContainer" unique_id=1264219614]
+layout_mode = 2
+text = "Hide Info"
 
 [node name="FileDialog" type="FileDialog" parent="UI" unique_id=1309118911]
 oversampling_override = 1.0
