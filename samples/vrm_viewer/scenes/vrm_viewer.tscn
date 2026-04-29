@@ -19,7 +19,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
-albedo_color = Color(0.25, 0.25, 0.25, 1)
+albedo_color = Color(0.23, 0.23, 0.23, 1)
 roughness = 0.8
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
@@ -93,10 +93,10 @@ horizontal_scroll_mode = 0
 [node name="Margin" type="MarginContainer" parent="UI/Control/EnvContainer/EnvPanel/Scroll" unique_id=416218207]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
 
 [node name="VBox" type="VBoxContainer" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin" unique_id=1149011783]
 layout_mode = 2

@@ -25,6 +25,9 @@ func reset_camera() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		if get_viewport().gui_get_hovered_control() != null:
+			return
+			
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			is_dragging = event.pressed
 			last_mouse_pos = event.position
