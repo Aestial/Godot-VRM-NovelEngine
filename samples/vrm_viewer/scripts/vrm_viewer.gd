@@ -17,6 +17,9 @@ func _ready() -> void:
 	file_dialog.file_selected.connect(_on_file_selected)
 	home_button.pressed.connect(_on_home_button_pressed)
 	
+	# Support for drag and drop files (especially useful for web exports)
+	get_viewport().files_dropped.connect(_on_files_dropped)
+	
 	message_label.text = ""
 	meta_panel.hide()
 	
@@ -33,6 +36,17 @@ func _on_home_button_pressed() -> void:
 func _on_load_button_pressed() -> void:
 	message_label.text = ""
 	file_dialog.popup_centered()
+
+func _on_files_dropped(files: PackedStringArray) -> void:
+	if files.size() > 0:
+		var file_path = files[0]
+		var ext = file_path.get_extension().to_lower()
+		if ext == "vrm" or ext == "vrma":
+			_on_file_selected(file_path)
+		else:
+			message_label.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
+			message_label.text = "Error: Please drop a valid .vrm file."
+
 
 func _on_file_selected(path: String) -> void:
 	if current_model:
