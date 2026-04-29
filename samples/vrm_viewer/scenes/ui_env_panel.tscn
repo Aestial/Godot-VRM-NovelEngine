@@ -43,18 +43,34 @@ theme_override_constants/margin_bottom = 24
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="LabelRotX" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1436168075]
+[node name="HeaderRotX" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="LabelRotX" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderRotX"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Light Rotation X"
+
+[node name="ValueRotX" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderRotX"]
+layout_mode = 2
+text = "0"
 
 [node name="LightRotXSlider" type="HSlider" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=830608520]
 layout_mode = 2
 min_value = -180.0
 max_value = 180.0
 
-[node name="LabelRot" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2058369577]
+[node name="HeaderRotY" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="LabelRot" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderRotY"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Light Rotation Y"
+
+[node name="ValueRotY" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderRotY"]
+layout_mode = 2
+text = "0"
 
 [node name="LightRotSlider" type="HSlider" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1087481337]
 layout_mode = 2
@@ -72,9 +88,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 color = Color(0.96, 0.977, 1, 1)
 
-[node name="LabelEnergy" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1625025371]
+[node name="HeaderEnergy" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="LabelEnergy" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderEnergy"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Light Energy"
+
+[node name="ValueEnergy" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderEnergy"]
+layout_mode = 2
+text = "0"
 
 [node name="LightEnergySlider" type="HSlider" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=397540785]
 layout_mode = 2
@@ -84,9 +108,17 @@ step = 0.1
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1141801888]
 layout_mode = 2
 
-[node name="LabelSky" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1173250367]
+[node name="HeaderSky" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="LabelSky" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderSky"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Sky Energy"
+
+[node name="ValueSky" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderSky"]
+layout_mode = 2
+text = "0"
 
 [node name="SkyEnergySlider" type="HSlider" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=51741679]
 layout_mode = 2

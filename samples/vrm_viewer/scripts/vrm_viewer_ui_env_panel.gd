@@ -5,10 +5,14 @@ extends VBoxContainer
 @onready var ground_plane: MeshInstance3D = $"../../../GroundPlane"
 
 @onready var light_rot_x_slider: HSlider = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/LightRotXSlider
+@onready var light_rot_x_val: Label = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderRotX/ValueRotX
 @onready var light_rotation_slider: HSlider = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/LightRotSlider
+@onready var light_rot_y_val: Label = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderRotY/ValueRotY
 @onready var light_energy_slider: HSlider = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/LightEnergySlider
+@onready var light_energy_val: Label = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderEnergy/ValueEnergy
 @onready var light_color_picker: ColorPickerButton = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/LightColorPicker
 @onready var sky_energy_slider: HSlider = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/SkyEnergySlider
+@onready var sky_energy_val: Label = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderSky/ValueSky
 @onready var sky_top_color_picker: ColorPickerButton = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/SkyTopColorPicker
 @onready var sky_horizon_color_picker: ColorPickerButton = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/SkyHorizonColorPicker
 @onready var toggle_ground_btn: CheckButton = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/ToggleGroundBtn
@@ -36,12 +40,18 @@ func _ready() -> void:
 		light_rot_x_slider.value = rad_to_deg(light_node.rotation.x)
 		light_color_picker.color = light_node.light_color
 		
+		# Initialize value labels
+		light_energy_val.text = str(light_energy_slider.value)
+		light_rot_y_val.text = str(light_rotation_slider.value)
+		light_rot_x_val.text = str(light_rot_x_slider.value)
+		
 	if world_environment and world_environment.environment and world_environment.environment.sky:
 		var sky_mat: Material = world_environment.environment.sky.sky_material
 		if sky_mat is ProceduralSkyMaterial:
 			sky_energy_slider.value = sky_mat.sky_energy_multiplier
 			sky_top_color_picker.color = sky_mat.sky_top_color
 			sky_horizon_color_picker.color = sky_mat.sky_horizon_color
+			sky_energy_val.text = str(sky_energy_slider.value)
 			
 	if ground_plane:
 		toggle_ground_btn.button_pressed = ground_plane.visible
@@ -51,14 +61,18 @@ func _ready() -> void:
 func _on_light_rot_x_changed(value: float) -> void:
 	if light_node:
 		light_node.rotation.x = deg_to_rad(value)
+	light_rot_x_val.text = str(value)
 
 func _on_light_rot_changed(value: float) -> void:
 	if light_node:
 		light_node.rotation.y = deg_to_rad(value)
+	light_rot_y_val.text = str(value)
 
 func _on_light_energy_changed(value: float) -> void:
 	if light_node:
 		light_node.light_energy = value
+	light_energy_val.text = str(value)
+
 
 func _on_light_color_changed(color: Color) -> void:
 	if light_node:
@@ -69,6 +83,8 @@ func _on_sky_energy_changed(value: float) -> void:
 		var sky_mat: Material = world_environment.environment.sky.sky_material
 		if sky_mat is ProceduralSkyMaterial:
 			sky_mat.sky_energy_multiplier = value
+	sky_energy_val.text = str(value)
+
 
 func _on_sky_top_color_changed(color: Color) -> void:
 	if world_environment and world_environment.environment and world_environment.environment.sky:

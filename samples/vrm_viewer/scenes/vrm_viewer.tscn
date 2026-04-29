@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://o0nulymb6d1f" path="res://samples/vrm_viewer/scenes/ui_env_panel.tscn" id="4_k6w5u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_env"]
-sky_horizon_color = Color(0.646, 0.656, 0.67, 1)
-ground_horizon_color = Color(0.646, 0.656, 0.67, 1)
+energy_multiplier = 0.6
 
 [sub_resource type="Sky" id="Sky_env"]
 sky_material = SubResource("ProceduralSkyMaterial_env")
@@ -15,8 +14,10 @@ sky_material = SubResource("ProceduralSkyMaterial_env")
 [sub_resource type="Environment" id="Environment_env"]
 background_mode = 2
 sky = SubResource("Sky_env")
-tonemap_mode = 2
+ambient_light_source = 3
 glow_enabled = true
+glow_bloom = 0.2
+fog_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
 albedo_color = Color(0.23, 0.23, 0.23, 1)
@@ -30,9 +31,12 @@ size = Vector2(100, 100)
 script = ExtResource("1_vrmv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1485858070]
-transform = Transform3D(0.25881907, 0.95125145, 0.16773118, 0, -0.17364824, 0.9848072, 0.9659258, -0.25488707, -0.04494344, 0, 3, 0)
+transform = Transform3D(0.25881913, 0.9512512, 0.16773142, -1.518082e-08, -0.17364834, 0.9848077, 0.9659258, -0.25488707, -0.044943497, 0, 3, 0)
 shadow_enabled = true
-shadow_bias = 1.0
+shadow_opacity = 0.7
+shadow_blur = 2.0
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=780848643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
