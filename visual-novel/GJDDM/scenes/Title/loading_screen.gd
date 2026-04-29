@@ -9,7 +9,7 @@ func _ready() -> void:
 	ResourceLoader.load_threaded_request(next_scene)
 	request_ready() #TODO: Verify
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var status: Array[Variant] = []
 	ResourceLoader.load_threaded_get_status(next_scene, status)
 	
@@ -18,5 +18,5 @@ func _process(delta: float) -> void:
 	
 	if progress >= 100 and can_load:
 		can_load = false
-		var packed_scene = ResourceLoader.load_threaded_get(next_scene)
+		var packed_scene: Resource = ResourceLoader.load_threaded_get(next_scene)
 		get_tree().change_scene_to_packed(packed_scene)

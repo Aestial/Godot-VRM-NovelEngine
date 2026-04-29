@@ -4,16 +4,17 @@ extends VBoxContainer
 @onready var world_environment: WorldEnvironment = $"../../../WorldEnvironment"
 @onready var ground_plane: MeshInstance3D = $"../../../GroundPlane"
 
-@onready var light_rot_x_slider: HSlider = $EnvPanel/Scroll/Margin/VBox/LightRotXSlider
-@onready var light_rotation_slider: HSlider = $EnvPanel/Scroll/Margin/VBox/LightRotSlider
-@onready var light_energy_slider: HSlider = $EnvPanel/Scroll/Margin/VBox/LightEnergySlider
-@onready var light_color_picker: ColorPickerButton = $EnvPanel/Scroll/Margin/VBox/LightColorPicker
-@onready var sky_energy_slider: HSlider = $EnvPanel/Scroll/Margin/VBox/SkyEnergySlider
-@onready var sky_top_color_picker: ColorPickerButton = $EnvPanel/Scroll/Margin/VBox/SkyTopColorPicker
-@onready var sky_horizon_color_picker: ColorPickerButton = $EnvPanel/Scroll/Margin/VBox/SkyHorizonColorPicker
-@onready var toggle_ground_btn: CheckButton = $EnvPanel/Scroll/Margin/VBox/ToggleGroundBtn
-@onready var toggle_env_btn: Button = $ToggleEnvButton
-@onready var env_panel: PanelContainer = $EnvPanel
+@onready var light_rot_x_slider: HSlider = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/LightRotXSlider
+@onready var light_rotation_slider: HSlider = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/LightRotSlider
+@onready var light_energy_slider: HSlider = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/LightEnergySlider
+@onready var light_color_picker: ColorPickerButton = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/LightColorPicker
+@onready var sky_energy_slider: HSlider = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/SkyEnergySlider
+@onready var sky_top_color_picker: ColorPickerButton = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/SkyTopColorPicker
+@onready var sky_horizon_color_picker: ColorPickerButton = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/SkyHorizonColorPicker
+@onready var toggle_ground_btn: CheckButton = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/ToggleGroundBtn
+
+@onready var toggle_btn: Button = $ToggleEnvButton
+@onready var content_panel: PanelContainer = $PanelContainer
 
 var is_expanded: bool = true
 var expanded_size: float = 400.0
@@ -27,7 +28,7 @@ func _ready() -> void:
 	sky_top_color_picker.color_changed.connect(_on_sky_top_color_changed)
 	sky_horizon_color_picker.color_changed.connect(_on_sky_horizon_color_changed)
 	toggle_ground_btn.toggled.connect(_on_ground_toggled)
-	toggle_env_btn.pressed.connect(_on_toggle_env_pressed)
+	toggle_btn.pressed.connect(_on_toggle_pressed)
 	
 	if light_node:
 		light_energy_slider.value = light_node.light_energy
@@ -45,7 +46,7 @@ func _ready() -> void:
 	if ground_plane:
 		toggle_ground_btn.button_pressed = ground_plane.visible
 		
-	env_panel.custom_minimum_size.y = expanded_size
+	content_panel.custom_minimum_size.y = expanded_size
 
 func _on_light_rot_x_changed(value: float) -> void:
 	if light_node:
@@ -85,10 +86,10 @@ func _on_ground_toggled(pressed: bool) -> void:
 	if ground_plane:
 		ground_plane.visible = pressed
 
-func _on_toggle_env_pressed() -> void:
+func _on_toggle_pressed() -> void:
 	is_expanded = !is_expanded
-	toggle_env_btn.text = "Hide Environment" if is_expanded else "Show Environment"
+	toggle_btn.text = "Hide Environment" if is_expanded else "Show Environment"
 	
 	var tween: Tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	var target_height: float = expanded_size if is_expanded else 0.0
-	tween.tween_property(env_panel, "custom_minimum_size:y", target_height, 0.3)
+	tween.tween_property(content_panel, "custom_minimum_size:y", target_height, 0.3)

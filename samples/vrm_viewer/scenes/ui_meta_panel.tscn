@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bawhekkspf4yi"]
+
+[ext_resource type="Script" uid="uid://bhh1mpckxje7j" path="res://samples/vrm_viewer/scripts/vrm_viewer_ui_meta_panel.gd" id="1_cjibi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.1, 0.1, 0.1, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MetaPanel" type="VBoxContainer" unique_id=59128470]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -270.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 490.0
+grow_horizontal = 0
+script = ExtResource("1_cjibi")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1228814835]
+clip_contents = true
+custom_minimum_size = Vector2(0, 430)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer" unique_id=1029851135]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ScrollContainer" unique_id=435439541]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer" unique_id=1003568415]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=558520449]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+text = "Title: "
+autowrap_mode = 2
+
+[node name="AuthorLabel" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2045874511]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+text = "Author: "
+autowrap_mode = 2
+
+[node name="VersionLabel" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1483162861]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+text = "Version: "
+autowrap_mode = 2
+
+[node name="LicenseLabel" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1513801114]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+text = "License: "
+autowrap_mode = 2
+
+[node name="ReferenceLabel" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2064023190]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+text = "Reference: "
+autowrap_mode = 2
+
+[node name="ThumbnailRect" type="TextureRect" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1463516100]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ToggleMetaButton" type="Button" parent="." unique_id=605228337]
+layout_mode = 2
+text = "Hide Info"
