@@ -23,7 +23,7 @@ func reset_camera() -> void:
 	if target_model_pivot:
 		target_model_pivot.rotation = Vector3(0, PI, 0)
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			is_dragging = event.pressed
@@ -43,7 +43,7 @@ func _input(event: InputEvent) -> void:
 			var delta: Vector2 = event.position - last_mouse_pos
 			target_model_pivot.rotate_y(delta.x * 0.01)
 			
-			var new_rot_x = rotation.x - (delta.y * 0.01)
+			var new_rot_x: float = rotation.x - (delta.y * 0.01)
 			rotation.x = clamp(new_rot_x, -PI / 2.5, PI / 2.5)
 			
 			last_mouse_pos = event.position

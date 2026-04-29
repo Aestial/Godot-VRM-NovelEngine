@@ -3,6 +3,28 @@
 [ext_resource type="Script" uid="uid://48p5tfa036s3" path="res://samples/vrm_viewer/scripts/vrm_viewer.gd" id="1_vrmv"]
 [ext_resource type="Script" uid="uid://bfiqyv0wkrcn5" path="res://samples/vrm_viewer/scripts/vrm_viewer_camera.gd" id="2_cam"]
 [ext_resource type="Script" uid="uid://ckoc32gf5m1ox" path="res://samples/vrm_viewer/scripts/vrm_viewer_ui_meta.gd" id="3_meta"]
+[ext_resource type="Script" uid="uid://dq32d20ouvc65" path="res://samples/vrm_viewer/scripts/vrm_viewer_env_ui.gd" id="4_env_ui"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_env"]
+sky_horizon_color = Color(0.646, 0.656, 0.67, 1)
+ground_horizon_color = Color(0.646, 0.656, 0.67, 1)
+
+[sub_resource type="Sky" id="Sky_env"]
+sky_material = SubResource("ProceduralSkyMaterial_env")
+
+[sub_resource type="Environment" id="Environment_env"]
+background_mode = 2
+sky = SubResource("Sky_env")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
+albedo_color = Color(0.25, 0.25, 0.25, 1)
+roughness = 0.8
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+material = SubResource("StandardMaterial3D_ground")
+size = Vector2(20, 20)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.1, 0.1, 0.1, 0.8)
@@ -16,16 +38,21 @@ script = ExtResource("1_vrmv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1485858070]
 transform = Transform3D(0.25881907, 0.95125145, 0.16773118, 0, -0.17364824, 0.9848072, 0.9659258, -0.25488707, -0.04494344, 0, 3, 0)
-light_color = Color(0.96, 0.9773333, 1, 1)
 shadow_enabled = true
 shadow_bias = 1.0
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=780848643]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
 script = ExtResource("2_cam")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=418550326]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=8246312]
+environment = SubResource("Environment_env")
+
+[node name="GroundPlane" type="MeshInstance3D" parent="." unique_id=1509347781]
+mesh = SubResource("PlaneMesh_ground")
 
 [node name="ModelPivot" type="Node3D" parent="." unique_id=1155330116]
 
@@ -39,6 +66,117 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="EnvContainer" type="VBoxContainer" parent="UI/Control" unique_id=1173292203]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -450.0
+offset_right = 270.0
+offset_bottom = -20.0
+grow_vertical = 0
+alignment = 2
+script = ExtResource("4_env_ui")
+
+[node name="EnvPanel" type="PanelContainer" parent="UI/Control/EnvContainer" unique_id=1815501470]
+clip_contents = true
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="Scroll" type="ScrollContainer" parent="UI/Control/EnvContainer/EnvPanel" unique_id=1340299245]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="UI/Control/EnvContainer/EnvPanel/Scroll" unique_id=416218207]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin" unique_id=1149011783]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LabelRotX" type="Label" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=2031454627]
+layout_mode = 2
+text = "Light Rotation X"
+
+[node name="LightRotXSlider" type="HSlider" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=1487321636]
+layout_mode = 2
+min_value = -180.0
+max_value = 180.0
+
+[node name="LabelRot" type="Label" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=1765534474]
+layout_mode = 2
+text = "Light Rotation Y"
+
+[node name="LightRotSlider" type="HSlider" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=1649936231]
+layout_mode = 2
+min_value = -180.0
+max_value = 180.0
+
+[node name="LabelColor" type="Label" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=1494973561]
+layout_mode = 2
+text = "Light Color"
+
+[node name="LightColorPicker" type="ColorPickerButton" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=256722622]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+color = Color(0.96, 0.977, 1, 1)
+
+[node name="LabelEnergy" type="Label" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=1319773600]
+layout_mode = 2
+text = "Light Energy"
+
+[node name="LightEnergySlider" type="HSlider" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=2032070354]
+layout_mode = 2
+max_value = 5.0
+step = 0.1
+
+[node name="HSeparator" type="HSeparator" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=953993872]
+layout_mode = 2
+
+[node name="LabelSky" type="Label" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=369348976]
+layout_mode = 2
+text = "Sky Energy"
+
+[node name="SkyEnergySlider" type="HSlider" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=835111339]
+layout_mode = 2
+max_value = 5.0
+step = 0.1
+
+[node name="LabelSkyTop" type="Label" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=986780279]
+layout_mode = 2
+text = "Sky Top Color"
+
+[node name="SkyTopColorPicker" type="ColorPickerButton" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=1818086650]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LabelSkyHorizon" type="Label" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=463957283]
+layout_mode = 2
+text = "Sky Horizon Color"
+
+[node name="SkyHorizonColorPicker" type="ColorPickerButton" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=2140066299]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ToggleGroundBtn" type="CheckButton" parent="UI/Control/EnvContainer/EnvPanel/Scroll/Margin/VBox" unique_id=184560498]
+layout_mode = 2
+text = "Show Ground Plane"
+
+[node name="ToggleEnvButton" type="Button" parent="UI/Control/EnvContainer" unique_id=686448649]
+layout_mode = 2
+text = "Hide Environment"
 
 [node name="LoadButton" type="Button" parent="UI/Control" unique_id=469905139]
 layout_mode = 0
