@@ -11,11 +11,24 @@ extends Node3D
 @onready var camera_pivot: Node3D = $CameraPivot
 
 var current_model: Node3D = null
+var _is_web: bool = false
+var _file_access_web: RefCounted = null # FileAccessWeb (only on web builds)
 
 func _ready() -> void:
+	_is_web = OS.get_name() == "Web"
+	
 	load_button.pressed.connect(_on_load_button_pressed)
-	file_dialog.file_selected.connect(_on_file_selected)
 	home_button.pressed.connect(_on_home_button_pressed)
+	
+	if _is_web:
+		# Use FileAccessWeb plugin for browser file picker
+		_file_access_web = FileAccessWeb.new()
+		_file_access_web.loaded.connect(_on_web_file_loaded)
+		_file_access_web.error.connect(_on_web_file_error)
+		_file_access_web.upload_cancelled.connect(_on_web_upload_cancelled)
+	else:
+		# Use native FileDialog on desktop
+		file_dialog.file_selected.connect(_on_file_selected)
 	
 	# Support for drag and drop files (especially useful for web exports)
 	get_viewport().files_dropped.connect(_on_files_dropped)
@@ -35,7 +48,10 @@ func _on_home_button_pressed() -> void:
 
 func _on_load_button_pressed() -> void:
 	message_label.text = ""
-	file_dialog.popup_centered()
+	if _is_web:
+		_file_access_web.open(".vrm")
+	else:
+		file_dialog.popup_centered()
 
 func _on_files_dropped(files: PackedStringArray) -> void:
 	if files.size() > 0:
@@ -47,6 +63,36 @@ func _on_files_dropped(files: PackedStringArray) -> void:
 			message_label.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
 			message_label.text = "Error: Please drop a valid .vrm file."
 
+# --- Web file upload handlers ---
+
+func _on_web_file_loaded(file_name: String, _file_type: String, base64_data: String) -> void:
+	if current_model:
+		current_model.queue_free()
+		current_model = null
+		meta_panel.hide()
+	
+	message_label.add_theme_color_override("font_color", Color.WHITE)
+	message_label.text = "Loading '%s'... Please wait." % file_name
+	
+	await get_tree().process_frame
+	
+	# Decode base64 to raw bytes
+	var raw_data: PackedByteArray = Marshalls.base64_to_raw(base64_data)
+	
+	var force_version: int = version_option.get_selected_id()
+	var result: Dictionary = VRMLoader.load_vrm_from_buffer(raw_data, force_version)
+	
+	_apply_load_result(result)
+
+func _on_web_file_error() -> void:
+	message_label.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
+	message_label.text = "Error: Failed to read the uploaded file."
+
+func _on_web_upload_cancelled() -> void:
+	# User cancelled the file picker — nothing to do
+	pass
+
+# --- Desktop file path handler ---
 
 func _on_file_selected(path: String) -> void:
 	if current_model:
@@ -62,6 +108,11 @@ func _on_file_selected(path: String) -> void:
 	var force_version: int = version_option.get_selected_id()
 	var result: Dictionary = VRMLoader.load_vrm(path, force_version)
 	
+	_apply_load_result(result)
+
+# --- Shared result handling ---
+
+func _apply_load_result(result: Dictionary) -> void:
 	if result["success"]:
 		var ps: PackedScene = PackedScene.new()
 		ps.pack(result["node"])
