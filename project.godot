@@ -15,8 +15,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="VRM-NovelEngine"
+config/description="Visual novel engine based on Dialogic, VRM models and more. See addons."
+config/version="0.1.0"
 config/tags=PackedStringArray("engine", "visualnovel")
-run/main_scene="uid://n5itw40xq2ct"
+run/main_scene="uid://djab1vrmviewr"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0.1882353, 0.20392157, 0.27450982, 1)
 boot_splash/stretch_mode=0
@@ -86,7 +88,7 @@ text/autopauses={}
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Godot-MToon-Shader/plugin.cfg", "res://addons/asset_placer/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/orbit_camera/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/plenticons/plugin.cfg", "res://addons/signal_lens/plugin.cfg", "res://addons/timchi_maze_generation/plugin.cfg", "res://addons/vrm/plugin.cfg")
+enabled=PackedStringArray("res://addons/FileAccessWeb/plugin.cfg", "res://addons/Godot-MToon-Shader/plugin.cfg", "res://addons/asset_placer/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/orbit_camera/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/plenticons/plugin.cfg", "res://addons/signal_lens/plugin.cfg", "res://addons/timchi_maze_generation/plugin.cfg", "res://addons/vrm/plugin.cfg")
 
 [global_group]
 

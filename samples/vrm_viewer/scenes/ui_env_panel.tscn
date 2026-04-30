@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://o0nulymb6d1f"]
+
+[ext_resource type="Script" uid="uid://s8yfkvi7et4d" path="res://samples/vrm_viewer/scripts/vrm_viewer_ui_env_panel.gd" id="1_1iwt8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.1, 0.1, 0.1, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="EnvPanel" type="VBoxContainer" unique_id=2096104143]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -450.0
+offset_right = 284.0
+offset_bottom = -20.0
+grow_vertical = 0
+alignment = 2
+script = ExtResource("1_1iwt8")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1790104380]
+clip_contents = true
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer" unique_id=1630554163]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ScrollContainer" unique_id=2099653826]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer" unique_id=1906212848]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderRotX" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRotX" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderRotX"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Light Rotation X"
+
+[node name="ValueRotX" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderRotX"]
+layout_mode = 2
+text = "0"
+
+[node name="LightRotXSlider" type="HSlider" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=830608520]
+layout_mode = 2
+min_value = -180.0
+max_value = 180.0
+
+[node name="HeaderRotY" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelRot" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderRotY"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Light Rotation Y"
+
+[node name="ValueRotY" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderRotY"]
+layout_mode = 2
+text = "0"
+
+[node name="LightRotSlider" type="HSlider" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1087481337]
+layout_mode = 2
+min_value = -180.0
+max_value = 180.0
+
+[node name="LabelColor" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1142813484]
+layout_mode = 2
+text = "Light Color"
+
+[node name="LightColorPicker" type="ColorPickerButton" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1802129076]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+color = Color(0.96, 0.977, 1, 1)
+
+[node name="HeaderEnergy" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelEnergy" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderEnergy"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Light Energy"
+
+[node name="ValueEnergy" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderEnergy"]
+layout_mode = 2
+text = "0"
+
+[node name="LightEnergySlider" type="HSlider" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=397540785]
+layout_mode = 2
+max_value = 4.0
+step = 0.1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1141801888]
+layout_mode = 2
+
+[node name="HeaderSky" type="HBoxContainer" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelSky" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderSky"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sky Energy"
+
+[node name="ValueSky" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/HeaderSky"]
+layout_mode = 2
+text = "0"
+
+[node name="SkyEnergySlider" type="HSlider" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=51741679]
+layout_mode = 2
+max_value = 4.0
+step = 0.1
+
+[node name="LabelSkyTop" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1875577886]
+layout_mode = 2
+text = "Sky Top Color"
+
+[node name="SkyTopColorPicker" type="ColorPickerButton" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=616201153]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LabelSkyHorizon" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=214941674]
+layout_mode = 2
+text = "Sky Horizon Color"
+
+[node name="SkyHorizonColorPicker" type="ColorPickerButton" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1934484813]
+custom_minimum_size = Vector2(48, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ToggleGroundBtn" type="CheckButton" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=961503081]
+layout_mode = 2
+text = "Show Ground Plane"
+
+[node name="ToggleEnvButton" type="Button" parent="." unique_id=652686130]
+layout_mode = 2
+text = "Hide Environment"

@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://djab1vrmviewr"]
+
+[ext_resource type="Script" uid="uid://48p5tfa036s3" path="res://samples/vrm_viewer/scripts/vrm_viewer.gd" id="1_vrmv"]
+[ext_resource type="Script" uid="uid://bfiqyv0wkrcn5" path="res://samples/vrm_viewer/scripts/vrm_viewer_camera.gd" id="2_cam"]
+[ext_resource type="PackedScene" uid="uid://bawhekkspf4yi" path="res://samples/vrm_viewer/scenes/ui_meta_panel.tscn" id="3_titki"]
+[ext_resource type="PackedScene" uid="uid://o0nulymb6d1f" path="res://samples/vrm_viewer/scenes/ui_env_panel.tscn" id="4_k6w5u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_env"]
+energy_multiplier = 0.6
+
+[sub_resource type="Sky" id="Sky_env"]
+sky_material = SubResource("ProceduralSkyMaterial_env")
+
+[sub_resource type="Environment" id="Environment_env"]
+background_mode = 2
+sky = SubResource("Sky_env")
+ambient_light_source = 3
+glow_enabled = true
+glow_bloom = 0.2
+fog_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
+albedo_color = Color(0.23, 0.23, 0.23, 1)
+roughness = 0.8
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
+material = SubResource("StandardMaterial3D_ground")
+size = Vector2(100, 100)
+
+[node name="VRMViewer" type="Node3D" unique_id=567746459]
+script = ExtResource("1_vrmv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1485858070]
+transform = Transform3D(0.25881913, 0.9512512, 0.16773142, -1.518082e-08, -0.17364834, 0.9848077, 0.9659258, -0.25488707, -0.044943497, 0, 3, 0)
+shadow_enabled = true
+shadow_opacity = 0.7
+shadow_blur = 2.0
+directional_shadow_mode = 1
+directional_shadow_blend_splits = true
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=780848643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+script = ExtResource("2_cam")
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=418550326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=8246312]
+environment = SubResource("Environment_env")
+
+[node name="GroundPlane" type="MeshInstance3D" parent="." unique_id=1509347781]
+mesh = SubResource("PlaneMesh_ground")
+
+[node name="ModelPivot" type="Node3D" parent="." unique_id=1155330116]
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1654129517]
+
+[node name="Control" type="Control" parent="UI" unique_id=1267316113]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LoadButton" type="Button" parent="UI/Control" unique_id=469905139]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 140.0
+offset_bottom = 60.0
+text = "Load VRM"
+
+[node name="VersionOption" type="OptionButton" parent="UI/Control" unique_id=2022707543]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 60.0
+selected = 0
+item_count = 3
+popup/item_0/text = "Auto Detect"
+popup/item_0/id = 0
+popup/item_1/text = "Force VRM 0.0"
+popup/item_1/id = 1
+popup/item_2/text = "Force VRM 1.0"
+popup/item_2/id = 2
+
+[node name="HomeButton" type="Button" parent="UI/Control" unique_id=1257515146]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 20.0
+offset_right = 440.0
+offset_bottom = 60.0
+text = "Home"
+
+[node name="MessageLabel" type="Label" parent="UI/Control" unique_id=554453283]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -60.0
+offset_right = 200.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+horizontal_alignment = 1
+
+[node name="MetaPanel" parent="UI/Control" unique_id=59128470 instance=ExtResource("3_titki")]
+layout_mode = 1
+
+[node name="EnvPanel" parent="UI/Control" unique_id=2096104143 instance=ExtResource("4_k6w5u")]
+layout_mode = 1
+
+[node name="FileDialog" type="FileDialog" parent="UI" unique_id=1309118911]
+oversampling_override = 1.0
+title = "Open a File"
+size = Vector2i(714, 400)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.vrm ; VRM Avatar")
