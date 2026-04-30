@@ -155,6 +155,35 @@ static func load_vrm_from_buffer(data: PackedByteArray, force_version: int = 0) 
 	
 	return _generate_vrm_scene(gltf, state, registered_extensions)
 
+## Loads a VRM from a res:// or user:// path by reading bytes into memory first.
+## Works on ALL platforms including web exports (unlike load_vrm which uses
+## append_from_file and fails on web due to browser filesystem sandboxing).
+static func load_vrm_from_res(res_path: String, force_version: int = 0) -> Dictionary:
+	var result: Dictionary[Variant, Variant] = {
+		"success": false,
+		"error_msg": "",
+		"node": null
+	}
+	
+	if not FileAccess.file_exists(res_path):
+		result["error_msg"] = "File not found at: " + res_path
+		return result
+	
+	var file := FileAccess.open(res_path, FileAccess.READ)
+	if not file:
+		result["error_msg"] = "Cannot open file: " + res_path + " (error: " + str(FileAccess.get_open_error()) + ")"
+		return result
+	
+	var data: PackedByteArray = file.get_buffer(file.get_length())
+	file.close()
+	
+	if data.is_empty():
+		result["error_msg"] = "File is empty: " + res_path
+		return result
+	
+	print("[VRMLoader] Loading from res:// via buffer (%d bytes): %s" % [data.size(), res_path])
+	return load_vrm_from_buffer(data, force_version)
+
 # ---------- Private helpers ----------
 
 ## Registers the appropriate VRM GLTF extensions and returns the list for later cleanup.

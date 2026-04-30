@@ -10,6 +10,13 @@ extends Node3D
 @onready var home_button: Button = $UI/Control/HomeButton
 @onready var camera_pivot: Node3D = $CameraPivot
 
+## Path to the default bundled model (loaded from res:// via FileAccess bytes).
+@export var default_model_path: String = "res://samples/character_samples/vrm/Brayan.vrm"
+
+## HTTP fallback URL if the bundled model is not available (e.g. not in export list).
+## Set to empty string to disable remote fallback.
+@export var fallback_model_url: String = "https://raw.githubusercontent.com/Aestial/Godot-VRM-NovelEngine/main/samples/character_samples/vrm/vagonera.vrm"
+
 var current_model: Node3D = null
 var _is_web: bool = false
 var _file_access_web: RefCounted = null # FileAccessWeb (only on web builds)
@@ -39,8 +46,8 @@ func _ready() -> void:
 	# Wire up dependencies
 	camera_pivot.target_model_pivot = model_pivot
 	
-	# Load default model
-	_on_file_selected("res://samples/character_samples/vrm/Brayan.vrm")
+	# Load default model via fallback chain
+	_load_default_model()
 
 func _on_home_button_pressed() -> void:
 	if camera_pivot.has_method("reset_camera"):
@@ -55,13 +62,81 @@ func _on_load_button_pressed() -> void:
 
 func _on_files_dropped(files: PackedStringArray) -> void:
 	if files.size() > 0:
-		var file_path = files[0]
-		var ext = file_path.get_extension().to_lower()
+		var file_path: String = files[0]
+		var ext: String = file_path.get_extension().to_lower()
 		if ext == "vrm" or ext == "vrma":
 			_on_file_selected(file_path)
 		else:
 			message_label.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
 			message_label.text = "Error: Please drop a valid .vrm file."
+
+# --- Default model fallback chain ---
+
+func _load_default_model() -> void:
+	message_label.add_theme_color_override("font_color", Color.WHITE)
+	message_label.text = "Loading default model..."
+	
+	await get_tree().process_frame
+	
+	# Step 1: Try loading from bundled res:// path (works on all platforms)
+	if default_model_path != "" and FileAccess.file_exists(default_model_path):
+		print("[VRMViewer] Trying bundled model: ", default_model_path)
+		var force_version: int = version_option.get_selected_id()
+		var result: Dictionary = VRMLoader.load_vrm_from_res(default_model_path, force_version)
+		if result["success"]:
+			_apply_load_result(result)
+			return
+		else:
+			print("[VRMViewer] Bundled model failed: ", result["error_msg"])
+	else:
+		print("[VRMViewer] Bundled model not found at: ", default_model_path)
+	
+	# Step 2: Try HTTP download from fallback URL
+	if fallback_model_url != "":
+		print("[VRMViewer] Trying remote fallback: ", fallback_model_url)
+		message_label.text = "Downloading default model..."
+		_download_remote_model(fallback_model_url)
+		return
+	
+	# Step 3: No model available — show user-friendly message
+	_show_no_default_model_message()
+
+func _download_remote_model(url: String) -> void:
+	var http_request := HTTPRequest.new()
+	http_request.use_threads = not _is_web # Threads not available on web
+	add_child(http_request)
+	http_request.request_completed.connect(
+		func(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
+			http_request.queue_free()
+			_on_remote_model_downloaded(result, response_code, body)
+	)
+	
+	var err := http_request.request(url)
+	if err != OK:
+		http_request.queue_free()
+		print("[VRMViewer] HTTP request failed to start: ", err)
+		_show_no_default_model_message()
+
+func _on_remote_model_downloaded(result: int, response_code: int, body: PackedByteArray) -> void:
+	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
+		print("[VRMViewer] Remote download failed (result=%d, code=%d)" % [result, response_code])
+		_show_no_default_model_message()
+		return
+	
+	print("[VRMViewer] Remote model downloaded (%d bytes), loading..." % body.size())
+	
+	var force_version: int = version_option.get_selected_id()
+	var load_result: Dictionary = VRMLoader.load_vrm_from_buffer(body, force_version)
+	
+	if load_result["success"]:
+		_apply_load_result(load_result)
+	else:
+		print("[VRMViewer] Remote model parse failed: ", load_result["error_msg"])
+		_show_no_default_model_message()
+
+func _show_no_default_model_message() -> void:
+	message_label.add_theme_color_override("font_color", Color(1.0, 0.85, 0.3))
+	message_label.text = "Click 'Load VRM' to get started."
 
 # --- Web file upload handlers ---
 
@@ -106,7 +181,14 @@ func _on_file_selected(path: String) -> void:
 	await get_tree().process_frame
 	
 	var force_version: int = version_option.get_selected_id()
-	var result: Dictionary = VRMLoader.load_vrm(path, force_version)
+	var result: Dictionary
+	
+	# Use buffer-based loading for res:// paths (cross-platform safe),
+	# file-based loading for absolute paths (desktop only)
+	if path.begins_with("res://") or path.begins_with("user://"):
+		result = VRMLoader.load_vrm_from_res(path, force_version)
+	else:
+		result = VRMLoader.load_vrm(path, force_version)
 	
 	_apply_load_result(result)
 
