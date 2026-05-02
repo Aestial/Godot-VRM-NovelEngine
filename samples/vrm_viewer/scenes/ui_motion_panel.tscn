@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cchg78l2jm2e2"]
+
+[ext_resource type="Script" uid="uid://bjtpu8c8kboj" path="res://samples/vrm_viewer/scripts/vrm_viewer_ui_motion_panel.gd" id="1_motion"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.1, 0.1, 0.1, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MotionPanel" type="VBoxContainer" unique_id=1248338146]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -170.0
+offset_right = 115.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+script = ExtResource("1_motion")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2121394084]
+clip_contents = true
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=668735593]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=75937325]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=805223073]
+layout_mode = 2
+text = "Body Motion"
+horizontal_alignment = 1
+
+[node name="MotionOption" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=336880892]
+layout_mode = 2
+
+[node name="ToggleMotionBtn" type="Button" parent="." unique_id=666215129]
+layout_mode = 2
+text = "Hide Motions"

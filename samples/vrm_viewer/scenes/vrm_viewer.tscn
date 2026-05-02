@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://bfiqyv0wkrcn5" path="res://samples/vrm_viewer/scripts/vrm_viewer_camera.gd" id="2_cam"]
 [ext_resource type="PackedScene" uid="uid://bawhekkspf4yi" path="res://samples/vrm_viewer/scenes/ui_meta_panel.tscn" id="3_titki"]
 [ext_resource type="PackedScene" uid="uid://o0nulymb6d1f" path="res://samples/vrm_viewer/scenes/ui_env_panel.tscn" id="4_k6w5u"]
+[ext_resource type="PackedScene" uid="uid://1hlf5xvcrf0w" path="res://samples/vrm_viewer/scenes/ui_expression_panel.tscn" id="5_expr"]
+[ext_resource type="PackedScene" uid="uid://cchg78l2jm2e2" path="res://samples/vrm_viewer/scenes/ui_motion_panel.tscn" id="6_motn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_env"]
 energy_multiplier = 0.6
@@ -116,6 +118,16 @@ layout_mode = 1
 
 [node name="EnvPanel" parent="UI/Control" unique_id=2096104143 instance=ExtResource("4_k6w5u")]
 layout_mode = 1
+
+[node name="ExpressionPanel" parent="UI/Control" unique_id=271434058 instance=ExtResource("5_expr")]
+layout_mode = 1
+offset_left = -256.0
+offset_right = -26
+
+[node name="MotionPanel" parent="UI/Control" unique_id=346573769 instance=ExtResource("6_motn")]
+layout_mode = 1
+offset_left = 4.0
+offset_right = 234.0
 
 [node name="FileDialog" type="FileDialog" parent="UI" unique_id=1309118911]
 oversampling_override = 1.0

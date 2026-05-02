@@ -6,6 +6,8 @@ extends Node3D
 @onready var model_pivot: Node3D = $ModelPivot
 
 @onready var meta_panel: VBoxContainer = $UI/Control/MetaPanel
+@onready var expression_panel: VBoxContainer = $UI/Control/ExpressionPanel
+@onready var motion_panel: VBoxContainer = $UI/Control/MotionPanel
 @onready var version_option: OptionButton = $UI/Control/VersionOption
 @onready var home_button: Button = $UI/Control/HomeButton
 @onready var camera_pivot: Node3D = $CameraPivot
@@ -42,6 +44,8 @@ func _ready() -> void:
 	
 	message_label.text = ""
 	meta_panel.hide()
+	expression_panel.hide()
+	motion_panel.hide()
 	
 	# Wire up dependencies
 	camera_pivot.target_model_pivot = model_pivot
@@ -145,6 +149,8 @@ func _on_web_file_loaded(file_name: String, _file_type: String, base64_data: Str
 		current_model.queue_free()
 		current_model = null
 		meta_panel.hide()
+		expression_panel.hide()
+		motion_panel.hide()
 	
 	message_label.add_theme_color_override("font_color", Color.WHITE)
 	message_label.text = "Loading '%s'... Please wait." % file_name
@@ -174,6 +180,8 @@ func _on_file_selected(path: String) -> void:
 		current_model.queue_free()
 		current_model = null
 		meta_panel.hide()
+		expression_panel.hide()
+		motion_panel.hide()
 	
 	message_label.add_theme_color_override("font_color", Color.WHITE)
 	message_label.text = "Loading... Please wait."
@@ -211,6 +219,15 @@ func _apply_load_result(result: Dictionary) -> void:
 		message_label.text = "Loaded successfully!"
 		
 		_display_metadata(current_model)
+		
+		# Setup animation panels
+		if expression_panel.has_method("setup"):
+			expression_panel.setup(current_model)
+			expression_panel.show()
+		
+		if motion_panel.has_method("setup"):
+			motion_panel.setup(current_model)
+			motion_panel.show()
 			
 	else:
 		message_label.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3))
