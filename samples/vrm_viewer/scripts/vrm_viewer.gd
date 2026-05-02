@@ -13,11 +13,11 @@ extends Node3D
 @onready var camera_pivot: Node3D = $CameraPivot
 
 ## Path to the default bundled model (loaded from res:// via FileAccess bytes).
-@export var default_model_path: String = "res://samples/character_samples/vrm/Brayan.vrm"
+@export var default_model_path: String = "res://samples/character_samples/vrm/archlinux-chan_v0.1.1.vrm"
 
 ## HTTP fallback URL if the bundled model is not available (e.g. not in export list).
 ## Set to empty string to disable remote fallback.
-@export var fallback_model_url: String = "https://raw.githubusercontent.com/Aestial/Godot-VRM-NovelEngine/main/samples/character_samples/vrm/vagonera.vrm"
+@export var fallback_model_url: String = "https://raw.githubusercontent.com/Aestial/Godot-VRM-NovelEngine/main/samples/character_samples/vrm/archlinux-chan_v0.1.1.vrm"
 
 var current_model: Node3D = null
 var _is_web: bool = false

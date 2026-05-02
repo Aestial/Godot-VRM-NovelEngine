@@ -25,7 +25,7 @@ func setup(model: Node3D) -> void:
 		expression_option.disabled = true
 		return
 	
-	var anim_list = _anim_player.get_animation_list()
+	var anim_list: PackedStringArray = _anim_player.get_animation_list()
 	if anim_list.is_empty():
 		expression_option.add_item("No Expressions")
 		expression_option.disabled = true
@@ -48,7 +48,7 @@ func _find_animation_player(node: Node) -> AnimationPlayer:
 	if node is AnimationPlayer:
 		return node
 	for child in node.get_children():
-		var found = _find_animation_player(child)
+		var found: AnimationPlayer = _find_animation_player(child)
 		if found:
 			return found
 	return null

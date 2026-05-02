@@ -21,7 +21,7 @@ func setup(model: Node3D) -> void:
 	_motion_anim_player.owner = model
 	
 	# Try to find GeneralSkeleton to set it as root
-	var skeleton = _find_skeleton(model)
+	var skeleton: Skeleton3D = _find_skeleton(model)
 	if skeleton:
 		_motion_anim_player.root_node = _motion_anim_player.get_path_to(skeleton.get_parent())
 	else:
@@ -33,10 +33,10 @@ func setup(model: Node3D) -> void:
 	# TODO Future: Create a way to let the user load animation libraries, look for the best approach.
 	# TODO: Select or create the best default animation library for the viewer. Maybe one for each gender?
 	# TODO: Loading this way won't work in web export:
-	var lib = load("res://visual-novel/animations/female_idle_actions_library.res")
+	var lib = load("res://visual-novel/animations/basic-locomotion_library.res")
 	if lib and lib is AnimationLibrary:
 		_motion_anim_player.add_animation_library("", lib)
-		var anim_list = lib.get_animation_list()
+		var anim_list: Array[StringName] = lib.get_animation_list()
 		
 		if anim_list.is_empty():
 			motion_option.add_item("No Motions")
@@ -47,8 +47,8 @@ func setup(model: Node3D) -> void:
 		motion_option.add_item("T-Pose (Default)")
 		_available_animations.append("T-Pose")
 		
-		var default_index = 0
-		var index = 1
+		var default_index: int = 0
+		var index: int = 1
 		
 		for anim_name in anim_list:
 			motion_option.add_item(anim_name)
@@ -72,7 +72,7 @@ func _find_skeleton(node: Node) -> Skeleton3D:
 	if node is Skeleton3D:
 		return node
 	for child in node.get_children():
-		var found = _find_skeleton(child)
+		var found: Skeleton3D = _find_skeleton(child)
 		if found:
 			return found
 	return null

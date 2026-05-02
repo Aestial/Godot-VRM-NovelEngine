@@ -40,12 +40,13 @@ shadow_blur = 2.0
 directional_shadow_mode = 1
 directional_shadow_blend_splits = true
 
-[node name="CameraPivot" type="Node3D" parent="." unique_id=780848643]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+[node name="CameraPivot" type="Node3D" parent="." unique_id=780848643 node_paths=PackedStringArray("target_model_pivot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 script = ExtResource("2_cam")
+target_model_pivot = NodePath("../ModelPivot")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=418550326]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=8246312]
 environment = SubResource("Environment_env")
@@ -90,26 +91,30 @@ popup/item_2/text = "Force VRM 1.0"
 popup/item_2/id = 2
 
 [node name="HomeButton" type="Button" parent="UI/Control" unique_id=1257515146]
-layout_mode = 0
-offset_left = 320.0
-offset_top = 20.0
-offset_right = 440.0
-offset_bottom = 60.0
-text = "Home"
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -60.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Reset VIew"
 
 [node name="MessageLabel" type="Label" parent="UI/Control" unique_id=554453283]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -60.0
-offset_right = 200.0
-offset_bottom = -20.0
+offset_left = -180.0
+offset_top = 20.0
+offset_right = 180.0
+offset_bottom = 60.0
 grow_horizontal = 2
-grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
 horizontal_alignment = 1
 
@@ -122,7 +127,7 @@ layout_mode = 1
 [node name="ExpressionPanel" parent="UI/Control" unique_id=271434058 instance=ExtResource("5_expr")]
 layout_mode = 1
 offset_left = -256.0
-offset_right = -26
+offset_right = -26.0
 
 [node name="MotionPanel" parent="UI/Control" unique_id=346573769 instance=ExtResource("6_motn")]
 layout_mode = 1
