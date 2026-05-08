@@ -123,9 +123,11 @@ horizontal_alignment = 1
 
 [node name="MetaPanel" parent="UI/Control" unique_id=59128470 instance=ExtResource("3_titki")]
 layout_mode = 1
+offset_bottom = 500.0
 
 [node name="EnvPanel" parent="UI/Control" unique_id=2096104143 instance=ExtResource("4_k6w5u")]
 layout_mode = 1
+offset_top = -500.0
 
 [node name="ExpressionPanel" parent="UI/Control" unique_id=271434058 instance=ExtResource("5_expr")]
 layout_mode = 1
