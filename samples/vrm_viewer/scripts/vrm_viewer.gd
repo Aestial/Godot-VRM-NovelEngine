@@ -47,9 +47,6 @@ func _ready() -> void:
 	expression_panel.hide()
 	motion_panel.hide()
 	
-	# Wire up dependencies
-	camera_pivot.target_model_pivot = model_pivot
-	
 	# Load default model via fallback chain
 	_load_default_model()
 

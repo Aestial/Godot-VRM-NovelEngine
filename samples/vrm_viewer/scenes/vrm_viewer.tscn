@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://48p5tfa036s3" path="res://samples/vrm_viewer/scripts/vrm_viewer.gd" id="1_vrmv"]
 [ext_resource type="Script" uid="uid://bfiqyv0wkrcn5" path="res://samples/vrm_viewer/scripts/vrm_viewer_camera.gd" id="2_cam"]
-[ext_resource type="Texture2D" uid="uid://4umvcywdm73a" path="res://addons/kenney_prototype_textures/light/texture_03.png" id="3_ifwec"]
+[ext_resource type="Texture2D" uid="uid://dxv845umur7rj" path="res://addons/kenney_prototype_textures/orange/texture_05.png" id="3_ifwec"]
 [ext_resource type="PackedScene" uid="uid://bawhekkspf4yi" path="res://samples/vrm_viewer/scenes/ui_meta_panel.tscn" id="3_titki"]
 [ext_resource type="PackedScene" uid="uid://o0nulymb6d1f" path="res://samples/vrm_viewer/scenes/ui_env_panel.tscn" id="4_k6w5u"]
 [ext_resource type="PackedScene" uid="uid://1hlf5xvcrf0w" path="res://samples/vrm_viewer/scenes/ui_expression_panel.tscn" id="5_expr"]
@@ -43,10 +43,10 @@ shadow_blur = 2.0
 directional_shadow_mode = 1
 directional_shadow_blend_splits = true
 
-[node name="CameraPivot" type="Node3D" parent="." unique_id=780848643 node_paths=PackedStringArray("target_model_pivot")]
+[node name="CameraPivot" type="Node3D" parent="." unique_id=780848643 node_paths=PackedStringArray("camera_pivot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 script = ExtResource("2_cam")
-target_model_pivot = NodePath("../ModelPivot")
+camera_pivot = NodePath(".")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=418550326]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)

@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var camera: Camera3D = $Camera3D
-@export var target_model_pivot: Node3D
+@export var camera_pivot: Node3D
 
 var is_dragging: bool = false
 var last_mouse_pos: Vector2
@@ -11,6 +11,8 @@ var max_zoom: float = 5.5
 var zoom_speed: float = 0.1
 var pan_speed: float = 0.005
 var is_panning: bool = false
+var rotate_speed: float = 0.005
+var is_rot_x_inverted: bool = true
 
 func _ready() -> void:
 	_update_camera_zoom()
@@ -20,8 +22,8 @@ func reset_camera() -> void:
 	_update_camera_zoom()
 	position = Vector3(0, 1.25, 0)
 	rotation = Vector3.ZERO
-	if target_model_pivot:
-		target_model_pivot.rotation = Vector3(0, PI, 0)
+	if camera_pivot:
+		camera_pivot.rotation = Vector3(0, PI, 0)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -42,11 +44,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			_update_camera_zoom()
 			
 	elif event is InputEventMouseMotion:
-		if is_dragging and target_model_pivot:
+		if is_dragging and camera_pivot:
 			var delta: Vector2 = event.position - last_mouse_pos
-			target_model_pivot.rotate_y(delta.x * 0.01)
+			camera_pivot.rotate_y(delta.x * rotate_speed * (-1 if is_rot_x_inverted else 1))
 			
-			var new_rot_x: float = rotation.x - (delta.y * 0.01)
+			var new_rot_x: float = rotation.x - (delta.y * rotate_speed)
 			rotation.x = clamp(new_rot_x, -PI / 2.5, PI / 2.5)
 			
 			last_mouse_pos = event.position
