@@ -50,6 +50,3 @@ horizontal_alignment = 1
 [node name="ExpressionOption" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1050676749]
 layout_mode = 2
 
-[node name="ToggleExpressionBtn" type="Button" parent="." unique_id=1896943442]
-layout_mode = 2
-text = "Hide Expressions"

@@ -49,6 +49,3 @@ horizontal_alignment = 1
 [node name="MotionOption" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=336880892]
 layout_mode = 2
 
-[node name="ToggleMotionBtn" type="Button" parent="." unique_id=666215129]
-layout_mode = 2
-text = "Hide Motions"

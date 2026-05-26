@@ -147,6 +147,3 @@ size_flags_horizontal = 4
 layout_mode = 2
 text = "Show Ground Plane"
 
-[node name="ToggleEnvButton" type="Button" parent="." unique_id=652686130]
-layout_mode = 2
-text = "Hide Environment"

@@ -70,20 +70,39 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="LoadButton" type="Button" parent="UI/Control" unique_id=469905139]
-layout_mode = 0
+[node name="TopMenuBar" type="PanelContainer" parent="UI/Control" unique_id=1000000]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_left = 20.0
-offset_top = 20.0
-offset_right = 140.0
-offset_bottom = 60.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = 65.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/TopMenuBar" unique_id=1000001]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/TopMenuBar/MarginContainer" unique_id=1000002]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LeftSection" type="HBoxContainer" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000003]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LoadButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection" unique_id=469905139]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
 text = "Load VRM"
 
-[node name="VersionOption" type="OptionButton" parent="UI/Control" unique_id=2022707543]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 20.0
-offset_right = 300.0
-offset_bottom = 60.0
+[node name="VersionOption" type="OptionButton" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection" unique_id=2022707543]
+custom_minimum_size = Vector2(130, 35)
+layout_mode = 2
 selected = 0
 item_count = 3
 popup/item_0/text = "Auto Detect"
@@ -93,20 +112,51 @@ popup/item_1/id = 1
 popup/item_2/text = "Force VRM 1.0"
 popup/item_2/id = 2
 
-[node name="HomeButton" type="Button" parent="UI/Control" unique_id=1257515146]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -140.0
-offset_top = -60.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Reset VIew"
+[node name="SpacerLeft" type="Control" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000004]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterSection" type="HBoxContainer" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000005]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 15
+
+[node name="InfoButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000008]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Model Info"
+
+[node name="EnvButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000009]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Environment"
+
+[node name="ExpressionButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000010]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Expressions"
+
+[node name="MotionButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000011]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Motions"
+
+[node name="SpacerRight" type="Control" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000006]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightSection" type="HBoxContainer" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000007]
+layout_mode = 2
+alignment = 2
+
+[node name="HomeButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/RightSection" unique_id=1257515146]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+text = "Reset View"
 
 [node name="MessageLabel" type="Label" parent="UI/Control" unique_id=554453283]
 layout_mode = 1
@@ -114,30 +164,72 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -180.0
-offset_top = 20.0
+offset_top = 80.0
 offset_right = 180.0
-offset_bottom = 60.0
+offset_bottom = 120.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
 horizontal_alignment = 1
 
 [node name="MetaPanel" parent="UI/Control" unique_id=59128470 instance=ExtResource("3_titki")]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-offset_bottom = 500.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 20.0
+offset_top = 85.0
+offset_right = 320.0
+offset_bottom = 585.0
+grow_horizontal = 0
 
 [node name="EnvPanel" parent="UI/Control" unique_id=2096104143 instance=ExtResource("4_k6w5u")]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-offset_top = -500.0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -320.0
+offset_top = 85.0
+offset_right = -20.0
+offset_bottom = 585.0
+grow_horizontal = 1
 
 [node name="ExpressionPanel" parent="UI/Control" unique_id=271434058 instance=ExtResource("5_expr")]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-offset_left = -256.0
-offset_right = -26.0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -320.0
+offset_top = 85.0
+offset_right = -20.0
+offset_bottom = 200.0
+grow_horizontal = 1
 
 [node name="MotionPanel" parent="UI/Control" unique_id=346573769 instance=ExtResource("6_motn")]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-offset_left = 4.0
-offset_right = 234.0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -320.0
+offset_top = 85.0
+offset_right = -20.0
+offset_bottom = 200.0
+grow_horizontal = 1
 
 [node name="FileDialog" type="FileDialog" parent="UI" unique_id=1309118911]
 oversampling_override = 1.0

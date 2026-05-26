@@ -1,15 +1,11 @@
 extends VBoxContainer
 
 @onready var motion_option: OptionButton = $PanelContainer/MarginContainer/VBoxContainer/MotionOption
-@onready var toggle_btn: Button = $ToggleMotionBtn
 @onready var content_panel: PanelContainer = $PanelContainer
-
-var is_expanded: bool = true
 var _motion_anim_player: AnimationPlayer = null
 var _available_animations: Array = []
 
 func _ready() -> void:
-	toggle_btn.pressed.connect(_on_toggle_pressed)
 	motion_option.item_selected.connect(_on_motion_selected)
 	motion_option.add_item("No Motions Available")
 	motion_option.disabled = true
@@ -87,7 +83,4 @@ func _on_motion_selected(index: int) -> void:
 	else:
 		_motion_anim_player.play(anim_name)
 
-func _on_toggle_pressed() -> void:
-	is_expanded = not is_expanded
-	toggle_btn.text = "Hide Motions" if is_expanded else "Show Motions"
-	content_panel.visible = is_expanded
+

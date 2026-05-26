@@ -1,15 +1,11 @@
 extends VBoxContainer
 
 @onready var expression_option: OptionButton = $PanelContainer/MarginContainer/VBoxContainer/ExpressionOption
-@onready var toggle_btn: Button = $ToggleExpressionBtn
 @onready var content_panel: PanelContainer = $PanelContainer
-
-var is_expanded: bool = true
 var _anim_player: AnimationPlayer = null
 var _available_animations: Array = []
 
 func _ready() -> void:
-	toggle_btn.pressed.connect(_on_toggle_pressed)
 	expression_option.item_selected.connect(_on_expression_selected)
 	expression_option.add_item("No Expressions Available")
 	expression_option.disabled = true
@@ -72,10 +68,4 @@ func _on_expression_selected(index: int) -> void:
 			_anim_player.advance(0)
 		_anim_player.play(anim_name)
 
-func _on_toggle_pressed() -> void:
-	is_expanded = not is_expanded
-	toggle_btn.text = "Hide Expressions" if is_expanded else "Show Expressions"
-	
-	# Instead of tweening height which can be tricky with VBoxContainer resizing, 
-	# we can just show/hide the panel container.
-	content_panel.visible = is_expanded
+

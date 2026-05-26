@@ -78,6 +78,3 @@ layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ToggleMetaButton" type="Button" parent="." unique_id=605228337]
-layout_mode = 2
-text = "Hide Info"
