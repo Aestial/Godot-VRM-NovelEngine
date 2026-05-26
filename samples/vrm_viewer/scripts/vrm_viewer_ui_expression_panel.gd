@@ -1,44 +1,54 @@
 extends VBoxContainer
 
-@onready var expression_option: OptionButton = $PanelContainer/MarginContainer/VBoxContainer/ExpressionOption
+@onready var expression_list: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ExpressionList
 @onready var content_panel: PanelContainer = $PanelContainer
+
 var _anim_player: AnimationPlayer = null
 var _available_animations: Array = []
+var _active_button: Button = null
 
 func _ready() -> void:
-	expression_option.item_selected.connect(_on_expression_selected)
-	expression_option.add_item("No Expressions Available")
-	expression_option.disabled = true
+	# Clear initial placeholders if any
+	for child in expression_list.get_children():
+		child.queue_free()
 
 func setup(model: Node3D) -> void:
 	_anim_player = _find_animation_player(model)
 	
-	expression_option.clear()
+	# Clear existing buttons
+	for child in expression_list.get_children():
+		child.queue_free()
 	_available_animations.clear()
+	_active_button = null
 	
 	if not _anim_player:
-		expression_option.add_item("No Expressions")
-		expression_option.disabled = true
+		var lbl := Label.new()
+		lbl.text = "No Expressions Available"
+		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		lbl.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+		expression_list.add_child(lbl)
 		return
 	
 	var anim_list: PackedStringArray = _anim_player.get_animation_list()
 	if anim_list.is_empty():
-		expression_option.add_item("No Expressions")
-		expression_option.disabled = true
+		var lbl := Label.new()
+		lbl.text = "No Expressions Available"
+		lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		lbl.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
+		expression_list.add_child(lbl)
 		return
 	
-	expression_option.disabled = false
+	# Create neutral expression button (default state)
+	var neutral_btn = _create_expression_button("Neutral")
 	
-	# Add a "Neutral" or "None" option if it's not present 
-	expression_option.add_item("Neutral")
-	_available_animations.append("Neutral")
-	# TODO: Check if Neutral is duplicated, then rename it to "None"
+	# Automatically select Neutral first
+	if neutral_btn:
+		_on_button_pressed(neutral_btn, "Neutral")
 	
 	for anim_name in anim_list:
 		if anim_name == "RESET":
 			continue
-		expression_option.add_item(anim_name)
-		_available_animations.append(anim_name)
+		_create_expression_button(anim_name)
 
 func _find_animation_player(node: Node) -> AnimationPlayer:
 	if node is AnimationPlayer:
@@ -49,23 +59,65 @@ func _find_animation_player(node: Node) -> AnimationPlayer:
 			return found
 	return null
 
-func _on_expression_selected(index: int) -> void:
+func _create_expression_button(anim_name: String) -> Button:
+	var btn := Button.new()
+	btn.text = anim_name
+	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	btn.custom_minimum_size = Vector2(0, 32)
+	
+	# Apply premium flat styling
+	var btn_normal := StyleBoxEmpty.new()
+	
+	var btn_hover := StyleBoxFlat.new()
+	btn_hover.bg_color = Color(1.0, 1.0, 1.0, 0.06)
+	btn_hover.corner_radius_top_left = 6
+	btn_hover.corner_radius_top_right = 6
+	btn_hover.corner_radius_bottom_left = 6
+	btn_hover.corner_radius_bottom_right = 6
+	
+	btn.add_theme_stylebox_override("normal", btn_normal)
+	btn.add_theme_stylebox_override("hover", btn_hover)
+	btn.add_theme_stylebox_override("pressed", btn_hover)
+	btn.add_theme_stylebox_override("focus", btn_normal)
+	btn.add_theme_color_override("font_color", Color(0.8, 0.8, 0.82))
+	btn.add_theme_color_override("font_hover_color", Color.WHITE)
+	btn.add_theme_color_override("font_pressed_color", Color.WHITE)
+	
+	btn.pressed.connect(func(): _on_button_pressed(btn, anim_name))
+	expression_list.add_child(btn)
+	_available_animations.append(anim_name)
+	return btn
+
+func _on_button_pressed(btn: Button, anim_name: String) -> void:
 	if not _anim_player:
 		return
 		
-	var anim_name = _available_animations[index]
+	# Update active button visuals
+	if _active_button:
+		var btn_normal := StyleBoxEmpty.new()
+		_active_button.add_theme_stylebox_override("normal", btn_normal)
+		_active_button.add_theme_color_override("font_color", Color(0.8, 0.8, 0.82))
+		
+	_active_button = btn
+	
+	var active_style := StyleBoxFlat.new()
+	active_style.bg_color = Color(0.0, 0.6, 1.0, 0.15)
+	active_style.corner_radius_top_left = 6
+	active_style.corner_radius_top_right = 6
+	active_style.corner_radius_bottom_left = 6
+	active_style.corner_radius_bottom_right = 6
+	active_style.border_width_left = 2
+	active_style.border_color = Color(0.0, 0.75, 1.0)
+	
+	btn.add_theme_stylebox_override("normal", active_style)
+	btn.add_theme_color_override("font_color", Color(0.2, 0.8, 1.0))
 	
 	if _anim_player.has_animation("RESET"):
 		_anim_player.play("RESET")
 		
 	if anim_name != "Neutral" and _anim_player.has_animation(anim_name):
-		# We use queue to play it right after RESET or just play it if we want it immediately
-		# Using advance(0) or just play without blend could work, but triggering RESET
-		# usually resets all blendshapes to 0, then we apply the new one.
 		_anim_player.stop()
 		if _anim_player.has_animation("RESET"):
 			_anim_player.play("RESET")
 			_anim_player.advance(0)
 		_anim_player.play(anim_name)
-
-

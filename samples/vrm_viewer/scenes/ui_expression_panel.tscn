@@ -10,24 +10,13 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="ExpressionPanel" type="VBoxContainer" unique_id=51946623]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -115.0
-offset_top = -170.0
-offset_right = 115.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-alignment = 2
+offset_right = 250.0
+offset_bottom = 470.0
 script = ExtResource("1_expr")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1806901651]
 clip_contents = true
-custom_minimum_size = Vector2(230, 0)
+custom_minimum_size = Vector2(250, 430)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
@@ -47,6 +36,13 @@ layout_mode = 2
 text = "Facial Expression"
 horizontal_alignment = 1
 
-[node name="ExpressionOption" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1050676749]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2000000]
+custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ExpressionList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=2000001]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
 

@@ -213,7 +213,7 @@ anchor_bottom = 0.0
 offset_left = -320.0
 offset_top = 85.0
 offset_right = -20.0
-offset_bottom = 200.0
+offset_bottom = 585.0
 grow_horizontal = 1
 
 [node name="MotionPanel" parent="UI/Control" unique_id=346573769 instance=ExtResource("6_motn")]
@@ -228,7 +228,7 @@ anchor_bottom = 0.0
 offset_left = -320.0
 offset_top = 85.0
 offset_right = -20.0
-offset_bottom = 200.0
+offset_bottom = 585.0
 grow_horizontal = 1
 
 [node name="FileDialog" type="FileDialog" parent="UI" unique_id=1309118911]
