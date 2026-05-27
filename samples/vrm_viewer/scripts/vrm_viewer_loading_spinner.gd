@@ -15,9 +15,9 @@ func _process(delta: float) -> void:
 		queue_redraw()
 
 func _draw() -> void:
-	var center := size / 2.0
-	var radius := min(size.x, size.y) / 2.0 - line_width
-	
+	var center: Vector2 = size / 2.0
+	var radius: float = min(size.x, size.y) / 2.0 - line_width
+
 	if radius <= 0:
 		return
 		
@@ -25,6 +25,6 @@ func _draw() -> void:
 	draw_arc(center, radius, _angle, _angle + PI * 1.5, 32, spinner_color, line_width, true)
 	
 	# Draw a subtle background trail ring
-	var trail_color = spinner_color
+	var trail_color: Color = spinner_color
 	trail_color.a = 0.15
 	draw_arc(center, radius, 0, PI * 2.0, 32, trail_color, line_width, true)

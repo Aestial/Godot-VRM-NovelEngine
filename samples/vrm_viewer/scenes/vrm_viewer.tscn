@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://o0nulymb6d1f" path="res://samples/vrm_viewer/scenes/ui_env_panel.tscn" id="4_k6w5u"]
 [ext_resource type="PackedScene" uid="uid://1hlf5xvcrf0w" path="res://samples/vrm_viewer/scenes/ui_expression_panel.tscn" id="5_expr"]
 [ext_resource type="PackedScene" uid="uid://cchg78l2jm2e2" path="res://samples/vrm_viewer/scenes/ui_motion_panel.tscn" id="6_motn"]
-[ext_resource type="Script" path="res://samples/vrm_viewer/scripts/vrm_viewer_loading_spinner.gd" id="7_spinner"]
+[ext_resource type="Script" uid="uid://cypn0upxp3sab" path="res://samples/vrm_viewer/scripts/vrm_viewer_loading_spinner.gd" id="7_spinner"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_env"]
 energy_multiplier = 0.67
@@ -119,8 +119,8 @@ size_flags_horizontal = 3
 
 [node name="CenterSection" type="HBoxContainer" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000005]
 layout_mode = 2
-alignment = 1
 theme_override_constants/separation = 15
+alignment = 1
 
 [node name="InfoButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000008]
 custom_minimum_size = Vector2(100, 35)
@@ -182,61 +182,37 @@ horizontal_alignment = 1
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
 offset_left = 20.0
 offset_top = 85.0
 offset_right = 320.0
 offset_bottom = 585.0
-grow_horizontal = 0
 
 [node name="EnvPanel" parent="UI/Control" unique_id=2096104143 instance=ExtResource("4_k6w5u")]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_left = -320.0
 offset_top = 85.0
 offset_right = -20.0
 offset_bottom = 585.0
-grow_horizontal = 1
 
 [node name="ExpressionPanel" parent="UI/Control" unique_id=271434058 instance=ExtResource("5_expr")]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_left = -320.0
 offset_top = 85.0
 offset_right = -20.0
 offset_bottom = 585.0
-grow_horizontal = 1
 
 [node name="MotionPanel" parent="UI/Control" unique_id=346573769 instance=ExtResource("6_motn")]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_left = -320.0
 offset_top = 85.0
 offset_right = -20.0
 offset_bottom = 585.0
-grow_horizontal = 1
 
 [node name="ModalOverlay" type="ColorRect" parent="UI/Control" unique_id=1000013]
 visible = false
@@ -309,9 +285,7 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.0
 offset_left = 20.0
 offset_top = 85.0
 offset_right = 320.0
