@@ -108,6 +108,8 @@ func process_eyelid_peak(raw_peak: float) -> float:
 	
 # Force a blink with smooth animation
 func force_blink(duration: float = 0.2):
+	if is_forced_blink:
+		return
 	# Start the blink coroutine
 	_blink_coroutine(duration)
 
@@ -122,11 +124,16 @@ func _blink_coroutine(duration: float):
 	while t < half_duration:
 		forced_blink_value = t / half_duration  # 0.0 to 1.0
 		t += get_process_delta_time()
-		if get_tree():
-			await get_tree().process_frame
+		if not is_inside_tree():
+			is_forced_blink = false
+			return
+		await get_tree().process_frame
 	
 	# Eyelids fully closed
 	forced_blink_value = 1.0
+	if not is_inside_tree():
+		is_forced_blink = false
+		return
 	await get_tree().create_timer(0.05).timeout  # Brief pause while closed
 	
 	# Eyelids opening (1.0 to 0.0)
@@ -135,6 +142,9 @@ func _blink_coroutine(duration: float):
 	while t < half_duration:
 		forced_blink_value = 1.0 - (t / half_duration)  # 1.0 to 0.0
 		t += get_process_delta_time()
+		if not is_inside_tree():
+			is_forced_blink = false
+			return
 		await get_tree().process_frame
 	
 	# Reset
@@ -143,9 +153,14 @@ func _blink_coroutine(duration: float):
 
 # Alternative version using Tween for smoother animation
 func force_blink_with_tween(duration: float = 0.2):
+	if is_forced_blink or not is_inside_tree():
+		return
 	is_forced_blink = true
 	
 	var tween: Tween = create_tween()
+	if not tween:
+		is_forced_blink = false
+		return
 	tween.set_parallel(true)
 	
 	# Close eyes

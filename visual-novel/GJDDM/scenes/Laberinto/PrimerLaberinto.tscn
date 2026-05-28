@@ -1,8 +1,8 @@
-[gd_scene load_steps=46 format=4 uid="uid://c8oqm4oj4ku2f"]
+[gd_scene format=4 uid="uid://c8oqm4oj4ku2f"]
 
 [ext_resource type="AudioStream" uid="uid://c1gnuhcoqng01" path="res://visual-novel/GJDDM/music/more tracks.mp3" id="1_pa80t"]
-[ext_resource type="Script" path="res://visual-novel/GJDDM/scenes/Laberinto/maze1_scene.gd" id="1_ygn2f"]
-[ext_resource type="PackedScene" uid="uid://2vtrjter7tpk" path="res://visual-novel/GJDDM/scenes/Title/credits_screen.tscn" id="2_kdbmg"]
+[ext_resource type="Script" uid="uid://b6av5wcf5pl2e" path="res://visual-novel/GJDDM/scenes/Laberinto/maze1_scene.gd" id="1_ygn2f"]
+[ext_resource type="PackedScene" uid="uid://fp74f7m15f3y" path="res://visual-novel/GJDDM/scenes/Title/end_screen.tscn" id="2_kdbmg"]
 [ext_resource type="LightmapGIData" uid="uid://oxdlvuawk3s6" path="res://visual-novel/GJDDM/scenes/Laberinto/PrimerLaberinto.lmbake" id="2_nr84j"]
 [ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://samples/controller_examples/assets/textures/Sky.png" id="3_kdbmg"]
 [ext_resource type="Script" uid="uid://b5jsh373vm15" path="res://visual-novel/scripts/controllers/controller_player_third_person.gd" id="5_2fk5y"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_siao4"]
 [ext_resource type="PackedScene" uid="uid://c3mkywf5liwxn" path="res://visual-novel/GJDDM/characters/packed/dani.scn" id="8_ygn2f"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="9_2fk5y"]
+[ext_resource type="Resource" uid="uid://d1b2iumhe8cs3" path="res://dialogic/characters/Dani.dch" id="11_kdbmg"]
 [ext_resource type="Texture2D" uid="uid://dvar72mo5xo53" path="res://visual-novel/GJDDM/scenes/Laberinto/textures/Wood24b.JPG" id="14_ygn2f"]
 [ext_resource type="MeshLibrary" uid="uid://n7u3cctqnsi2" path="res://visual-novel/GJDDM/scenes/Laberinto/hall_maze_meshlibrary.tres" id="15_k0j6u"]
 [ext_resource type="Texture2D" uid="uid://bukj87xokogkx" path="res://visual-novel/GJDDM/scenes/Laberinto/textures/Wall36_256x512.jpg" id="15_xejsl"]
@@ -568,17 +569,17 @@ _surfaces = [{
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1mu4"]
 size = Vector3(3, 2, 3)
 
-[node name="PrimerLaberinto" type="Node3D"]
+[node name="PrimerLaberinto" type="Node3D" unique_id=1399607887]
 script = ExtResource("1_ygn2f")
 next_scene = ExtResource("2_kdbmg")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2123960876]
 stream = ExtResource("1_pa80t")
 volume_db = 5.0
 pitch_scale = 0.8
 autoplay = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=15197548]
 transform = Transform3D(1, 0, 0, 0, 0.17364824, 0.9848078, 0, -0.9848078, 0.17364824, 0, 7, 0)
 light_color = Color(0.53, 0.43459997, 0.43777996, 1)
 light_energy = 0.25
@@ -587,34 +588,34 @@ shadow_enabled = true
 directional_shadow_mode = 0
 sky_mode = 1
 
-[node name="LightmapGI" type="LightmapGI" parent="."]
+[node name="LightmapGI" type="LightmapGI" parent="." unique_id=1292222984]
 supersampling = true
 interior = true
 max_texture_size = 2048
 generate_probes_subdiv = 1
 light_data = ExtResource("2_nr84j")
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+[node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=1932336039]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26.607277, 2.6291418, -28.64299)
 size = Vector3(119.92142, 8.623604, 125.62341)
 interior = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1747415133]
 environment = SubResource("Environment_st7fd")
 
-[node name="Cameras" type="Node" parent="."]
+[node name="Cameras" type="Node" parent="." unique_id=19335119]
 
-[node name="Camera3D" type="Camera3D" parent="Cameras"]
+[node name="Camera3D" type="Camera3D" parent="Cameras" unique_id=1323785753]
 transform = Transform3D(0.97591674, 0.007613089, -0.21801035, 0, 0.99939084, 0.034899496, 0.21814324, -0.034059003, 0.97532225, -3.131, 2.295, 2.921)
 fov = 32.0
 
-[node name="PhantomCameraHost" type="Node" parent="Cameras/Camera3D"]
+[node name="PhantomCameraHost" type="Node" parent="Cameras/Camera3D" unique_id=1124812851]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("6_nr84j")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="SpawnPhantomCamera3D" type="Node3D" parent="Cameras" groups=["CinematicCameras"]]
+[node name="SpawnPhantomCamera3D" type="Node3D" parent="Cameras" unique_id=1334970048 groups=["CinematicCameras"]]
 transform = Transform3D(0.97591674, 0.007613089, -0.21801035, 0, 0.99939084, 0.034899496, 0.21814324, -0.034059003, 0.97532225, -3.131, 2.295, 2.921)
 script = ExtResource("7_kdbmg")
 priority = 3
@@ -626,7 +627,7 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" groups=["CinematicCameras"]]
+[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=764893227 groups=["CinematicCameras"]]
 transform = Transform3D(0.12403484, -0.2612184, 0.9572785, -1.4901163e-08, 0.9647269, 0.26325157, -0.99227804, -0.032652315, 0.11965989, 14, 3.85, 1.75)
 script = ExtResource("7_kdbmg")
 look_at_mode = 2
@@ -638,7 +639,7 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("follow_targets") groups=["CinematicCameras"]]
+[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=182429569 node_paths=PackedStringArray("follow_targets") groups=["CinematicCameras"]]
 transform = Transform3D(0.99999964, 0, 0, 0, 0.9999997, 0, 0, 0, 0.99999887, 8.718884, 2.532394, 7.58703)
 top_level = true
 script = ExtResource("7_kdbmg")
@@ -652,24 +653,25 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="Characters" type="Node" parent="."]
+[node name="Characters" type="Node" parent="." unique_id=1714284053]
 
-[node name="Player" parent="Characters" instance=ExtResource("6_j3tyg")]
+[node name="Player" parent="Characters" unique_id=778965850 instance=ExtResource("6_j3tyg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5542009, 1)
 character_type = 1
+dialogic_character = ExtResource("11_kdbmg")
 vrm_scene = ExtResource("8_ygn2f")
 default_pose_name = "crying"
 fov = 2
 
-[node name="Controllers" type="Node" parent="."]
+[node name="Controllers" type="Node" parent="." unique_id=163756612]
 
-[node name="PlayerController" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
+[node name="PlayerController" type="Node" parent="Controllers" unique_id=926601720 node_paths=PackedStringArray("controlled_obj")]
 script = ExtResource("5_2fk5y")
 controlled_obj = NodePath("../../Characters/Player")
 
-[node name="Level" type="Node" parent="."]
+[node name="Level" type="Node" parent="." unique_id=912191006]
 
-[node name="Maze1" type="GridMap" parent="Level"]
+[node name="Maze1" type="GridMap" parent="Level" unique_id=655181971]
 mesh_library = ExtResource("15_k0j6u")
 cell_size = Vector3(4, 1, 4)
 cell_scale = 2.0
@@ -678,18 +680,18 @@ data = {
 "cells": PackedInt32Array(65535, 0, 1048576, 65535, 65535, 1048578, 65535, 65534, 1048578, 0, 65533, 2, 1, 65533, 2, 2, 65533, 2, 3, 65533, 2, 4, 65533, 2, 5, 65534, 1441794, 5, 65535, 1441794, 5, 0, 1441794, 5, 1, 1441794, 3, 3, 1441794, 3, 4, 1441794, 4, 2, 655362, 6, 2, 655362, 7, 2, 655362, 8, 2, 655362, 9, 2, 655362, 10, 2, 655362, 11, 2, 655362, 13, 2, 655362, 14, 3, 1048578, 14, 4, 1048578, 13, 5, 2, 12, 5, 2, 11, 5, 2, 10, 5, 2, 9, 5, 2, 8, 5, 2, 7, 5, 2, 6, 5, 2, 5, 5, 2, 4, 5, 2, 12, 1, 1441794, 12, 0, 1441794, 12, 65535, 1441794, 12, 65534, 1441794, 12, 65533, 1441794, 12, 65532, 1441794, 12, 65531, 1441794, 12, 65530, 1441794, 12, 65529, 1441794, 13, 65528, 655362, 14, 65528, 655362, 15, 65528, 655362, 16, 65528, 655362, 17, 65528, 655362, 18, 65528, 655362, 19, 65528, 655362, 20, 65527, 1048578, 20, 65526, 1048578, 20, 65525, 1048578, 20, 65524, 1048578, 20, 65523, 1048578, 20, 65522, 1048578, 20, 65521, 1048578, 20, 65519, 1048578, 20, 65518, 1048578, 20, 65517, 1048578, 20, 65516, 1048578, 13, 65519, 1048578, 13, 65518, 1048578, 13, 65517, 1048578, 13, 65516, 1048578, 14, 65515, 2, 15, 65515, 2, 16, 65515, 2, 17, 65515, 2, 18, 65515, 2, 19, 65515, 2, 14, 65520, 2, 15, 65520, 2, 16, 65520, 2, 17, 65520, 2, 18, 65520, 2, 19, 65520, 2, 12, 65524, 1441794, 12, 65525, 1441794, 12, 65526, 1441794, 12, 65527, 1441794, 11, 65528, 655362, 10, 65528, 655362, 9, 65528, 655362, 8, 65528, 655362, 7, 65528, 655362, 6, 65528, 655362, 11, 65523, 655362, 10, 65523, 655362, 9, 65523, 655362, 8, 65523, 655362, 6, 65523, 655362, 5, 65523, 655362, 4, 65523, 655362, 3, 65523, 655362, 2, 65523, 655362, 1, 65523, 655362, 0, 65523, 655362, 6, 65525, 655362, 5, 65525, 655362, 4, 65525, 655362, 3, 65525, 655362, 2, 65525, 655362, 1, 65525, 655362, 0, 65525, 655362, 65534, 65525, 655362, 65533, 65525, 655362, 65532, 65525, 655362, 65531, 65525, 655362, 65530, 65525, 655362, 65529, 65525, 655362, 65528, 65524, 1048578, 65528, 65523, 1048578, 65535, 65524, 1048578, 7, 65524, 1048578, 5, 65529, 1048578, 5, 65530, 1048578, 5, 65531, 1048578, 5, 65532, 1048578, 65528, 65522, 1441792, 65528, 65525, 1048577, 65535, 65523, 1, 7, 65525, 655361, 12, 65523, 1441793, 20, 65528, 655361, 20, 65515, 1441793, 13, 65515, 1, 13, 65520, 1048577, 5, 65528, 1, 3, 2, 1, 14, 2, 1441793, 14, 5, 655361, 3, 5, 1048577, 65535, 65533, 1, 20, 65520, 655363, 7, 65523, 1441795, 65535, 65525, 1048579, 5, 65533, 655363, 5, 2, 1048579, 12, 2, 1048579, 12, 65528, 1048580)
 }
 
-[node name="NextScene" type="Area3D" parent="Level"]
+[node name="NextScene" type="Area3D" parent="Level" unique_id=81825882]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 1.5, -54)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/NextScene"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/NextScene" unique_id=1202091513]
 shape = SubResource("BoxShape3D_n1mu4")
 
-[node name="OlmecHead" parent="Level/NextScene" instance=ExtResource("18_kdbmg")]
+[node name="OlmecHead" parent="Level/NextScene" unique_id=745881589 instance=ExtResource("18_kdbmg")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Level/NextScene"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Level/NextScene" unique_id=1385794784]
 transform = Transform3D(1, 0, 0, 0, 0.9836753, -0.17995262, 0, 0.17995262, 0.9836753, 0, 0, 1.595478)
 light_color = Color(0.944, 1, 0.86, 1)
 light_energy = 1.223
@@ -701,9 +703,9 @@ spot_attenuation = 0.33
 spot_angle = 54.47
 spot_angle_attenuation = 1.866066
 
-[node name="PauseCanvasLayer" parent="." instance=ExtResource("15_ygn2f")]
+[node name="PauseCanvasLayer" parent="." unique_id=452000516 instance=ExtResource("15_ygn2f")]
 
-[node name="QuestCanvasLayer" parent="." instance=ExtResource("16_ygn2f")]
+[node name="QuestCanvasLayer" parent="." unique_id=317519230 instance=ExtResource("16_ygn2f")]
 text_content = "Sal del laberinto"
 
 [connection signal="body_entered" from="Level/NextScene" to="." method="_on_next_scene_body_entered"]

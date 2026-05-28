@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c3mkywf5liwxn" path="res://visual-novel/GJDDM/characters/packed/dani.scn" id="9_ig1qo"]
 [ext_resource type="Script" uid="uid://cve242f0ec8v" path="res://visual-novel/scripts/controllers/controller_player.gd" id="9_s84md"]
 [ext_resource type="PackedScene" uid="uid://56203yb3xiie" path="res://visual-novel/GJDDM/scenes/Metro/MetroPanteones_lowpoly/MetroPanteones.glb" id="10_hg0j6"]
+[ext_resource type="Resource" uid="uid://d1b2iumhe8cs3" path="res://dialogic/characters/Dani.dch" id="11_k80vs"]
 [ext_resource type="Script" uid="uid://dolmygaj003k5" path="res://visual-novel/scripts/actions/area_control_message.gd" id="11_qymc2"]
 [ext_resource type="FontFile" uid="uid://be864bbfg1jpj" path="res://visual-novel/GJDDM/fonts/Lexend-VariableFont_wght.ttf" id="12_5ttf7"]
 [ext_resource type="Resource" uid="uid://bqn3cdod80gsl" path="res://dialogic/timelines/dancer-metro_metro.dtl" id="12_82ycx"]
@@ -187,7 +188,7 @@ dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=1707168541 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(-0.533197, -0.027034763, 0.8455596, 0, 0.9994875, 0.031956382, -0.8459918, 0.017039001, -0.53292465, 35.732655, 2.7211475, 1.0502386)
+transform = Transform3D(-0.533197, -0.027034761, 0.8455596, 0, 0.99948746, 0.031956382, -0.8459918, 0.017039001, -0.53292465, 35.732655, 2.7211475, 1.0502386)
 script = ExtResource("14_kq5fm")
 look_at_mode = 2
 look_at_target = NodePath("../../Characters/Samuel")
@@ -226,7 +227,7 @@ dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="C4_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=622582126 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(0.95416456, -0.014609751, -0.298928, -4.656616e-10, 0.9988073, -0.04881563, 0.29928482, 0.046578065, 0.95302695, 7.078, 2.038, 5.552)
+transform = Transform3D(0.95416456, -0.01460975, -0.298928, -4.656616e-10, 0.99880725, -0.04881563, 0.29928482, 0.04657806, 0.95302695, 7.078, 2.038, 5.552)
 script = ExtResource("14_kq5fm")
 look_at_mode = 2
 look_at_target = NodePath("../../Characters/Dancer")
@@ -258,6 +259,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 [node name="Dani (Player)" parent="Characters" unique_id=436807209 node_paths=PackedStringArray("override_camera") instance=ExtResource("16_ppuyq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.48738194, 1.129788, 5.174062)
 character_type = 1
+dialogic_character = ExtResource("11_k80vs")
 vrm_scene = ExtResource("9_ig1qo")
 default_pose_name = "crying"
 default_pose_amount = 0.0

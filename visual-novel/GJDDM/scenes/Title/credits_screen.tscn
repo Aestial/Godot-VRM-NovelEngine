@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2vtrjter7tpk"]
+[gd_scene format=3 uid="uid://2vtrjter7tpk"]
 
 [ext_resource type="Script" uid="uid://blnvi2vw2ho8d" path="res://visual-novel/GJDDM/scenes/Title/credits_screen.gd" id="1_is0y6"]
 [ext_resource type="Theme" uid="uid://ceus317shnq1c" path="res://visual-novel/GJDDM/scenes/Title/title_theme.tres" id="3_drekl"]
@@ -15,7 +15,7 @@
 script = ExtResource("11_jwu6h")
 metadata/_custom_type_script = "uid://cyhet5seln3dr"
 
-[node name="Credits" type="Control"]
+[node name="Credits" type="Control" unique_id=1344221115]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,9 +24,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_is0y6")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1995157222]
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=55262246]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.98039216, 0.9607843, 1)
 
-[node name="TamalRosita©2025" type="Label" parent="."]
+[node name="TamalRosita©2025" type="Label" parent="." unique_id=899683344]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -50,7 +50,7 @@ theme = ExtResource("3_drekl")
 text = "Tamal Rosita © 2025"
 horizontal_alignment = 1
 
-[node name="Dani" type="TextureRect" parent="."]
+[node name="Dani" type="TextureRect" parent="." unique_id=1583287205]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -68,7 +68,7 @@ texture = ExtResource("5_ru8pt")
 expand_mode = 1
 stretch_mode = 3
 
-[node name="MiVerdad" type="TextureRect" parent="Dani"]
+[node name="MiVerdad" type="TextureRect" parent="Dani" unique_id=543295778]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -86,7 +86,7 @@ pivot_offset = Vector2(256, 0)
 texture = ExtResource("4_6kkw6")
 stretch_mode = 5
 
-[node name="Quit" type="Button" parent="."]
+[node name="Quit" type="Button" parent="." unique_id=46392268]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
@@ -99,7 +99,7 @@ scale = Vector2(0.85, 0.85)
 theme = ExtResource("3_drekl")
 theme_override_icons/icon = ExtResource("8_drekl")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1352001628]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -115,7 +115,7 @@ grow_vertical = 2
 pivot_offset = Vector2(340, 200)
 theme = ExtResource("3_drekl")
 
-[node name="ScrollCredits" type="RichTextLabel" parent="ScrollContainer"]
+[node name="ScrollCredits" type="RichTextLabel" parent="ScrollContainer" unique_id=993419464]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

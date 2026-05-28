@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cny5gnymtd4vd"]
+[gd_scene format=3 uid="uid://cny5gnymtd4vd"]
 
 [ext_resource type="AudioStream" uid="uid://bwtsrqq7ehdi6" path="res://visual-novel/GJDDM/music/TeatroMendoza_1.1.ogg" id="1_kxjsl"]
 [ext_resource type="Script" uid="uid://cv3qpihv8041w" path="res://visual-novel/GJDDM/scenes/Welcome/welcome_scene.gd" id="1_siix6"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://d4dw7q8b2ogmi" path="res://dialogic/timelines/welcome.dtl" id="4_m1kjg"]
 [ext_resource type="PackedScene" uid="uid://c3mkywf5liwxn" path="res://visual-novel/GJDDM/characters/packed/dani.scn" id="5_02nfc"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="8_4x8kj"]
+[ext_resource type="Resource" uid="uid://d1b2iumhe8cs3" path="res://dialogic/characters/Dani.dch" id="8_jf8h7"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_yk8to"]
 [ext_resource type="Texture2D" uid="uid://b8q44ipg8a3cq" path="res://samples/controller_examples/assets/textures/Black.png" id="10_eaoyb"]
 [ext_resource type="PackedScene" uid="uid://dbg1prbc0j7t5" path="res://visual-novel/GJDDM/scenes/Title/pause_screen.tscn" id="13_eaoyb"]
@@ -34,51 +35,51 @@ script = ExtResource("13_kxjsl")
 fov = 29.0
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
-[node name="Welcome" type="Node3D" node_paths=PackedStringArray("character")]
+[node name="Welcome" type="Node3D" unique_id=1394086154 node_paths=PackedStringArray("character")]
 script = ExtResource("1_siix6")
 next_scene = ExtResource("2_jf8h7")
 character = NodePath("NovelCharacter")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1674892173]
 stream = ExtResource("1_kxjsl")
 volume_db = -7.0
 pitch_scale = 0.45
 autoplay = true
 script = ExtResource("2_ohmfc")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=570405715]
 transform = Transform3D(1, 0, 0, 0, -0.35836795, 0.93358046, 0, -0.93358046, -0.35836795, 0, 10, 0)
 light_color = Color(0.98, 0.97608, 0.90160006, 1)
 shadow_enabled = true
 directional_shadow_mode = 0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=120717917]
 environment = ExtResource("2_bms17")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=256604505]
 transform = Transform3D(-0.99904823, 0, 0.04361929, 0, 1, 0, -0.04361929, 0, -0.99904823, 0, 1.4, -1)
 fov = 29.0
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1246885726]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("3_tntyt")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="NovelCharacter" parent="." instance=ExtResource("4_02nfc")]
+[node name="NovelCharacter" parent="." unique_id=2075293612 instance=ExtResource("4_02nfc")]
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
 character_type = 1
+dialogic_character = ExtResource("8_jf8h7")
 character_timeline = ExtResource("4_m1kjg")
 has_monologue = true
 vrm_scene = ExtResource("5_02nfc")
-default_pose_name = "idle"
 
-[node name="Floor" parent="." instance=ExtResource("2_tntyt")]
+[node name="Floor" parent="." unique_id=1965041969 instance=ExtResource("2_tntyt")]
 mesh = SubResource("PlaneMesh_kxjsl")
 
-[node name="PhantomCamera3D" type="Node3D" parent="."]
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=463698577]
 transform = Transform3D(-0.99904823, 0, 0.04361929, 0, 1, 0, -0.04361929, 0, -0.99904823, 0, 1.4, -1)
 script = ExtResource("8_4x8kj")
 priority = 10
@@ -87,6 +88,6 @@ tween_on_load = false
 camera_3d_resource = SubResource("Resource_siix6")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="PauseCanvasLayer" parent="." instance=ExtResource("13_eaoyb")]
+[node name="PauseCanvasLayer" parent="." unique_id=333496957 instance=ExtResource("13_eaoyb")]
 
 [connection signal="pause_toggle" from="PauseCanvasLayer" to="." method="_on_pause_canvas_layer_pause_toggle"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bo1tni28i8w3i"]
+[gd_scene format=3 uid="uid://bo1tni28i8w3i"]
 
 [ext_resource type="Script" uid="uid://cs4vhptasqvn8" path="res://visual-novel/GJDDM/scenes/Teatro/teatro_scene.gd" id="1_lh2u1"]
 [ext_resource type="PackedScene" uid="uid://c8oqm4oj4ku2f" path="res://visual-novel/GJDDM/scenes/Laberinto/PrimerLaberinto.tscn" id="2_iqxkc"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="8_j6c7d"]
 [ext_resource type="PackedScene" uid="uid://cfla0n73sht3c" path="res://visual-novel/GJDDM/scenes/Teatro/props/coffin/coffin.scn" id="9_6gkaq"]
 [ext_resource type="PackedScene" uid="uid://cqe35jnafmlk" path="res://samples/controller_examples/scenes/DashPickup.tscn" id="10_4xiyf"]
+[ext_resource type="Resource" uid="uid://d1b2iumhe8cs3" path="res://dialogic/characters/Dani.dch" id="10_fke2d"]
 [ext_resource type="PackedScene" uid="uid://dcjpkqhi816nl" path="res://visual-novel/characters/novel_character_base.tscn" id="11_eh4ho"]
 [ext_resource type="Resource" uid="uid://cc3s0aeroky4r" path="res://dialogic/characters/Celia.dch" id="14_ltws0"]
 [ext_resource type="Resource" uid="uid://csq4mmryytt7l" path="res://dialogic/timelines/teatro_cinematica01.dtl" id="15_l5vpx"]
@@ -100,17 +101,17 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 [sub_resource type="BoxShape3D" id="BoxShape3D_umvgm"]
 size = Vector3(3.9442592, 1.823548, 3.375733)
 
-[node name="Theatre" type="Node3D"]
+[node name="Theatre" type="Node3D" unique_id=847089882]
 script = ExtResource("1_lh2u1")
 next_scene = ExtResource("2_iqxkc")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=842388601]
 stream = ExtResource("3_lh2u1")
 volume_db = -5.0
 pitch_scale = 0.5
 autoplay = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=539740149]
 transform = Transform3D(1, 0, 0, 0, 0.17364824, 0.9848078, 0, -0.9848078, 0.17364824, 0, 7, 0)
 light_color = Color(0.58, 0.52084, 0.47559997, 1)
 light_energy = 0.85
@@ -119,36 +120,36 @@ light_bake_mode = 1
 directional_shadow_mode = 0
 sky_mode = 1
 
-[node name="LightmapGI" type="LightmapGI" parent="."]
+[node name="LightmapGI" type="LightmapGI" parent="." unique_id=412094466]
 supersampling = true
 interior = true
 max_texture_size = 4096
 light_data = ExtResource("3_moqlh")
 
-[node name="LightmapProbe" type="LightmapProbe" parent="LightmapGI"]
+[node name="LightmapProbe" type="LightmapProbe" parent="LightmapGI" unique_id=449390460]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -12)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1149629288]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6269696, 1.3563083, -9.181744)
 light_color = Color(0.87, 0.79112, 0.5742, 1)
 light_bake_mode = 1
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=88228724]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9352856, 0.73714924, -9.930909)
 light_color = Color(0.87, 0.79112, 0.5742, 1)
 light_bake_mode = 1
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+[node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=1240107466]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27313423, 8.120704, -3.334692)
 intensity = 0.75
 size = Vector3(30.671154, 20.522463, 36.40142)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1331260451]
 environment = SubResource("Environment_ctwiv")
 
-[node name="Cameras" type="Node" parent="."]
+[node name="Cameras" type="Node" parent="." unique_id=269228222]
 
-[node name="SpawnPhantomCamera3D" type="Node3D" parent="Cameras" groups=["CinematicCameras"]]
+[node name="SpawnPhantomCamera3D" type="Node3D" parent="Cameras" unique_id=278134954 groups=["CinematicCameras"]]
 transform = Transform3D(0.6401096, 0.0669603, 0.7653598, 0, 0.99619454, -0.08715572, -0.76828337, 0.055789225, 0.6376738, 7.47, 1.959, 13.465)
 script = ExtResource("6_iqxkc")
 priority = 3
@@ -160,13 +161,12 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target", "look_at_targets") groups=["CinematicCameras"]]
-transform = Transform3D(-0.93176043, -0.044110034, -0.36038488, 0, 0.9925926, -0.12149038, 0.36307433, -0.11319989, -0.92485833, 0.25, 0.15, -3)
+[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=868174904 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
+transform = Transform3D(-0.93176055, -0.044110034, -0.36038488, 0, 0.9925926, -0.12149038, 0.3630744, -0.11319989, -0.92485833, 0.25, 0.15, -3)
 script = ExtResource("6_iqxkc")
 priority = 3
 look_at_mode = 3
 look_at_target = NodePath("../../Characters/Georgino")
-look_at_targets = [NodePath("../../Characters/Celia"), NodePath("../../Characters/Georgino"), NodePath("../../Characters/Dani (Player)")]
 tween_resource = SubResource("Resource_ltws0")
 camera_3d_resource = SubResource("Resource_l5vpx")
 follow_offset = Vector3(0, 1.4, 1)
@@ -176,13 +176,11 @@ dead_zone_width = 0.1
 look_at_offset = Vector3(0, 1.4, 0)
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target", "look_at_targets") groups=["CinematicCameras"]]
-transform = Transform3D(-0.96645343, -0.022090139, -0.25589088, -1.8626454e-09, 0.99629414, -0.08600658, 0.25684258, -0.0831213, -0.96287227, 0.316, 0.245, -6.101)
+[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=1427713696 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
+transform = Transform3D(-0.96645343, -0.022090137, -0.25589088, -1.8626454e-09, 0.9962941, -0.08600658, 0.25684258, -0.0831213, -0.96287227, 0.316, 0.245, -6.101)
 script = ExtResource("6_iqxkc")
-priority_override = true
 look_at_mode = 3
 look_at_target = NodePath("../../Characters/Celia")
-look_at_targets = [NodePath("../../Characters/Celia"), NodePath("../../Characters/Georgino"), NodePath("../../Characters/Dani (Player)")]
 tween_resource = SubResource("Resource_ccqnx")
 camera_3d_resource = SubResource("Resource_kjm0u")
 follow_offset = Vector3(0, 1.4, 1)
@@ -192,8 +190,8 @@ dead_zone_width = 0.1
 look_at_offset = Vector3(0, 1.47, 0)
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C3_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(-0.99880517, 0.016262285, 0.046064775, 0, 0.9429632, -0.3328952, -0.048851028, -0.3324977, -0.94183755, 0.074, 0.197, -12.013)
+[node name="C3_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=1549545164 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
+transform = Transform3D(-0.9988052, 0.016262285, 0.046064775, 0, 0.9429632, -0.3328952, -0.04885103, -0.3324977, -0.94183755, 0.074, 0.197, -12.013)
 script = ExtResource("6_iqxkc")
 look_at_mode = 2
 look_at_target = NodePath("../../Level/Ataud")
@@ -205,7 +203,7 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C4_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
+[node name="C4_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=1859909145 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
 transform = Transform3D(1, 0, 0, 0, 0.9852517, 0.17110942, 0, -0.17110941, 0.98525184, 0, 3.25, 4)
 script = ExtResource("6_iqxkc")
 look_at_mode = 2
@@ -218,7 +216,7 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C5_PhantomCamera3D" type="Node3D" parent="Cameras" node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
+[node name="C5_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=147138038 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
 transform = Transform3D(0.81675047, -0.0184455, 0.5766962, 0, 0.9994884, 0.031968452, -0.5769911, -0.026110232, 0.8163331, 7.725, 1.16, 0.435)
 script = ExtResource("6_iqxkc")
 look_at_mode = 2
@@ -231,16 +229,17 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="Characters" type="Node" parent="."]
+[node name="Characters" type="Node" parent="." unique_id=344518193]
 
-[node name="Dani (Player)" parent="Characters" instance=ExtResource("11_eh4ho")]
+[node name="Dani (Player)" parent="Characters" unique_id=529769707 instance=ExtResource("11_eh4ho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.09091, 0.71417886, 13.383465)
 character_type = 1
+dialogic_character = ExtResource("10_fke2d")
 vrm_scene = ExtResource("7_r44f8")
 speed = 1.75
 jump_strength = 3.75
 
-[node name="Celia" parent="Characters" instance=ExtResource("11_eh4ho")]
+[node name="Celia" parent="Characters" unique_id=849396424 instance=ExtResource("11_eh4ho")]
 transform = Transform3D(-0.25934166, 0, -0.9657856, 0, 1, 0, 0.9657856, 0, -0.25934166, 0.007584691, -1.3123465, -4.532336)
 dialogic_character = ExtResource("14_ltws0")
 character_timeline = ExtResource("15_l5vpx")
@@ -248,69 +247,68 @@ vrm_scene = ExtResource("16_w3yw7")
 speed = 1.5
 jump_strength = 3.0
 
-[node name="Georgino" parent="Characters" instance=ExtResource("11_eh4ho")]
+[node name="Georgino" parent="Characters" unique_id=1298463097 instance=ExtResource("11_eh4ho")]
 transform = Transform3D(-0.8092735, 0, 0.5874323, 0, 1, 0, -0.5874323, 0, -0.8092735, 1.122067, -1.3268542, -5.0160093)
 dialogic_character = ExtResource("17_qaq7y")
 vrm_scene = ExtResource("18_rxsw2")
 speed = 2.5
 
-[node name="Gerardo" parent="Characters" instance=ExtResource("11_eh4ho")]
+[node name="Gerardo" parent="Characters" unique_id=497211693 instance=ExtResource("11_eh4ho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.505754, 0, -8.272907)
 dialogic_character = ExtResource("19_g6ygx")
 vrm_scene = ExtResource("20_xsr36")
 speed = 1.5
 
-[node name="Controllers" type="Node" parent="."]
+[node name="Controllers" type="Node" parent="." unique_id=254752667]
 
-[node name="AIController" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
+[node name="AIController" type="Node" parent="Controllers" unique_id=343759630 node_paths=PackedStringArray("controlled_obj")]
 script = ExtResource("5_fke2d")
 INPUT_DELAY = 3.5
 current_direction = Vector3(0, 0, 1)
 controlled_obj = NodePath("../../Characters/Gerardo")
 
-[node name="PlayerController" type="Node" parent="Controllers" node_paths=PackedStringArray("controlled_obj")]
+[node name="PlayerController" type="Node" parent="Controllers" unique_id=1299106466 node_paths=PackedStringArray("controlled_obj")]
 script = ExtResource("6_j6c7d")
 controlled_obj = NodePath("../../Characters/Dani (Player)")
 
-[node name="Level" type="Node" parent="."]
+[node name="Level" type="Node" parent="." unique_id=53564012]
 
-[node name="TeatroEscenario" parent="Level" instance=ExtResource("7_hkm3h")]
+[node name="TeatroEscenario" parent="Level" unique_id=1429882561 instance=ExtResource("7_hkm3h")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.007405281, 9.536743e-07, -0.011737347)
 
-[node name="MesaMarmol" parent="Level" instance=ExtResource("8_dnvx3")]
+[node name="MesaMarmol" parent="Level" unique_id=21962963 instance=ExtResource("8_dnvx3")]
 transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396926, 0, 0, -10.5)
 
-[node name="NextScene" type="Area3D" parent="Level"]
+[node name="NextScene" type="Area3D" parent="Level" unique_id=1663362235]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0.73177403, -10.5)
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/NextScene"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/NextScene" unique_id=1629730013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.065383606, 0.2780785, -0.079800606)
 shape = SubResource("BoxShape3D_umvgm")
 
-[node name="Ataud" parent="Level" instance=ExtResource("9_6gkaq")]
+[node name="Ataud" parent="Level" unique_id=1137157442 instance=ExtResource("9_6gkaq")]
 transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396926, 0, 0.73177403, -10.5)
 mass = 10.0
 
-[node name="Pickup" parent="Level" instance=ExtResource("10_4xiyf")]
+[node name="Pickup" parent="Level" unique_id=537640538 instance=ExtResource("10_4xiyf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7499032, -1.321914, -3.238368)
 visible = false
 
-[node name="Camera3D" type="Camera3D" parent="."]
-physics_interpolation_mode = 1
-transform = Transform3D(-0.9664533, -0.022090148, -0.25589085, -1.8626451e-09, 0.99629456, -0.086006574, 0.25684255, -0.08312134, -0.96287215, 0.316, 0.245, -6.101)
-fov = 45.0
+[node name="Camera3D" type="Camera3D" parent="." unique_id=58375907]
+transform = Transform3D(0.6401096, 0.0669603, 0.7653598, 0, 0.99619454, -0.08715572, -0.76828337, 0.055789225, 0.6376738, 7.47, 1.959, 13.465)
+fov = 49.0
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=102946340]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("6_fke2d")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="PauseCanvasLayer" parent="." instance=ExtResource("24_r44f8")]
+[node name="PauseCanvasLayer" parent="." unique_id=431074031 instance=ExtResource("24_r44f8")]
 
-[node name="QuestCanvasLayer" parent="." instance=ExtResource("24_moqlh")]
+[node name="QuestCanvasLayer" parent="." unique_id=422162116 instance=ExtResource("24_moqlh")]
 text_content = "Habla con Celia"
 
 [connection signal="body_entered" from="Level/NextScene" to="." method="_on_next_scene_body_entered"]
