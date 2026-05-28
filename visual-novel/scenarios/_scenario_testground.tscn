@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://myygg03dt1v2"]
 
 [ext_resource type="Texture2D" uid="uid://doyodkg1ds7td" path="res://samples/controller_examples/assets/textures/Sky.png" id="1_ugre5"]
-[ext_resource type="Script" path="res://visual-novel/scripts/actions/pointer_capture.gd" id="2_g8or5"]
+[ext_resource type="Script" uid="uid://cdhj5gruoyjwg" path="res://visual-novel/scripts/actions/pointer_capture.gd" id="2_g8or5"]
 [ext_resource type="Script" uid="uid://b5jsh373vm15" path="res://visual-novel/scripts/controllers/controller_player_third_person.gd" id="3_h226m"]
 [ext_resource type="Script" uid="uid://dmcynp0g0020r" path="res://visual-novel/scripts/controllers/controller_ai.gd" id="4_x76o4"]
 [ext_resource type="Texture2D" uid="uid://b8q44ipg8a3cq" path="res://samples/controller_examples/assets/textures/Black.png" id="5_torrc"]
@@ -10,8 +10,7 @@
 [ext_resource type="Resource" uid="uid://db5uatqntdvrb" path="res://dialogic/characters/devs-metro.dch" id="8_unxnl"]
 [ext_resource type="Resource" uid="uid://ccviid6hf7yrn" path="res://dialogic/characters/brayan-metro_metro.dtl" id="9_ixwry"]
 [ext_resource type="PackedScene" uid="uid://demck0s258hkp" path="res://samples/character_samples/packed/brayan.tscn" id="10_6wpd4"]
-[ext_resource type="Resource" path="res://dialogic/characters/Samuel.dch" id="15_1qoio"]
-[ext_resource type="PackedScene" uid="uid://dxrjwvert3knb" path="res://samples/character_samples/packed/manitas.tscn" id="16_unxnl"]
+[ext_resource type="Resource" uid="uid://dn6nr207yscac" path="res://dialogic/characters/Samuel.dch" id="15_1qoio"]
 [ext_resource type="PackedScene" uid="uid://sdh35wqa8in5" path="res://visual-novel/GJDDM/characters/packed/gael.scn" id="16_vjmld"]
 [ext_resource type="AudioStream" uid="uid://i1y5e2k0si46" path="res://visual-novel/GJDDM/music/soundtrackish.mp3" id="18_k41yu"]
 [ext_resource type="PackedScene" uid="uid://hxstnsvjjjo4" path="res://visual-novel/GJDDM/scenes/Corredor/corridor_1/corridor_game_ready_free.glb" id="19_vn0ve"]
@@ -65,23 +64,20 @@ character_timeline = ExtResource("9_ixwry")
 vrm_scene = ExtResource("10_6wpd4")
 default_pose_amount = 0.0
 
-[node name="AnimationTree" parent="Characters/Dani" index="1"]
+[node name="AnimationTree" parent="Characters/Dani" index="1" unique_id=835141688]
 root_node = NodePath("../CollisionShape3D/ModelContainer/Brayan")
 anim_player = NodePath("../CollisionShape3D/ModelContainer/Brayan/AnimationPlayer")
-parameters/LeftBlink/blend_position = 0.80883
-parameters/RightBlink/blend_position = 0.80883
-parameters/LocomotionBlend/blend_amount = 1.0
 
-[node name="Camera3D" parent="Characters/Dani" index="2"]
+[node name="Camera3D" parent="Characters/Dani" index="2" unique_id=1029224579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6546189, 1.25)
 
-[node name="ThirdPersonCamera" parent="Characters/Dani" index="3"]
+[node name="ThirdPersonCamera" parent="Characters/Dani" index="3" unique_id=1273729270]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6546189, 0)
 
-[node name="PortraitCamera" parent="Characters/Dani/CollisionShape3D" index="0"]
+[node name="PortraitCamera" parent="Characters/Dani/CollisionShape3D" parent_id_path=PackedInt32Array(169140510, 936994944) index="0" unique_id=1832556271]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66046226, 0)
 
-[node name="GazeTarget" parent="Characters/Dani" index="5"]
+[node name="GazeTarget" parent="Characters/Dani" index="5" unique_id=1950633892]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.489157, -0.75)
 
 [node name="Celia" parent="Characters" unique_id=1805541827 instance=ExtResource("7_vtely")]
@@ -125,8 +121,5 @@ transform = Transform3D(0.015178648, 0, -1.2999113, 0, 1.3, 0, 1.2999113, 0, 0.0
 
 [node name="Sketchfab_Scene" parent="." unique_id=2127933372 instance=ExtResource("20_uys0g")]
 transform = Transform3D(-0.8247938, 0, 0.018443525, 0, 0.825, 0, -0.018443525, 0, -0.8247938, -7.626906, -3.28, 2.8975325)
-
-[node name="Manitas" parent="." unique_id=1305440480 instance=ExtResource("16_unxnl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.019469, 0, 1.0149201)
 
 [editable path="Characters/Dani"]

@@ -12,21 +12,19 @@
 [ext_resource type="PackedScene" uid="uid://c3mkywf5liwxn" path="res://visual-novel/GJDDM/characters/packed/dani.scn" id="9_ig1qo"]
 [ext_resource type="Script" uid="uid://cve242f0ec8v" path="res://visual-novel/scripts/controllers/controller_player.gd" id="9_s84md"]
 [ext_resource type="PackedScene" uid="uid://56203yb3xiie" path="res://visual-novel/GJDDM/scenes/Metro/MetroPanteones_lowpoly/MetroPanteones.glb" id="10_hg0j6"]
-[ext_resource type="Script" path="res://visual-novel/scripts/actions/area_control_message.gd" id="11_qymc2"]
+[ext_resource type="Script" uid="uid://dolmygaj003k5" path="res://visual-novel/scripts/actions/area_control_message.gd" id="11_qymc2"]
 [ext_resource type="FontFile" uid="uid://be864bbfg1jpj" path="res://visual-novel/GJDDM/fonts/Lexend-VariableFont_wght.ttf" id="12_5ttf7"]
 [ext_resource type="Resource" uid="uid://bqn3cdod80gsl" path="res://dialogic/timelines/dancer-metro_metro.dtl" id="12_82ycx"]
 [ext_resource type="Script" uid="uid://cyhet5seln3dr" path="res://visual-novel/scripts/text/rich_text_ghost.gd" id="13_gnjaq"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="14_kq5fm"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="15_vl85n"]
 [ext_resource type="Resource" uid="uid://bji0tf7m5xn6r" path="res://dialogic/characters/brayan-metro.dch" id="16_82ycx"]
-[ext_resource type="PackedScene" uid="uid://86sf8j00aa7p" path="res://samples/character_samples/packed/errand_x_1.scn" id="16_304w4"]
 [ext_resource type="PackedScene" uid="uid://bbcsdxjc4wu" path="res://samples/character_samples/packed/brayan_mty.scn" id="16_dfpb5"]
 [ext_resource type="PackedScene" uid="uid://dcjpkqhi816nl" path="res://visual-novel/characters/novel_character_base.tscn" id="16_ppuyq"]
 [ext_resource type="Resource" uid="uid://ccviid6hf7yrn" path="res://dialogic/characters/brayan-metro_metro.dtl" id="17_k80vs"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="19_ig1qo"]
 [ext_resource type="Resource" uid="uid://oygcpypq6kpq" path="res://dialogic/timelines/metro_cinematica.dtl" id="19_n5fj1"]
-[ext_resource type="Resource" uid="uid://db5uatqntdvrb" path="res://dialogic/characters/devs-metro.dch" id="19_uf1nu"]
-[ext_resource type="Resource" path="res://dialogic/characters/Samuel.dch" id="20_lha4i"]
+[ext_resource type="Resource" uid="uid://dn6nr207yscac" path="res://dialogic/characters/Samuel.dch" id="20_lha4i"]
 [ext_resource type="PackedScene" uid="uid://do1f5t0qor5r5" path="res://visual-novel/GJDDM/characters/packed/samuel.scn" id="21_g47qq"]
 [ext_resource type="PackedScene" uid="uid://by06s53b5eiiq" path="res://visual-novel/canvas/quest_canvas_layer.tscn" id="21_ig1qo"]
 
@@ -189,7 +187,7 @@ dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=1707168541 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(-0.533197, -0.027034765, 0.8455596, 0, 0.9994876, 0.031956382, -0.8459918, 0.017039003, -0.53292465, 35.732655, 2.7211475, 1.0502386)
+transform = Transform3D(-0.533197, -0.027034763, 0.8455596, 0, 0.9994875, 0.031956382, -0.8459918, 0.017039001, -0.53292465, 35.732655, 2.7211475, 1.0502386)
 script = ExtResource("14_kq5fm")
 look_at_mode = 2
 look_at_target = NodePath("../../Characters/Samuel")
@@ -228,7 +226,7 @@ dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="C4_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=622582126 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
-transform = Transform3D(0.95416456, -0.014609751, -0.298928, -4.656616e-10, 0.9988074, -0.04881563, 0.29928482, 0.04657807, 0.95302695, 7.078, 2.038, 5.552)
+transform = Transform3D(0.95416456, -0.014609751, -0.298928, -4.656616e-10, 0.9988073, -0.04881563, 0.29928482, 0.046578065, 0.95302695, 7.078, 2.038, 5.552)
 script = ExtResource("14_kq5fm")
 look_at_mode = 2
 look_at_target = NodePath("../../Characters/Dancer")
@@ -287,12 +285,6 @@ transform = Transform3D(0.1319798, 0, -0.99125266, 0, 1, 0, 0.99125266, 0, 0.131
 dialogic_character = ExtResource("16_82ycx")
 character_timeline = ExtResource("17_k80vs")
 vrm_scene = ExtResource("16_dfpb5")
-default_pose_name = "metro_standing"
-
-[node name="Dev" parent="Characters" unique_id=1876071220 instance=ExtResource("16_ppuyq")]
-transform = Transform3D(0.056109577, 0.9982595, 0.018160775, -0.9497508, 0.05897543, -0.30740207, -0.30793804, 0, 0.9514067, 18.925804, 1.3856218, 5.557081)
-dialogic_character = ExtResource("19_uf1nu")
-vrm_scene = ExtResource("16_304w4")
 default_pose_name = "metro_standing"
 
 [node name="Controllers" type="Node" parent="." unique_id=2020904216]

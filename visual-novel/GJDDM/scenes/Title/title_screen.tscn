@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://n5itw40xq2ct"]
+[gd_scene format=3 uid="uid://n5itw40xq2ct"]
 
 [ext_resource type="Script" uid="uid://o6ftp2me12xm" path="res://visual-novel/GJDDM/scenes/Title/title_screen.gd" id="1_h5chg"]
 [ext_resource type="AudioStream" uid="uid://bwtsrqq7ehdi6" path="res://visual-novel/GJDDM/music/TeatroMendoza_1.1.ogg" id="2_disog"]
-[ext_resource type="Script" path="res://visual-novel/scripts/actions/pointer_release.gd" id="3_mk3lo"]
+[ext_resource type="Script" uid="uid://uwu3rtv0q2cw" path="res://visual-novel/scripts/actions/pointer_release.gd" id="3_mk3lo"]
 [ext_resource type="Theme" uid="uid://ceus317shnq1c" path="res://visual-novel/GJDDM/scenes/Title/title_theme.tres" id="4_vdjla"]
 [ext_resource type="Texture2D" uid="uid://ucur5ommpudt" path="res://visual-novel/GJDDM/images/logo_Dani_nobg.png" id="5_cwna3"]
 [ext_resource type="Texture2D" uid="uid://con0qeebjjbx5" path="res://visual-novel/GJDDM/images/logo_MVerdad_nobg.png" id="6_wfivq"]
@@ -241,7 +241,7 @@ _data = {
 &"title_start": SubResource("Animation_sm04f")
 }
 
-[node name="TitleScreen" type="Control"]
+[node name="TitleScreen" type="Control" unique_id=1883190912]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -250,18 +250,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h5chg")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_rmur0")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1203230291]
+libraries/ = SubResource("AnimationLibrary_rmur0")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2134647186]
 stream = ExtResource("2_disog")
 volume_db = -3.0
 pitch_scale = 1.2
 autoplay = true
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1286590755]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -271,7 +269,7 @@ grow_vertical = 2
 color = Color(1, 0.98039216, 0.9607843, 1)
 script = ExtResource("3_mk3lo")
 
-[node name="TamalRosita©2025" type="Label" parent="."]
+[node name="TamalRosita©2025" type="Label" parent="." unique_id=462348250]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -288,7 +286,7 @@ theme = ExtResource("4_vdjla")
 text = "Tamal Rosita © MMXXV"
 horizontal_alignment = 1
 
-[node name="Dani" type="TextureRect" parent="."]
+[node name="Dani" type="TextureRect" parent="." unique_id=2076712315]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -304,7 +302,7 @@ texture = ExtResource("5_cwna3")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="MiVerdad" type="TextureRect" parent="Dani"]
+[node name="MiVerdad" type="TextureRect" parent="Dani" unique_id=1981114865]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -321,7 +319,7 @@ pivot_offset = Vector2(256, 128)
 texture = ExtResource("6_wfivq")
 stretch_mode = 5
 
-[node name="Call2Action" type="RichTextLabel" parent="."]
+[node name="Call2Action" type="RichTextLabel" parent="." unique_id=989998655]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -350,7 +348,7 @@ bbcode_enabled = true
 text = "[pulse freq=0.33 color=#ffffff00 ease=-1.5]Presiona X para comenzar[/pulse]"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=553226500]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -368,26 +366,26 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Start" type="Button" parent="VBoxContainer"]
+[node name="Start" type="Button" parent="VBoxContainer" unique_id=325575937]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("4_vdjla")
 text = "Comenzar"
 
-[node name="Maze" type="Button" parent="VBoxContainer"]
+[node name="Maze" type="Button" parent="VBoxContainer" unique_id=147394508]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = ExtResource("4_vdjla")
 text = "Laberinto"
 
-[node name="Credits" type="Button" parent="VBoxContainer"]
+[node name="Credits" type="Button" parent="VBoxContainer" unique_id=445124869]
 layout_mode = 2
 theme = ExtResource("4_vdjla")
 text = "Créditos"
 
-[node name="Credits" parent="." instance=ExtResource("11_tr5xv")]
+[node name="Credits" parent="." unique_id=723018248 instance=ExtResource("11_tr5xv")]
 visible = false
 layout_mode = 1
 
