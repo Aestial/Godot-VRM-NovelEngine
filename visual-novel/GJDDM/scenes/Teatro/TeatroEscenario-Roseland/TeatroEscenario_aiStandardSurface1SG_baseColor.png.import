@@ -3,11 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5rt0ss7tklvm"
-path.s3tc="res://.godot/imported/TeatroEscenario_aiStandardSurface1SG_baseColor.png-94c5f839e11e3754dad2db35da57b297.s3tc.ctex"
-path.etc2="res://.godot/imported/TeatroEscenario_aiStandardSurface1SG_baseColor.png-94c5f839e11e3754dad2db35da57b297.etc2.ctex"
+path="res://.godot/imported/TeatroEscenario_aiStandardSurface1SG_baseColor.png-94c5f839e11e3754dad2db35da57b297.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "78c8c7b782bb6e69e1aa29cd2c9caa50"
@@ -16,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://visual-novel/GJDDM/scenes/Teatro/TeatroEscenario-Roseland/TeatroEscenario_aiStandardSurface1SG_baseColor.png"
-dest_files=["res://.godot/imported/TeatroEscenario_aiStandardSurface1SG_baseColor.png-94c5f839e11e3754dad2db35da57b297.s3tc.ctex", "res://.godot/imported/TeatroEscenario_aiStandardSurface1SG_baseColor.png-94c5f839e11e3754dad2db35da57b297.etc2.ctex"]
+dest_files=["res://.godot/imported/TeatroEscenario_aiStandardSurface1SG_baseColor.png-94c5f839e11e3754dad2db35da57b297.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

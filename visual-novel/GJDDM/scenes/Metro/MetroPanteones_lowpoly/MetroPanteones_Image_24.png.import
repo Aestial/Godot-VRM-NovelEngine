@@ -3,11 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dabbqxifppidv"
-path.s3tc="res://.godot/imported/MetroPanteones_Image_24.png-aa53c2c7497e59eee859f0ce5957d608.s3tc.ctex"
-path.etc2="res://.godot/imported/MetroPanteones_Image_24.png-aa53c2c7497e59eee859f0ce5957d608.etc2.ctex"
+path="res://.godot/imported/MetroPanteones_Image_24.png-aa53c2c7497e59eee859f0ce5957d608.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "5ab6f5247cf4c8e3b8907b6de7031983"
@@ -16,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://visual-novel/GJDDM/scenes/Metro/MetroPanteones_lowpoly/MetroPanteones_Image_24.png"
-dest_files=["res://.godot/imported/MetroPanteones_Image_24.png-aa53c2c7497e59eee859f0ce5957d608.s3tc.ctex", "res://.godot/imported/MetroPanteones_Image_24.png-aa53c2c7497e59eee859f0ce5957d608.etc2.ctex"]
+dest_files=["res://.godot/imported/MetroPanteones_Image_24.png-aa53c2c7497e59eee859f0ce5957d608.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

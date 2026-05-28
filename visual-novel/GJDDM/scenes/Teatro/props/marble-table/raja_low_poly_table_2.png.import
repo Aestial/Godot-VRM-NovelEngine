@@ -3,11 +3,9 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://o3wlvrjdpe2g"
-path.s3tc="res://.godot/imported/raja_low_poly_table_2.png-0cdd05c5bcb1b7d548a010e0e7e39951.s3tc.ctex"
-path.etc2="res://.godot/imported/raja_low_poly_table_2.png-0cdd05c5bcb1b7d548a010e0e7e39951.etc2.ctex"
+path="res://.godot/imported/raja_low_poly_table_2.png-0cdd05c5bcb1b7d548a010e0e7e39951.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 generator_parameters={
 "md5": "50036faa0c79d15ef4accd3474224f94"
@@ -16,11 +14,11 @@ generator_parameters={
 [deps]
 
 source_file="res://visual-novel/GJDDM/scenes/Teatro/props/marble-table/raja_low_poly_table_2.png"
-dest_files=["res://.godot/imported/raja_low_poly_table_2.png-0cdd05c5bcb1b7d548a010e0e7e39951.s3tc.ctex", "res://.godot/imported/raja_low_poly_table_2.png-0cdd05c5bcb1b7d548a010e0e7e39951.etc2.ctex"]
+dest_files=["res://.godot/imported/raja_low_poly_table_2.png-0cdd05c5bcb1b7d548a010e0e7e39951.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

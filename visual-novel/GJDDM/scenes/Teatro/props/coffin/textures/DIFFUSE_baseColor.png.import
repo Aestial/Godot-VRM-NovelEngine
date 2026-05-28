@@ -3,21 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2licssyr142h"
-path.s3tc="res://.godot/imported/DIFFUSE_baseColor.png-ae42a5da7a6d7e2deda402d2dba69c69.s3tc.ctex"
-path.etc2="res://.godot/imported/DIFFUSE_baseColor.png-ae42a5da7a6d7e2deda402d2dba69c69.etc2.ctex"
+path="res://.godot/imported/DIFFUSE_baseColor.png-ae42a5da7a6d7e2deda402d2dba69c69.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc", "etc2_astc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://visual-novel/GJDDM/scenes/Teatro/props/coffin/textures/DIFFUSE_baseColor.png"
-dest_files=["res://.godot/imported/DIFFUSE_baseColor.png-ae42a5da7a6d7e2deda402d2dba69c69.s3tc.ctex", "res://.godot/imported/DIFFUSE_baseColor.png-ae42a5da7a6d7e2deda402d2dba69c69.etc2.ctex"]
+dest_files=["res://.godot/imported/DIFFUSE_baseColor.png-ae42a5da7a6d7e2deda402d2dba69c69.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
