@@ -161,12 +161,13 @@ follow_axis_lock = 3
 dead_zone_width = 0.1
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=868174904 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
+[node name="C1_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=868174904 node_paths=PackedStringArray("look_at_target", "look_at_targets") groups=["CinematicCameras"]]
 transform = Transform3D(-0.93176055, -0.044110034, -0.36038488, 0, 0.9925926, -0.12149038, 0.3630744, -0.11319989, -0.92485833, 0.25, 0.15, -3)
 script = ExtResource("6_iqxkc")
 priority = 3
 look_at_mode = 3
 look_at_target = NodePath("../../Characters/Georgino")
+look_at_targets = [NodePath("../../Characters/Celia"), NodePath("../../Characters/Georgino"), NodePath("../../Characters/Dani (Player)")]
 tween_resource = SubResource("Resource_ltws0")
 camera_3d_resource = SubResource("Resource_l5vpx")
 follow_offset = Vector3(0, 1.4, 1)
@@ -176,11 +177,12 @@ dead_zone_width = 0.1
 look_at_offset = Vector3(0, 1.4, 0)
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=1427713696 node_paths=PackedStringArray("look_at_target") groups=["CinematicCameras"]]
+[node name="C2_PhantomCamera3D" type="Node3D" parent="Cameras" unique_id=1427713696 node_paths=PackedStringArray("look_at_target", "look_at_targets") groups=["CinematicCameras"]]
 transform = Transform3D(-0.96645343, -0.022090137, -0.25589088, -1.8626454e-09, 0.9962941, -0.08600658, 0.25684258, -0.0831213, -0.96287227, 0.316, 0.245, -6.101)
 script = ExtResource("6_iqxkc")
 look_at_mode = 3
 look_at_target = NodePath("../../Characters/Celia")
+look_at_targets = [NodePath("../../Characters/Celia"), NodePath("../../Characters/Georgino"), NodePath("../../Characters/Dani (Player)")]
 tween_resource = SubResource("Resource_ccqnx")
 camera_3d_resource = SubResource("Resource_kjm0u")
 follow_offset = Vector3(0, 1.4, 1)

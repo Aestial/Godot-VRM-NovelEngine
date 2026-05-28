@@ -19,4 +19,7 @@ func _process(_delta: float) -> void:
 	if progress >= 100 and can_load:
 		can_load = false
 		var packed_scene: Resource = ResourceLoader.load_threaded_get(next_scene)
-		get_tree().change_scene_to_packed(packed_scene)
+		if (packed_scene):
+			get_tree().change_scene_to_packed(packed_scene)
+		else:
+			get_tree().change_scene_to_file("res://visual-novel/GJDDM/scenes/Title/title_screen.tscn")

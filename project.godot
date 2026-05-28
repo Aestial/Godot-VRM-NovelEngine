@@ -14,9 +14,9 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="VRM-NovelEngine"
+config/name="Dani: Mi Verdad"
 config/description="Visual novel engine based on Dialogic, VRM models and more. See addons."
-config/version="0.1.0"
+config/version="0.4.4"
 config/tags=PackedStringArray("engine", "visualnovel")
 run/main_scene="uid://n5itw40xq2ct"
 config/features=PackedStringArray("4.6", "Forward Plus")
