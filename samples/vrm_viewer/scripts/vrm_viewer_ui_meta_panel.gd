@@ -7,14 +7,12 @@ extends VBoxContainer
 @onready var reference_label: Label = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/ReferenceLabel
 @onready var thumbnail_rect: TextureRect = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/ThumbnailRect
 
-@onready var toggle_btn: Button = $ToggleMetaButton
 @onready var content_panel: PanelContainer = $PanelContainer
 
 var is_expanded: bool = true
 var expanded_size: float = 430.0
 
 func _ready() -> void:
-	toggle_btn.pressed.connect(_on_toggle_pressed)
 	content_panel.custom_minimum_size.y = expanded_size
 
 func display_metadata(vrm_meta: Resource) -> void:
@@ -43,10 +41,4 @@ func display_metadata(vrm_meta: Resource) -> void:
 	else:
 		thumbnail_rect.hide()
 
-func _on_toggle_pressed() -> void:
-	is_expanded = not is_expanded
-	toggle_btn.text = "Hide Info" if is_expanded else "Show Info"
-	
-	var target_height: float = expanded_size if is_expanded else 0.0
-	var tween: Tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_property(content_panel, "custom_minimum_size:y", target_height, 0.3)
+

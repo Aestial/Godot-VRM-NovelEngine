@@ -17,10 +17,8 @@ extends VBoxContainer
 @onready var sky_horizon_color_picker: ColorPickerButton = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/SkyHorizonColorPicker
 @onready var toggle_ground_btn: CheckButton = $PanelContainer/ScrollContainer/MarginContainer/VBoxContainer/ToggleGroundBtn
 
-@onready var toggle_btn: Button = $ToggleEnvButton
 @onready var content_panel: PanelContainer = $PanelContainer
 
-var is_expanded: bool = true
 var expanded_size: float = 400.0
 
 func _ready() -> void:
@@ -32,7 +30,6 @@ func _ready() -> void:
 	sky_top_color_picker.color_changed.connect(_on_sky_top_color_changed)
 	sky_horizon_color_picker.color_changed.connect(_on_sky_horizon_color_changed)
 	toggle_ground_btn.toggled.connect(_on_ground_toggled)
-	toggle_btn.pressed.connect(_on_toggle_pressed)
 	
 	if light_node:
 		light_energy_slider.value = light_node.light_energy
@@ -102,10 +99,4 @@ func _on_ground_toggled(pressed: bool) -> void:
 	if ground_plane:
 		ground_plane.visible = pressed
 
-func _on_toggle_pressed() -> void:
-	is_expanded = !is_expanded
-	toggle_btn.text = "Hide Environment" if is_expanded else "Show Environment"
-	
-	var tween: Tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	var target_height: float = expanded_size if is_expanded else 0.0
-	tween.tween_property(content_panel, "custom_minimum_size:y", target_height, 0.3)
+

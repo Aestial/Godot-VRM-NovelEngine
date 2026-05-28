@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://1hlf5xvcrf0w"]
+
+[ext_resource type="Script" uid="uid://04lo5vpwvviw" path="res://samples/vrm_viewer/scripts/vrm_viewer_ui_expression_panel.gd" id="1_expr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.1, 0.1, 0.1, 0.8)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="ExpressionPanel" type="VBoxContainer" unique_id=51946623]
+offset_right = 250.0
+offset_bottom = 470.0
+script = ExtResource("1_expr")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1806901651]
+clip_contents = true
+custom_minimum_size = Vector2(250, 430)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=582152563]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1032476675]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=918324171]
+layout_mode = 2
+text = "Facial Expression"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2000000]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ExpressionList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=2000001]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+

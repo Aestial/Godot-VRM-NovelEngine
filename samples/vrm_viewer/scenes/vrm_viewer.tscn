@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://48p5tfa036s3" path="res://samples/vrm_viewer/scripts/vrm_viewer.gd" id="1_vrmv"]
 [ext_resource type="Script" uid="uid://bfiqyv0wkrcn5" path="res://samples/vrm_viewer/scripts/vrm_viewer_camera.gd" id="2_cam"]
+[ext_resource type="Texture2D" uid="uid://dxv845umur7rj" path="res://addons/kenney_prototype_textures/orange/texture_05.png" id="3_ifwec"]
 [ext_resource type="PackedScene" uid="uid://bawhekkspf4yi" path="res://samples/vrm_viewer/scenes/ui_meta_panel.tscn" id="3_titki"]
 [ext_resource type="PackedScene" uid="uid://o0nulymb6d1f" path="res://samples/vrm_viewer/scenes/ui_env_panel.tscn" id="4_k6w5u"]
+[ext_resource type="PackedScene" uid="uid://1hlf5xvcrf0w" path="res://samples/vrm_viewer/scenes/ui_expression_panel.tscn" id="5_expr"]
+[ext_resource type="PackedScene" uid="uid://cchg78l2jm2e2" path="res://samples/vrm_viewer/scenes/ui_motion_panel.tscn" id="6_motn"]
+[ext_resource type="Script" uid="uid://cypn0upxp3sab" path="res://samples/vrm_viewer/scripts/vrm_viewer_loading_spinner.gd" id="7_spinner"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_env"]
-energy_multiplier = 0.6
+energy_multiplier = 0.67
 
 [sub_resource type="Sky" id="Sky_env"]
 sky_material = SubResource("ProceduralSkyMaterial_env")
@@ -18,10 +22,12 @@ ambient_light_source = 3
 glow_enabled = true
 glow_bloom = 0.2
 fog_enabled = true
+fog_sky_affect = 0.85
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
-albedo_color = Color(0.23, 0.23, 0.23, 1)
+albedo_texture = ExtResource("3_ifwec")
 roughness = 0.8
+uv1_scale = Vector3(100, 100, 100)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ground"]
 material = SubResource("StandardMaterial3D_ground")
@@ -38,12 +44,13 @@ shadow_blur = 2.0
 directional_shadow_mode = 1
 directional_shadow_blend_splits = true
 
-[node name="CameraPivot" type="Node3D" parent="." unique_id=780848643]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+[node name="CameraPivot" type="Node3D" parent="." unique_id=780848643 node_paths=PackedStringArray("camera_pivot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 script = ExtResource("2_cam")
+camera_pivot = NodePath(".")
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=418550326]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=8246312]
 environment = SubResource("Environment_env")
@@ -64,20 +71,39 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="LoadButton" type="Button" parent="UI/Control" unique_id=469905139]
-layout_mode = 0
+[node name="TopMenuBar" type="PanelContainer" parent="UI/Control" unique_id=1000000]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
 offset_left = 20.0
-offset_top = 20.0
-offset_right = 140.0
-offset_bottom = 60.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = 65.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/TopMenuBar" unique_id=1000001]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/TopMenuBar/MarginContainer" unique_id=1000002]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LeftSection" type="HBoxContainer" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000003]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LoadButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection" unique_id=469905139]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
 text = "Load VRM"
 
-[node name="VersionOption" type="OptionButton" parent="UI/Control" unique_id=2022707543]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 20.0
-offset_right = 300.0
-offset_bottom = 60.0
+[node name="VersionOption" type="OptionButton" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection" unique_id=2022707543]
+custom_minimum_size = Vector2(130, 35)
+layout_mode = 2
 selected = 0
 item_count = 3
 popup/item_0/text = "Auto Detect"
@@ -87,35 +113,222 @@ popup/item_1/id = 1
 popup/item_2/text = "Force VRM 1.0"
 popup/item_2/id = 2
 
-[node name="HomeButton" type="Button" parent="UI/Control" unique_id=1257515146]
-layout_mode = 0
-offset_left = 320.0
-offset_top = 20.0
-offset_right = 440.0
-offset_bottom = 60.0
-text = "Home"
+[node name="SpacerLeft" type="Control" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000004]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterSection" type="HBoxContainer" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000005]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="InfoButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000008]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Model Info"
+
+[node name="LogsButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000012]
+custom_minimum_size = Vector2(80, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Logs"
+
+[node name="EnvButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000009]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Environment"
+
+[node name="ExpressionButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000010]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Expressions"
+
+[node name="MotionButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000011]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Motions"
+
+[node name="SpacerRight" type="Control" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000006]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightSection" type="HBoxContainer" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000007]
+layout_mode = 2
+alignment = 2
+
+[node name="HomeButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/RightSection" unique_id=1257515146]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+text = "Reset View"
 
 [node name="MessageLabel" type="Label" parent="UI/Control" unique_id=554453283]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -60.0
-offset_right = 200.0
-offset_bottom = -20.0
+offset_left = -180.0
+offset_top = 80.0
+offset_right = 180.0
+offset_bottom = 120.0
 grow_horizontal = 2
-grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
 horizontal_alignment = 1
 
 [node name="MetaPanel" parent="UI/Control" unique_id=59128470 instance=ExtResource("3_titki")]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
+offset_left = 20.0
+offset_top = 85.0
+offset_right = 320.0
+offset_bottom = 585.0
 
 [node name="EnvPanel" parent="UI/Control" unique_id=2096104143 instance=ExtResource("4_k6w5u")]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
+offset_left = -320.0
+offset_top = 85.0
+offset_right = -20.0
+offset_bottom = 585.0
+
+[node name="ExpressionPanel" parent="UI/Control" unique_id=271434058 instance=ExtResource("5_expr")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = -320.0
+offset_top = 85.0
+offset_right = -20.0
+offset_bottom = 585.0
+
+[node name="MotionPanel" parent="UI/Control" unique_id=346573769 instance=ExtResource("6_motn")]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = -320.0
+offset_top = 85.0
+offset_right = -20.0
+offset_bottom = 585.0
+
+[node name="ModalOverlay" type="ColorRect" parent="UI/Control" unique_id=1000013]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="StatusModal" type="PanelContainer" parent="UI/Control" unique_id=1000014]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -100.0
+offset_right = 180.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/StatusModal" unique_id=1000015]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/StatusModal/MarginContainer" unique_id=1000016]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="ModalTitle" type="Label" parent="UI/Control/StatusModal/MarginContainer/VBoxContainer" unique_id=1000017]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Loading VRM Avatar"
+horizontal_alignment = 1
+
+[node name="SpinnerControl" type="Control" parent="UI/Control/StatusModal/MarginContainer/VBoxContainer" unique_id=1000018]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("7_spinner")
+
+[node name="ModalDesc" type="Label" parent="UI/Control/StatusModal/MarginContainer/VBoxContainer" unique_id=1000019]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+text = "Preparing model loading..."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DismissButton" type="Button" parent="UI/Control/StatusModal/MarginContainer/VBoxContainer" unique_id=1000020]
+visible = false
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Dismiss"
+
+[node name="LogPanel" type="VBoxContainer" parent="UI/Control" unique_id=1000021]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 85.0
+offset_right = 320.0
+offset_bottom = 585.0
+grow_horizontal = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/Control/LogPanel" unique_id=1000022]
+clip_contents = true
+custom_minimum_size = Vector2(250, 430)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/LogPanel/PanelContainer" unique_id=1000023]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/LogPanel/PanelContainer/MarginContainer" unique_id=1000024]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="UI/Control/LogPanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=1000025]
+layout_mode = 2
+text = "Log History"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/Control/LogPanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=1000026]
+layout_mode = 2
+
+[node name="LogScroll" type="ScrollContainer" parent="UI/Control/LogPanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=1000027]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LogList" type="VBoxContainer" parent="UI/Control/LogPanel/PanelContainer/MarginContainer/VBoxContainer/LogScroll" unique_id=1000028]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="ClearLogsButton" type="Button" parent="UI/Control/LogPanel" unique_id=1000029]
+layout_mode = 2
+text = "Clear Logs"
 
 [node name="FileDialog" type="FileDialog" parent="UI" unique_id=1309118911]
 oversampling_override = 1.0
