@@ -65,23 +65,7 @@ func _create_expression_button(anim_name: String) -> Button:
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.custom_minimum_size = Vector2(0, 32)
 	
-	# Apply premium flat styling
-	var btn_normal := StyleBoxEmpty.new()
-	
-	var btn_hover := StyleBoxFlat.new()
-	btn_hover.bg_color = Color(1.0, 1.0, 1.0, 0.06)
-	btn_hover.corner_radius_top_left = 6
-	btn_hover.corner_radius_top_right = 6
-	btn_hover.corner_radius_bottom_left = 6
-	btn_hover.corner_radius_bottom_right = 6
-	
-	btn.add_theme_stylebox_override("normal", btn_normal)
-	btn.add_theme_stylebox_override("hover", btn_hover)
-	btn.add_theme_stylebox_override("pressed", btn_hover)
-	btn.add_theme_stylebox_override("focus", btn_normal)
-	btn.add_theme_color_override("font_color", Color(0.8, 0.8, 0.82))
-	btn.add_theme_color_override("font_hover_color", Color.WHITE)
-	btn.add_theme_color_override("font_pressed_color", Color.WHITE)
+	btn.theme_type_variation = "ListButton"
 	
 	btn.pressed.connect(func(): _on_button_pressed(btn, anim_name))
 	expression_list.add_child(btn)
@@ -92,25 +76,12 @@ func _on_button_pressed(btn: Button, anim_name: String) -> void:
 	if not _anim_player:
 		return
 		
-	# Update active button visuals
 	if _active_button:
-		var btn_normal := StyleBoxEmpty.new()
-		_active_button.add_theme_stylebox_override("normal", btn_normal)
-		_active_button.add_theme_color_override("font_color", Color(0.8, 0.8, 0.82))
+		_active_button.theme_type_variation = "ListButton"
 		
 	_active_button = btn
 	
-	var active_style := StyleBoxFlat.new()
-	active_style.bg_color = Color(0.0, 0.6, 1.0, 0.15)
-	active_style.corner_radius_top_left = 6
-	active_style.corner_radius_top_right = 6
-	active_style.corner_radius_bottom_left = 6
-	active_style.corner_radius_bottom_right = 6
-	active_style.border_width_left = 2
-	active_style.border_color = Color(0.0, 0.75, 1.0)
-	
-	btn.add_theme_stylebox_override("normal", active_style)
-	btn.add_theme_color_override("font_color", Color(0.2, 0.8, 1.0))
+	btn.theme_type_variation = "ListButtonActive"
 	
 	if _anim_player.has_animation("RESET"):
 		_anim_player.play("RESET")

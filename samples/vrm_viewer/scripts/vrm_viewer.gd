@@ -81,8 +81,8 @@ func _ready() -> void:
 	
 	message_label.text = ""
 	
-	# Apply premium visual design styling
-	_apply_theme_styling()
+	# Set initial menu button variations
+	_update_menu_button_visuals()
 	
 	# Set up landing welcome screen
 	_show_welcome_modal()
@@ -450,130 +450,7 @@ func _animate_panel_slide(panel: Control, open: bool, is_right_side: bool) -> vo
 		timer_tween.tween_interval(0.35)
 		timer_tween.tween_callback(panel.hide)
 
-func _apply_theme_styling() -> void:
-	var bar_style := StyleBoxFlat.new()
-	bar_style.bg_color = Color(0.07, 0.07, 0.09, 0.85)
-	bar_style.corner_radius_top_left = 12
-	bar_style.corner_radius_top_right = 12
-	bar_style.corner_radius_bottom_left = 12
-	bar_style.corner_radius_bottom_right = 12
-	bar_style.border_width_left = 1
-	bar_style.border_width_top = 1
-	bar_style.border_width_right = 1
-	bar_style.border_width_bottom = 1
-	bar_style.border_color = Color(1.0, 1.0, 1.0, 0.08)
-	bar_style.shadow_color = Color(0, 0, 0, 0.3)
-	bar_style.shadow_size = 10
-	bar_style.shadow_offset = Vector2(0, 4)
-	
-	var top_menu_bar = $UI/Control/TopMenuBar
-	top_menu_bar.add_theme_stylebox_override("panel", bar_style)
-	
-	var panel_style := StyleBoxFlat.new()
-	panel_style.bg_color = Color(0.07, 0.07, 0.09, 0.85)
-	panel_style.corner_radius_top_left = 12
-	panel_style.corner_radius_top_right = 12
-	panel_style.corner_radius_bottom_left = 12
-	panel_style.corner_radius_bottom_right = 12
-	panel_style.border_width_left = 1
-	panel_style.border_width_top = 1
-	panel_style.border_width_right = 1
-	panel_style.border_width_bottom = 1
-	panel_style.border_color = Color(1.0, 1.0, 1.0, 0.08)
-	panel_style.shadow_color = Color(0, 0, 0, 0.25)
-	panel_style.shadow_size = 8
-	panel_style.shadow_offset = Vector2(0, 3)
-	
-	meta_panel.get_node("PanelContainer").add_theme_stylebox_override("panel", panel_style)
-	expression_panel.get_node("PanelContainer").add_theme_stylebox_override("panel", panel_style)
-	motion_panel.get_node("PanelContainer").add_theme_stylebox_override("panel", panel_style)
-	env_panel.get_node("PanelContainer").add_theme_stylebox_override("panel", panel_style)
-	log_panel.get_node("PanelContainer").add_theme_stylebox_override("panel", panel_style)
-	
-	# Modal overlay transparent dark style
-	modal_overlay.color = Color(0.02, 0.02, 0.04, 0.45)
-	
-	# Initial reset style for loading modal
-	_reset_modal_to_center()
-	
-	# Custom styled empty scroll background for logs
-	var log_scroll_style := StyleBoxEmpty.new()
-	log_scroll.add_theme_stylebox_override("panel", log_scroll_style)
-	
-	var btn_normal := StyleBoxEmpty.new()
-	
-	var btn_hover := StyleBoxFlat.new()
-	btn_hover.bg_color = Color(1.0, 1.0, 1.0, 0.06)
-	btn_hover.corner_radius_top_left = 8
-	btn_hover.corner_radius_top_right = 8
-	btn_hover.corner_radius_bottom_left = 8
-	btn_hover.corner_radius_bottom_right = 8
-	
-	var buttons = [
-		load_button,
-		home_button,
-		info_button,
-		logs_button,
-		env_button,
-		expression_button,
-		motion_button,
-		clear_logs_button,
-		dismiss_button
-	]
-	
-	for btn in buttons:
-		btn.add_theme_stylebox_override("normal", btn_normal)
-		btn.add_theme_stylebox_override("hover", btn_hover)
-		btn.add_theme_stylebox_override("pressed", btn_hover)
-		btn.add_theme_stylebox_override("focus", btn_normal)
-		btn.add_theme_color_override("font_color", Color(0.85, 0.85, 0.88))
-		btn.add_theme_color_override("font_hover_color", Color(1.0, 1.0, 1.0))
-		btn.add_theme_color_override("font_pressed_color", Color(1.0, 1.0, 1.0))
-		
-	var opt_style_normal := StyleBoxFlat.new()
-	opt_style_normal.bg_color = Color(1.0, 1.0, 1.0, 0.04)
-	opt_style_normal.corner_radius_top_left = 8
-	opt_style_normal.corner_radius_top_right = 8
-	opt_style_normal.corner_radius_bottom_left = 8
-	opt_style_normal.corner_radius_bottom_right = 8
-	opt_style_normal.border_width_left = 1
-	opt_style_normal.border_width_top = 1
-	opt_style_normal.border_width_right = 1
-	opt_style_normal.border_width_bottom = 1
-	opt_style_normal.border_color = Color(1.0, 1.0, 1.0, 0.06)
-	
-	var opt_style_hover := StyleBoxFlat.new()
-	opt_style_hover.bg_color = Color(1.0, 1.0, 1.0, 0.08)
-	opt_style_hover.corner_radius_top_left = 8
-	opt_style_hover.corner_radius_top_right = 8
-	opt_style_hover.corner_radius_bottom_left = 8
-	opt_style_hover.corner_radius_bottom_right = 8
-	opt_style_hover.border_width_left = 1
-	opt_style_hover.border_width_top = 1
-	opt_style_hover.border_width_right = 1
-	opt_style_hover.border_width_bottom = 1
-	opt_style_hover.border_color = Color(1.0, 1.0, 1.0, 0.12)
-
-	version_option.add_theme_stylebox_override("normal", opt_style_normal)
-	version_option.add_theme_stylebox_override("hover", opt_style_hover)
-	version_option.add_theme_stylebox_override("focus", opt_style_normal)
-	version_option.add_theme_color_override("font_color", Color(0.85, 0.85, 0.88))
-	version_option.add_theme_color_override("font_hover_color", Color(1.0, 1.0, 1.0))
-	
-	_update_menu_button_visuals()
-
 func _update_menu_button_visuals() -> void:
-	var active_tab_style := StyleBoxFlat.new()
-	active_tab_style.bg_color = Color(0.0, 0.6, 1.0, 0.12)
-	active_tab_style.corner_radius_top_left = 8
-	active_tab_style.corner_radius_top_right = 8
-	active_tab_style.corner_radius_bottom_left = 8
-	active_tab_style.corner_radius_bottom_right = 8
-	active_tab_style.border_width_bottom = 2
-	active_tab_style.border_color = Color(0.0, 0.75, 1.0)
-	
-	var normal_tab_style := StyleBoxEmpty.new()
-	
 	var tabs = {
 		info_button: _active_right_panel == "info",
 		logs_button: _active_right_panel == "log",
@@ -585,14 +462,9 @@ func _update_menu_button_visuals() -> void:
 	for btn in tabs.keys():
 		var is_active = tabs[btn]
 		if is_active:
-			btn.add_theme_stylebox_override("normal", active_tab_style)
-			btn.add_theme_stylebox_override("hover", active_tab_style)
-			btn.add_theme_color_override("font_color", Color(0.2, 0.8, 1.0))
-			btn.add_theme_color_override("font_hover_color", Color(0.4, 0.85, 1.0))
+			btn.theme_type_variation = "MenuTabButton"
 		else:
-			btn.add_theme_stylebox_override("normal", normal_tab_style)
-			btn.add_theme_color_override("font_color", Color(0.85, 0.85, 0.88))
-			btn.add_theme_color_override("font_hover_color", Color(1.0, 1.0, 1.0))
+			btn.theme_type_variation = ""
 
 # --- Status Modal & Log History Helpers ---
 
@@ -692,22 +564,7 @@ func _reset_modal_to_center() -> void:
 	status_modal.offset_right = 180.0
 	status_modal.offset_top = -100.0
 	status_modal.offset_bottom = 100.0
-	
-	var modal_style := StyleBoxFlat.new()
-	modal_style.bg_color = Color(0.08, 0.08, 0.1, 0.95)
-	modal_style.corner_radius_top_left = 12
-	modal_style.corner_radius_top_right = 12
-	modal_style.corner_radius_bottom_left = 12
-	modal_style.corner_radius_bottom_right = 12
-	modal_style.border_width_left = 1
-	modal_style.border_width_top = 1
-	modal_style.border_width_right = 1
-	modal_style.border_width_bottom = 1
-	modal_style.border_color = Color(1.0, 1.0, 1.0, 0.1)
-	modal_style.shadow_color = Color(0, 0, 0, 0.4)
-	modal_style.shadow_size = 15
-	modal_style.shadow_offset = Vector2(0, 5)
-	status_modal.add_theme_stylebox_override("panel", modal_style)
+	status_modal.theme_type_variation = "StatusModal"
 
 func _transition_to_success_toast() -> void:
 	modal_overlay.hide()
@@ -718,21 +575,7 @@ func _transition_to_success_toast() -> void:
 	modal_desc.text = "Avatar loaded successfully!"
 	modal_desc.add_theme_color_override("font_color", Color(0.3, 1.0, 0.3))
 	
-	var success_style := StyleBoxFlat.new()
-	success_style.bg_color = Color(0.06, 0.12, 0.08, 0.95)
-	success_style.corner_radius_top_left = 12
-	success_style.corner_radius_top_right = 12
-	success_style.corner_radius_bottom_left = 12
-	success_style.corner_radius_bottom_right = 12
-	success_style.border_width_left = 1
-	success_style.border_width_top = 1
-	success_style.border_width_right = 1
-	success_style.border_width_bottom = 1
-	success_style.border_color = Color(0.3, 1.0, 0.3, 0.35)
-	success_style.shadow_color = Color(0, 0, 0, 0.25)
-	success_style.shadow_size = 8
-	success_style.shadow_offset = Vector2(0, 2)
-	status_modal.add_theme_stylebox_override("panel", success_style)
+	status_modal.theme_type_variation = "SuccessModal"
 	
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	status_modal.set_meta("active_tween", tween)
