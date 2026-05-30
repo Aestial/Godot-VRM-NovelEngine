@@ -80,6 +80,7 @@ func _create_motion_button(display_name: String, anim_name: String) -> Button:
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.custom_minimum_size = Vector2(0, 32)
 	
+	btn.theme = load("res://samples/vrm_viewer/vrm_viewer_theme.tres")
 	btn.theme_type_variation = "ListButton"
 	
 	btn.set_meta("anim_name", anim_name)

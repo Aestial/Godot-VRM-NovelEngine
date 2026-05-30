@@ -65,6 +65,7 @@ func _create_expression_button(anim_name: String) -> Button:
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.custom_minimum_size = Vector2(0, 32)
 	
+	btn.theme = load("res://samples/vrm_viewer/vrm_viewer_theme.tres")
 	btn.theme_type_variation = "ListButton"
 	
 	btn.pressed.connect(func(): _on_button_pressed(btn, anim_name))
