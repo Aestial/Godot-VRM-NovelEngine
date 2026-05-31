@@ -71,64 +71,79 @@ theme_override_font_sizes/font_size = 20
 text = "Model Library"
 
 [node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeaderRow"]
-custom_minimum_size = Vector2(80, 35)
-layout_mode = 2
-text = "Close"
-
-[node name="Columns" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="Recent" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Columns"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Columns/Recent"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "Recent Models"
+text = "✕"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Columns/Recent"]
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 0
+
+[node name="Recent Models" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Recent Models"]
+layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="FlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Columns/Recent/ScrollContainer"]
+[node name="GridContainer" type="FlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Recent Models/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
 
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/Columns"]
+[node name="Bundled Models" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
 
-[node name="Bundled" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Columns"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models"]
 layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Columns/Bundled"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Bundled Models"
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Columns/Bundled"]
-layout_mode = 2
-size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Columns/Bundled/ScrollContainer"]
+[node name="GridContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="FooterRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LocalFilePanel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"StatusModal"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="FooterRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer"]
 layout_mode = 2
 alignment = 1
 theme_override_constants/separation = 20
 
-[node name="VersionOption" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/FooterRow"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow"]
+layout_mode = 2
+text = "Local File:"
+
+[node name="BrowseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+text = "Browse..."
+
+[node name="VersionOption" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow"]
 custom_minimum_size = Vector2(160, 40)
 layout_mode = 2
 selected = 0
@@ -140,7 +155,3 @@ popup/item_1/id = 1
 popup/item_2/text = "Force VRM 1.0"
 popup/item_2/id = 2
 
-[node name="BrowseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/FooterRow"]
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
-text = "Browse Local File..."

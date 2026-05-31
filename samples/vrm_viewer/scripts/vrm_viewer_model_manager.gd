@@ -3,12 +3,12 @@ extends Control
 signal model_selected(path: String)
 signal browse_local_requested()
 
-@onready var recent_grid: FlowContainer = $PanelContainer/MarginContainer/VBoxContainer/Columns/Recent/ScrollContainer/GridContainer
-@onready var bundled_grid: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/Columns/Bundled/ScrollContainer/GridContainer
+@onready var recent_grid: FlowContainer = $"PanelContainer/MarginContainer/VBoxContainer/TabContainer/Recent Models/ScrollContainer/GridContainer"
+@onready var bundled_grid: VBoxContainer = $"PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models/ScrollContainer/GridContainer"
 
 @onready var close_button: Button = $PanelContainer/MarginContainer/VBoxContainer/HeaderRow/CloseButton
-@onready var browse_button: Button = $PanelContainer/MarginContainer/VBoxContainer/FooterRow/BrowseButton
-@onready var version_option: OptionButton = $PanelContainer/MarginContainer/VBoxContainer/FooterRow/VersionOption
+@onready var browse_button: Button = $PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow/BrowseButton
+@onready var version_option: OptionButton = $PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow/VersionOption
 
 var RECENT_MODELS_FILE = "user://recent_models.json"
 var THUMBNAILS_DIR = "user://thumbnails/"
@@ -155,11 +155,17 @@ func _create_model_card(title: String, path: String, thumb_path: String, version
 	)
 	
 	var vbox = VBoxContainer.new()
+	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT, Control.PRESET_MODE_MINSIZE, 8)
 	btn.add_child(vbox)
 	
+	var image_container = Control.new()
+	image_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	image_container.custom_minimum_size = Vector2(144, 144)
+	
 	var tex_rect = TextureRect.new()
-	tex_rect.custom_minimum_size = Vector2(144, 144)
+	tex_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	tex_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	
@@ -171,17 +177,37 @@ func _create_model_card(title: String, path: String, thumb_path: String, version
 	if tex_rect.texture == null:
 		# Placeholder
 		var placeholder = ColorRect.new()
+		placeholder.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		placeholder.color = Color(0.2, 0.2, 0.25)
-		placeholder.custom_minimum_size = Vector2(144, 144)
+		placeholder.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		tex_rect.add_child(placeholder)
 		var lbl = Label.new()
+		lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		lbl.text = "No Thumb"
 		lbl.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 		placeholder.add_child(lbl)
 		
-	vbox.add_child(tex_rect)
+	image_container.add_child(tex_rect)
+	
+	if version_text != "":
+		var ver_lbl = Label.new()
+		ver_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		ver_lbl.text = "  " + version_text + "  "
+		ver_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		var style = StyleBoxFlat.new()
+		style.bg_color = Color(0, 0, 0, 0.6)
+		style.corner_radius_bottom_left = 6
+		style.corner_radius_top_right = 6
+		ver_lbl.add_theme_stylebox_override("normal", style)
+		ver_lbl.add_theme_font_size_override("font_size", 12)
+		ver_lbl.add_theme_color_override("font_color", Color(0.4, 0.85, 1.0))
+		ver_lbl.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+		image_container.add_child(ver_lbl)
+		
+	vbox.add_child(image_container)
 	
 	var title_lbl = Label.new()
+	title_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	title_lbl.text = title
 	title_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD
@@ -190,13 +216,5 @@ func _create_model_card(title: String, path: String, thumb_path: String, version
 	title_lbl.add_theme_font_size_override("font_size", 13)
 	title_lbl.add_theme_color_override("font_color", Color(0.9, 0.9, 0.9))
 	vbox.add_child(title_lbl)
-	
-	if version_text != "":
-		var ver_lbl = Label.new()
-		ver_lbl.text = version_text
-		ver_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		ver_lbl.add_theme_font_size_override("font_size", 11)
-		ver_lbl.add_theme_color_override("font_color", Color(0.4, 0.85, 1.0))
-		vbox.add_child(ver_lbl)
 	
 	return btn
