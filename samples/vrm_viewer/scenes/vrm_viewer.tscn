@@ -268,17 +268,6 @@ custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 text = "Load VRM"
 
-[node name="VersionOption" type="OptionButton" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection" unique_id=2022707543]
-custom_minimum_size = Vector2(130, 35)
-layout_mode = 2
-selected = 0
-item_count = 3
-popup/item_0/text = "Auto Detect"
-popup/item_0/id = 0
-popup/item_1/text = "Force VRM 0.0"
-popup/item_1/id = 1
-popup/item_2/text = "Force VRM 1.0"
-popup/item_2/id = 2
 
 [node name="SpacerLeft" type="Control" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000004]
 layout_mode = 2

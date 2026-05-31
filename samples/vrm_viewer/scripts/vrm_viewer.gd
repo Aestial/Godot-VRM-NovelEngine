@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var load_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection/LoadButton
+@onready var model_manager_scene = preload("res://samples/vrm_viewer/scenes/ui_model_manager.tscn")
 @onready var message_label: Label = $UI/Control/MessageLabel
 @onready var file_dialog: FileDialog = $UI/FileDialog
 @onready var model_pivot: Node3D = $ModelPivot
@@ -9,7 +10,7 @@ extends Node3D
 @onready var env_panel: VBoxContainer = $UI/Control/EnvPanel
 @onready var expression_panel: VBoxContainer = $UI/Control/ExpressionPanel
 @onready var motion_panel: VBoxContainer = $UI/Control/MotionPanel
-@onready var version_option: OptionButton = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection/VersionOption
+@onready var add_log_method = Callable(self, "add_log")
 @onready var home_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/RightSection/HomeButton
 @onready var camera_pivot: Node3D = $CameraPivot
 
@@ -45,10 +46,19 @@ var _file_access_web: RefCounted = null # FileAccessWeb (only on web builds)
 var _active_left_panel: String = ""
 var _active_right_panel: String = ""
 
+var _model_manager: Control = null
+
 func _ready() -> void:
 	_is_web = OS.get_name() == "Web"
 	
-	load_button.pressed.connect(_on_load_button_pressed)
+	_model_manager = model_manager_scene.instantiate()
+	_model_manager.hide()
+	$UI/Control.add_child(_model_manager)
+	_model_manager.model_selected.connect(_on_file_selected)
+	_model_manager.browse_local_requested.connect(_on_browse_local_requested)
+	
+	load_button.text = "Library"
+	load_button.pressed.connect(func(): _model_manager.open())
 	home_button.pressed.connect(_on_home_button_pressed)
 	
 	if _is_web:
@@ -94,7 +104,7 @@ func _on_home_button_pressed() -> void:
 	if camera_pivot.has_method("reset_camera"):
 		camera_pivot.reset_camera()
 
-func _on_load_button_pressed() -> void:
+func _on_browse_local_requested() -> void:
 	if _is_web:
 		_file_access_web.open(".vrm")
 	else:
@@ -120,11 +130,10 @@ func _load_default_model() -> void:
 	
 	# Step 1: Try loading from bundled res:// path (works on all platforms)
 	if default_model_path != "" and FileAccess.file_exists(default_model_path):
-		update_status("Trying bundled model: " + default_model_path, "info")
-		var force_version: int = version_option.get_selected_id()
+		var force_version: int = _model_manager.get_force_version() if _model_manager else 0
 		var result: Dictionary = VRMLoader.load_vrm_from_res(default_model_path, force_version)
 		if result["success"]:
-			_apply_load_result(result)
+			_apply_load_result(result, default_model_path)
 			return
 		else:
 			update_status("Bundled model failed: " + result["error_msg"], "error")
@@ -163,13 +172,13 @@ func _on_remote_model_downloaded(result: int, response_code: int, body: PackedBy
 		_show_no_default_model_message()
 		return
 	
-	update_status("Remote model downloaded (%d bytes), parsing..." % body.size(), "info")
+	modal_desc.text = "Parsing Web VRM file..."
 	
-	var force_version: int = version_option.get_selected_id()
+	var force_version: int = _model_manager.get_force_version() if _model_manager else 0
 	var load_result: Dictionary = VRMLoader.load_vrm_from_buffer(body, force_version)
 	
 	if load_result["success"]:
-		_apply_load_result(load_result)
+		_apply_load_result(load_result, "")
 	else:
 		update_status("Remote model parse failed: " + load_result["error_msg"], "error")
 		_show_no_default_model_message()
@@ -203,10 +212,12 @@ func _on_web_file_loaded(file_name: String, _file_type: String, base64_data: Str
 	# Decode base64 to raw bytes
 	var raw_data: PackedByteArray = Marshalls.base64_to_raw(base64_data)
 	
-	var force_version: int = version_option.get_selected_id()
+	modal_desc.text = "Parsing Drag-and-Drop VRM file..."
+	
+	var force_version: int = _model_manager.get_force_version() if _model_manager else 0
 	var result: Dictionary = VRMLoader.load_vrm_from_buffer(raw_data, force_version)
 	
-	_apply_load_result(result)
+	_apply_load_result(result, "")
 
 func _on_web_file_error() -> void:
 	update_status("Error: Failed to read the uploaded web file.", "error")
@@ -239,7 +250,7 @@ func _on_file_selected(path: String) -> void:
 	
 	await get_tree().process_frame
 	
-	var force_version: int = version_option.get_selected_id()
+	var force_version: int = _model_manager.get_force_version() if _model_manager else 0
 	var result: Dictionary
 	
 	# Use buffer-based loading for res:// paths (cross-platform safe),
@@ -249,11 +260,11 @@ func _on_file_selected(path: String) -> void:
 	else:
 		result = VRMLoader.load_vrm(path, force_version)
 	
-	_apply_load_result(result)
+	_apply_load_result(result, path)
 
 # --- Shared result handling ---
 
-func _apply_load_result(result: Dictionary) -> void:
+func _apply_load_result(result: Dictionary, path: String = "") -> void:
 	if result["success"]:
 		var ps: PackedScene = PackedScene.new()
 		ps.pack(result["node"])
@@ -285,6 +296,9 @@ func _apply_load_result(result: Dictionary) -> void:
 		# Auto-open Info Panel on load (if not currently checking logs)
 		if _active_right_panel != "log":
 			_toggle_right_panel("info")
+			
+		if path != "":
+			_model_manager.add_to_recent(path, current_model.get("vrm_meta"))
 			
 		_transition_to_success_toast()
 			
@@ -511,7 +525,7 @@ func update_status(message: String, type: String = "info") -> void:
 func _show_welcome_modal() -> void:
 	_reset_modal_to_center()
 	modal_title.text = "Welcome to VRM Viewer"
-	modal_desc.text = "Click 'Load VRM' in the top-left to select your avatar."
+	modal_desc.text = "Click 'Library' in the top-left to select your avatar."
 	spinner_control.hide()
 	dismiss_button.text = "OK"
 	dismiss_button.show()
