@@ -4,14 +4,14 @@ signal model_selected(path: String)
 signal browse_local_requested()
 
 @onready var recent_grid: FlowContainer = $"PanelContainer/MarginContainer/VBoxContainer/TabContainer/Recent Models/ScrollContainer/GridContainer"
-@onready var bundled_grid: VBoxContainer = $"PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models/ScrollContainer/GridContainer"
+@onready var bundled_grid: FlowContainer = $"PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models/ScrollContainer/GridContainer"
 
 @onready var close_button: Button = $PanelContainer/MarginContainer/VBoxContainer/HeaderRow/CloseButton
 @onready var browse_button: Button = $PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow/BrowseButton
 @onready var version_option: OptionButton = $PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow/VersionOption
 
-var RECENT_MODELS_FILE = "user://recent_models.json"
-var THUMBNAILS_DIR = "user://thumbnails/"
+var RECENT_MODELS_FILE: String = "user://recent_models.json"
+var THUMBNAILS_DIR: String = "user://thumbnails/"
 
 var recent_models: Array = []
 var bundled_models: Array = []
@@ -41,7 +41,7 @@ func add_to_recent(path: String, vrm_meta: Resource) -> void:
 		if recent_models[i]["path"] == path:
 			recent_models.remove_at(i)
 	
-	var model_data = {
+	var model_data: Dictionary[Variant, Variant] = {
 		"path": path,
 		"title": path.get_file(),
 		"thumb_path": "",
@@ -55,8 +55,8 @@ func add_to_recent(path: String, vrm_meta: Resource) -> void:
 			
 		var thumb: Texture2D = vrm_meta.get("thumbnail_image")
 		if thumb and thumb.get_image():
-			var hash_name = str(path.hash()) + ".png"
-			var thumb_path = THUMBNAILS_DIR + hash_name
+			var hash_name: String = str(path.hash()) + ".png"
+			var thumb_path: String = THUMBNAILS_DIR + hash_name
 			thumb.get_image().save_png(thumb_path)
 			model_data["thumb_path"] = thumb_path
 			
@@ -76,33 +76,35 @@ func add_to_recent(path: String, vrm_meta: Resource) -> void:
 
 func _load_recent_models() -> void:
 	if FileAccess.file_exists(RECENT_MODELS_FILE):
-		var file = FileAccess.open(RECENT_MODELS_FILE, FileAccess.READ)
-		var json = JSON.new()
+		var file: FileAccess = FileAccess.open(RECENT_MODELS_FILE, FileAccess.READ)
+		var json: JSON = JSON.new()
 		if json.parse(file.get_as_text()) == OK:
 			var data = json.get_data()
 			if data is Array:
 				recent_models = data
 
 func _save_recent_models() -> void:
-	var file = FileAccess.open(RECENT_MODELS_FILE, FileAccess.WRITE)
+	var file: FileAccess = FileAccess.open(RECENT_MODELS_FILE, FileAccess.WRITE)
 	file.store_string(JSON.stringify(recent_models, "\t"))
 
 func _populate_bundled_models() -> void:
 	bundled_models.clear()
 	# Search standard bundled directories
-	var search_dirs = ["res://samples/character_samples/vrm", "res://models", "res://"]
+	var search_dirs: Array[Variant] = ["res://samples/character_samples/vrm", "res://models", "res://"]
 	for dir in search_dirs:
 		if DirAccess.dir_exists_absolute(dir):
-			var da = DirAccess.open(dir)
+			var da: DirAccess = DirAccess.open(dir)
 			if da:
 				da.list_dir_begin()
-				var file_name = da.get_next()
+				var file_name: String = da.get_next()
 				while file_name != "":
 					if not da.current_is_dir() and (file_name.ends_with(".vrm") or file_name.ends_with(".vrma")):
 						var full_path = dir.path_join(file_name)
 						if not bundled_models.has(full_path):
 							bundled_models.append(full_path)
 					file_name = da.get_next()
+	
+	_preload_bundled_thumbnails()
 
 func _refresh_ui() -> void:
 	# Refresh Recent
@@ -110,13 +112,13 @@ func _refresh_ui() -> void:
 		child.queue_free()
 		
 	if recent_models.is_empty():
-		var lbl = Label.new()
+		var lbl: Label = Label.new()
 		lbl.text = "No recent models."
 		lbl.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 		recent_grid.add_child(lbl)
 	else:
 		for data in recent_models:
-			var btn = _create_model_card(data["title"], data["path"], data.get("thumb_path", ""), data.get("version", ""))
+			var btn: Control = _create_model_card(data["title"], data["path"], data.get("thumb_path", ""), data.get("version", ""))
 			recent_grid.add_child(btn)
 			
 	# Refresh Bundled
@@ -124,29 +126,36 @@ func _refresh_ui() -> void:
 		child.queue_free()
 		
 	if bundled_models.is_empty():
-		var lbl = Label.new()
+		var lbl: Label = Label.new()
 		lbl.text = "No bundled models found. (Did you mount a Models.pck?)"
 		lbl.add_theme_color_override("font_color", Color(0.6, 0.6, 0.6))
 		bundled_grid.add_child(lbl)
 	else:
 		for path in bundled_models:
-			var btn = _create_bundled_card(path.get_file(), path)
+			var hash_name: String = str(path.hash()) + ".png"
+			var thumb_path: String = THUMBNAILS_DIR + hash_name
+			var btn: Control = _create_model_card(path.get_file(), path, thumb_path, "")
 			bundled_grid.add_child(btn)
 
-func _create_bundled_card(title: String, path: String) -> Control:
-	var btn = Button.new()
-	btn.custom_minimum_size = Vector2(0, 40)
-	btn.text = title
-	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
-	btn.theme_type_variation = "ListButton"
-	btn.pressed.connect(func():
-		hide()
-		model_selected.emit(path)
-	)
-	return btn
+func _preload_bundled_thumbnails() -> void:
+	for path in bundled_models:
+		var hash_name: String = str(path.hash()) + ".png"
+		var thumb_path: String = THUMBNAILS_DIR + hash_name
+		if not FileAccess.file_exists(thumb_path):
+			var result: Dictionary = VRMLoader.load_vrm_from_res(path, 0)
+			if result["success"] and result["node"]:
+				var meta = result["node"].get("vrm_meta")
+				if meta:
+					var thumb: Texture2D = meta.get("thumbnail_image")
+					if thumb and thumb.get_image():
+						thumb.get_image().save_png(thumb_path)
+				result["node"].queue_free()
+			await get_tree().process_frame
+	if visible:
+		_refresh_ui()
 
 func _create_model_card(title: String, path: String, thumb_path: String, version_text: String) -> Control:
-	var btn = Button.new()
+	var btn: Button = Button.new()
 	btn.custom_minimum_size = Vector2(160, 200)
 	btn.theme_type_variation = "MenuTabButton" # Using our premium tab style or a custom style
 	btn.pressed.connect(func():
@@ -154,34 +163,34 @@ func _create_model_card(title: String, path: String, thumb_path: String, version
 		model_selected.emit(path)
 	)
 	
-	var vbox = VBoxContainer.new()
+	var vbox: VBoxContainer = VBoxContainer.new()
 	vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	vbox.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT, Control.PRESET_MODE_MINSIZE, 8)
 	btn.add_child(vbox)
 	
-	var image_container = Control.new()
+	var image_container: Control = Control.new()
 	image_container.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	image_container.custom_minimum_size = Vector2(144, 144)
 	
-	var tex_rect = TextureRect.new()
+	var tex_rect: TextureRect = TextureRect.new()
 	tex_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	tex_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	tex_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	
 	if thumb_path != "" and FileAccess.file_exists(thumb_path):
-		var img = Image.load_from_file(thumb_path)
+		var img: Image = Image.load_from_file(thumb_path)
 		if img:
 			tex_rect.texture = ImageTexture.create_from_image(img)
 	
 	if tex_rect.texture == null:
 		# Placeholder
-		var placeholder = ColorRect.new()
+		var placeholder: ColorRect = ColorRect.new()
 		placeholder.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		placeholder.color = Color(0.2, 0.2, 0.25)
 		placeholder.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		tex_rect.add_child(placeholder)
-		var lbl = Label.new()
+		var lbl: Label = Label.new()
 		lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		lbl.text = "No Thumb"
 		lbl.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
@@ -190,11 +199,11 @@ func _create_model_card(title: String, path: String, thumb_path: String, version
 	image_container.add_child(tex_rect)
 	
 	if version_text != "":
-		var ver_lbl = Label.new()
+		var ver_lbl: Label = Label.new()
 		ver_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		ver_lbl.text = "  " + version_text + "  "
 		ver_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		var style = StyleBoxFlat.new()
+		var style: StyleBoxFlat = StyleBoxFlat.new()
 		style.bg_color = Color(0, 0, 0, 0.6)
 		style.corner_radius_bottom_left = 6
 		style.corner_radius_top_right = 6
@@ -206,7 +215,7 @@ func _create_model_card(title: String, path: String, thumb_path: String, version
 		
 	vbox.add_child(image_container)
 	
-	var title_lbl = Label.new()
+	var title_lbl: Label = Label.new()
 	title_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	title_lbl.text = title
 	title_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

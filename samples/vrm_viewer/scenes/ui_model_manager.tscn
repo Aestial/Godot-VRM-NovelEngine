@@ -112,10 +112,11 @@ metadata/_tab_index = 1
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models/ScrollContainer"]
+[node name="GridContainer" type="FlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 10
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
 
 [node name="LocalFilePanel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

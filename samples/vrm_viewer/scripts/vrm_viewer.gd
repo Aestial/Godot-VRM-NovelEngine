@@ -48,8 +48,21 @@ var _active_right_panel: String = ""
 
 var _model_manager: Control = null
 
+func _try_load_pcks() -> void:
+	var exe_dir: String = OS.get_executable_path().get_base_dir()
+	var exe_pck: String = exe_dir.path_join("Models.pck")
+	if FileAccess.file_exists(exe_pck):
+		if ProjectSettings.load_resource_pack(exe_pck):
+			print("Loaded PCK: ", exe_pck)
+	
+	var user_pck: String = "user://Models.pck"
+	if FileAccess.file_exists(user_pck):
+		if ProjectSettings.load_resource_pack(user_pck):
+			print("Loaded PCK: ", user_pck)
+
 func _ready() -> void:
 	_is_web = OS.get_name() == "Web"
+	_try_load_pcks()
 	
 	_model_manager = model_manager_scene.instantiate()
 	_model_manager.hide()
