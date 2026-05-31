@@ -1,17 +1,13 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://djab1vrmviewr"]
 
-[ext_resource type="Script" path="res://samples/vrm_viewer/scripts/vrm_viewer.gd" id="1_vrmv"]
-[ext_resource type="Script" path="res://samples/vrm_viewer/scripts/vrm_viewer_camera.gd" id="2_cam"]
-[ext_resource type="Texture2D" path="res://addons/kenney_prototype_textures/orange/texture_05.png" id="3_ifwec"]
-[ext_resource type="PackedScene" path="res://samples/vrm_viewer/scenes/ui_meta_panel.tscn" id="3_titki"]
-[ext_resource type="PackedScene" path="res://samples/vrm_viewer/scenes/ui_env_panel.tscn" id="4_k6w5u"]
-[ext_resource type="PackedScene" path="res://samples/vrm_viewer/scenes/ui_expression_panel.tscn" id="5_expr"]
-[ext_resource type="Script" path="res://samples/vrm_viewer/scripts/vrm_viewer_ui_meta_panel.gd" id="5_f6vug"]
-[ext_resource type="PackedScene" path="res://samples/vrm_viewer/scenes/ui_motion_panel.tscn" id="6_motn"]
-[ext_resource type="Script" path="res://samples/vrm_viewer/scripts/vrm_viewer_loading_spinner.gd" id="7_spinner"]
-[ext_resource type="Script" path="res://samples/vrm_viewer/scripts/vrm_viewer_ui_env_panel.gd" id="7_u6680"]
-[ext_resource type="Script" path="res://samples/vrm_viewer/scripts/vrm_viewer_ui_expression_panel.gd" id="9_rs06r"]
-[ext_resource type="Script" path="res://samples/vrm_viewer/scripts/vrm_viewer_ui_motion_panel.gd" id="11_y65il"]
+[ext_resource type="Script" uid="uid://48p5tfa036s3" path="res://samples/vrm_viewer/scripts/vrm_viewer.gd" id="1_vrmv"]
+[ext_resource type="Script" uid="uid://bfiqyv0wkrcn5" path="res://samples/vrm_viewer/scripts/vrm_viewer_camera.gd" id="2_cam"]
+[ext_resource type="Texture2D" uid="uid://dxv845umur7rj" path="res://addons/kenney_prototype_textures/orange/texture_05.png" id="3_ifwec"]
+[ext_resource type="PackedScene" uid="uid://bawhekkspf4yi" path="res://samples/vrm_viewer/scenes/ui_meta_panel.tscn" id="3_titki"]
+[ext_resource type="PackedScene" uid="uid://o0nulymb6d1f" path="res://samples/vrm_viewer/scenes/ui_env_panel.tscn" id="4_k6w5u"]
+[ext_resource type="PackedScene" uid="uid://1hlf5xvcrf0w" path="res://samples/vrm_viewer/scenes/ui_expression_panel.tscn" id="5_expr"]
+[ext_resource type="PackedScene" uid="uid://cchg78l2jm2e2" path="res://samples/vrm_viewer/scenes/ui_motion_panel.tscn" id="6_motn"]
+[ext_resource type="Script" uid="uid://cypn0upxp3sab" path="res://samples/vrm_viewer/scripts/vrm_viewer_loading_spinner.gd" id="7_spinner"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_env"]
 energy_multiplier = 0.67
@@ -263,11 +259,10 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="LoadButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection" unique_id=469905139]
+[node name="LibraryButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection" unique_id=469905139]
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
-text = "Load VRM"
-
+text = "Library"
 
 [node name="SpacerLeft" type="Control" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000004]
 layout_mode = 2
@@ -277,24 +272,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
-
-[node name="InfoButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000008]
-custom_minimum_size = Vector2(100, 35)
-layout_mode = 2
-toggle_mode = true
-text = "Model Info"
-
-[node name="LogsButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000012]
-custom_minimum_size = Vector2(80, 35)
-layout_mode = 2
-toggle_mode = true
-text = "Logs"
-
-[node name="EnvButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000009]
-custom_minimum_size = Vector2(110, 35)
-layout_mode = 2
-toggle_mode = true
-text = "Environment"
 
 [node name="ExpressionButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000010]
 custom_minimum_size = Vector2(110, 35)
@@ -307,6 +284,25 @@ custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 toggle_mode = true
 text = "Motions"
+
+[node name="SceneButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000009]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Scene
+"
+
+[node name="LogsButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000012]
+custom_minimum_size = Vector2(80, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Logs"
+
+[node name="InfoButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000008]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Model Info"
 
 [node name="SpacerRight" type="Control" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000006]
 layout_mode = 2
@@ -334,21 +330,16 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
 horizontal_alignment = 1
 
-[node name="MetaPanel" type="VBoxContainer" parent="UI/Control" unique_id=59128470 instance=ExtResource("3_titki")]
+[node name="MetaPanel" parent="UI/Control" unique_id=59128470 instance=ExtResource("3_titki")]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
 offset_left = 20.0
 offset_top = 85.0
 offset_right = 320.0
 offset_bottom = 585.0
-grow_horizontal = 0
-script = ExtResource("5_f6vug")
 
-[node name="EnvPanel" type="VBoxContainer" parent="UI/Control" unique_id=2096104143 instance=ExtResource("4_k6w5u")]
+[node name="ScenePanel" parent="UI/Control" unique_id=2096104143 instance=ExtResource("4_k6w5u")]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -356,9 +347,8 @@ offset_left = -320.0
 offset_top = 85.0
 offset_right = -20.0
 offset_bottom = 585.0
-script = ExtResource("7_u6680")
 
-[node name="ExpressionPanel" type="VBoxContainer" parent="UI/Control" unique_id=271434058 instance=ExtResource("5_expr")]
+[node name="ExpressionPanel" parent="UI/Control" unique_id=271434058 instance=ExtResource("5_expr")]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -366,9 +356,8 @@ offset_left = -320.0
 offset_top = 85.0
 offset_right = -20.0
 offset_bottom = 585.0
-script = ExtResource("9_rs06r")
 
-[node name="MotionPanel" type="VBoxContainer" parent="UI/Control" unique_id=346573769 instance=ExtResource("6_motn")]
+[node name="MotionPanel" parent="UI/Control" unique_id=346573769 instance=ExtResource("6_motn")]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -376,7 +365,6 @@ offset_left = -320.0
 offset_top = 85.0
 offset_right = -20.0
 offset_bottom = 585.0
-script = ExtResource("11_y65il")
 
 [node name="ModalOverlay" type="ColorRect" parent="UI/Control" unique_id=1000013]
 visible = false
@@ -418,8 +406,8 @@ alignment = 1
 
 [node name="ModalTitle" type="Label" parent="UI/Control/StatusModal/MarginContainer/VBoxContainer" unique_id=1000017]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
 text = "Loading VRM Avatar"
 horizontal_alignment = 1
 

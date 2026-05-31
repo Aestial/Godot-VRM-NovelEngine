@@ -1,21 +1,21 @@
 extends Node3D
 
-@onready var load_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection/LoadButton
-@onready var model_manager_scene = preload("res://samples/vrm_viewer/scenes/ui_model_manager.tscn")
+@onready var library_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection/LibraryButton
+@onready var model_manager_scene: PackedScene = preload("res://samples/vrm_viewer/scenes/ui_model_manager.tscn")
 @onready var message_label: Label = $UI/Control/MessageLabel
 @onready var file_dialog: FileDialog = $UI/FileDialog
 @onready var model_pivot: Node3D = $ModelPivot
 
 @onready var meta_panel: VBoxContainer = $UI/Control/MetaPanel
-@onready var env_panel: VBoxContainer = $UI/Control/EnvPanel
+@onready var scene_panel: VBoxContainer = $UI/Control/ScenePanel
 @onready var expression_panel: VBoxContainer = $UI/Control/ExpressionPanel
 @onready var motion_panel: VBoxContainer = $UI/Control/MotionPanel
-@onready var add_log_method = Callable(self, "add_log")
+@onready var add_log_method: Callable = Callable(self, "add_log")
 @onready var home_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/RightSection/HomeButton
 @onready var camera_pivot: Node3D = $CameraPivot
 
 @onready var info_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection/InfoButton
-@onready var env_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection/EnvButton
+@onready var scene_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection/SceneButton
 @onready var expression_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection/ExpressionButton
 @onready var motion_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection/MotionButton
 
@@ -57,8 +57,8 @@ func _ready() -> void:
 	_model_manager.model_selected.connect(_on_file_selected)
 	_model_manager.browse_local_requested.connect(_on_browse_local_requested)
 	
-	load_button.text = "Library"
-	load_button.pressed.connect(func(): _model_manager.open())
+	library_button.text = "Library"
+	library_button.pressed.connect(func(): _model_manager.open())
 	home_button.pressed.connect(_on_home_button_pressed)
 	
 	if _is_web:
@@ -77,7 +77,7 @@ func _ready() -> void:
 	# Connect menu panel triggers
 	info_button.toggled.connect(_on_info_button_toggled)
 	logs_button.toggled.connect(_on_logs_button_toggled)
-	env_button.toggled.connect(_on_env_button_toggled)
+	scene_button.toggled.connect(_on_env_button_toggled)
 	expression_button.toggled.connect(_on_expression_button_toggled)
 	motion_button.toggled.connect(_on_motion_button_toggled)
 	
@@ -244,7 +244,7 @@ func _on_file_selected(path: String) -> void:
 		if _active_left_panel in ["expression", "motion"]:
 			_toggle_left_panel("")
 	
-	var file_name = path.get_file()
+	var file_name: String = path.get_file()
 	_start_loading(file_name)
 	update_status("Loading local file '%s'..." % file_name, "info")
 	
@@ -371,13 +371,13 @@ func _on_motion_button_toggled(pressed: bool) -> void:
 
 func _toggle_left_panel(panel_name: String) -> void:
 	if panel_name != "":
-		if panel_name != "env": env_button.set_pressed_no_signal(false)
+		if panel_name != "env": scene_button.set_pressed_no_signal(false)
 		if panel_name != "expression": expression_button.set_pressed_no_signal(false)
 		if panel_name != "motion": motion_button.set_pressed_no_signal(false)
 		
 	var next_panel: Control = null
 	if panel_name == "env":
-		next_panel = env_panel
+		next_panel = scene_panel
 	elif panel_name == "expression":
 		next_panel = expression_panel
 	elif panel_name == "motion":
@@ -385,7 +385,7 @@ func _toggle_left_panel(panel_name: String) -> void:
 		
 	var prev_panel: Control = null
 	if _active_left_panel == "env":
-		prev_panel = env_panel
+		prev_panel = scene_panel
 	elif _active_left_panel == "expression":
 		prev_panel = expression_panel
 	elif _active_left_panel == "motion":
@@ -459,16 +459,16 @@ func _animate_panel_slide(panel: Control, open: bool, is_right_side: bool) -> vo
 	tween.tween_property(panel, "modulate:a", target_alpha, 0.35)
 	
 	if not open:
-		var timer_tween = create_tween()
+		var timer_tween: Tween = create_tween()
 		panel.set_meta("hide_tween", timer_tween)
 		timer_tween.tween_interval(0.35)
 		timer_tween.tween_callback(panel.hide)
 
 func _update_menu_button_visuals() -> void:
-	var tabs = {
+	var tabs: Dictionary[Variant, Variant] = {
 		info_button: _active_right_panel == "info",
 		logs_button: _active_right_panel == "log",
-		env_button: _active_left_panel == "env",
+		scene_button: _active_left_panel == "env",
 		expression_button: _active_left_panel == "expression",
 		motion_button: _active_left_panel == "motion"
 	}
@@ -483,15 +483,15 @@ func _update_menu_button_visuals() -> void:
 # --- Status Modal & Log History Helpers ---
 
 func add_log(message: String, type: String = "info") -> void:
-	var time = Time.get_time_dict_from_system()
-	var time_str = "%02d:%02d:%02d" % [time.hour, time.minute, time.second]
+	var time: Dictionary = Time.get_time_dict_from_system()
+	var time_str: String = "%02d:%02d:%02d" % [time.hour, time.minute, time.second]
 	
-	var log_label = RichTextLabel.new()
+	var log_label: RichTextLabel = RichTextLabel.new()
 	log_label.fit_content = true
 	log_label.selection_enabled = true
 	log_label.bbcode_enabled = true
 	
-	var color_tag = "white"
+	var color_tag: String = "white"
 	if type == "error":
 		color_tag = "#ff5555" # Soft red
 	elif type == "success":
@@ -506,7 +506,7 @@ func add_log(message: String, type: String = "info") -> void:
 	# Auto scroll to bottom
 	await get_tree().process_frame
 	if log_scroll:
-		var v_scroll = log_scroll.get_v_scroll_bar()
+		var v_scroll: VScrollBar = log_scroll.get_v_scroll_bar()
 		if v_scroll:
 			log_scroll.scroll_vertical = int(v_scroll.max_value)
 
@@ -591,7 +591,7 @@ func _transition_to_success_toast() -> void:
 	
 	status_modal.theme_type_variation = "SuccessModal"
 	
-	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	var tween: Tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	status_modal.set_meta("active_tween", tween)
 	
 	tween.tween_property(status_modal, "anchor_top", 0.0, 0.45)
@@ -601,17 +601,17 @@ func _transition_to_success_toast() -> void:
 	tween.tween_property(status_modal, "offset_top", 80.0, 0.45)
 	tween.tween_property(status_modal, "offset_bottom", 140.0, 0.45)
 	
-	var hide_timer = create_tween()
+	var hide_timer: Tween = create_tween()
 	status_modal.set_meta("hide_tween", hide_timer)
 	hide_timer.tween_interval(2.5)
 	hide_timer.tween_property(status_modal, "modulate:a", 0.0, 0.3)
 	hide_timer.tween_callback(status_modal.hide)
 
 func _on_dismiss_button_pressed() -> void:
-	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	var tween: Tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(status_modal, "modulate:a", 0.0, 0.25)
 	
-	var timer = create_tween()
+	var timer: Tween = create_tween()
 	timer.tween_interval(0.25)
 	timer.tween_callback(status_modal.hide)
 
