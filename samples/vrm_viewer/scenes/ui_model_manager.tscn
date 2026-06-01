@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d3a4b5c6d7e8"]
 
-[ext_resource type="Script" path="res://samples/vrm_viewer/scripts/vrm_viewer_model_manager.gd" id="1_manager"]
+[ext_resource type="Script" uid="uid://cece4xfsl7rya" path="res://samples/vrm_viewer/scripts/vrm_viewer_model_manager.gd" id="1_manager"]
+[ext_resource type="FontFile" uid="uid://nad6tak8bjx8" path="res://visual-novel/GJDDM/fonts/RobotoSlab-VariableFont_wght.ttf" id="2_i2jdh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.08, 0.08, 0.1, 0.95)
@@ -17,7 +18,7 @@ shadow_color = Color(0, 0, 0, 0.4)
 shadow_size = 15
 shadow_offset = Vector2(0, 5)
 
-[node name="ModelManager" type="Control"]
+[node name="ModelManager" type="Control" unique_id=948083150]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_manager")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=832812878]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.6)
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=656208892]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -50,38 +51,39 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=612170550]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1166827580]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="HeaderRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HeaderRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1932947967]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HeaderRow"]
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HeaderRow" unique_id=445275584]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
 text = "Model Library"
 
-[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeaderRow"]
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HeaderRow" unique_id=2091595110]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_i2jdh")
 theme_override_font_sizes/font_size = 18
 text = "✕"
 
-[node name="TabContainer" type="TabContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=750899681]
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="Recent Models" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="Recent Models" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer" unique_id=1598753103]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -89,17 +91,17 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Recent Models"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Recent Models" unique_id=660744317]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="FlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Recent Models/ScrollContainer"]
+[node name="GridContainer" type="FlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Recent Models/ScrollContainer" unique_id=785446720]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
 
-[node name="Bundled Models" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="Bundled Models" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer" unique_id=727595869]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -108,43 +110,43 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models" unique_id=1138843690]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="FlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models/ScrollContainer"]
+[node name="GridContainer" type="FlowContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer/Bundled Models/ScrollContainer" unique_id=1385627423]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
 
-[node name="LocalFilePanel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="LocalFilePanel" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1872323921]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"StatusModal"
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel" unique_id=1761163501]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="FooterRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer"]
+[node name="FooterRow" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer" unique_id=66040734]
 layout_mode = 2
-alignment = 1
 theme_override_constants/separation = 20
+alignment = 1
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow" unique_id=660063971]
 layout_mode = 2
 text = "Local File:"
 
-[node name="BrowseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow"]
+[node name="BrowseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow" unique_id=1812027871]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 text = "Browse..."
 
-[node name="VersionOption" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow"]
+[node name="VersionOption" type="OptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/LocalFilePanel/MarginContainer/FooterRow" unique_id=1449499833]
 custom_minimum_size = Vector2(160, 40)
 layout_mode = 2
 selected = 0
@@ -155,4 +157,3 @@ popup/item_1/text = "Force VRM 0.0"
 popup/item_1/id = 1
 popup/item_2/text = "Force VRM 1.0"
 popup/item_2/id = 2
-

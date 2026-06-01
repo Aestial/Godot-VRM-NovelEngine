@@ -92,6 +92,7 @@ func _populate_bundled_models() -> void:
 	# Search standard bundled directories
 	var search_dirs: Array[Variant] = ["res://samples/character_samples/vrm", "res://models", "res://"]
 	for dir in search_dirs:
+		print("[ModelManager] Scanning dir: ", dir, " exists: ", DirAccess.dir_exists_absolute(dir))
 		if DirAccess.dir_exists_absolute(dir):
 			var da: DirAccess = DirAccess.open(dir)
 			if da:
@@ -102,8 +103,10 @@ func _populate_bundled_models() -> void:
 						var full_path = dir.path_join(file_name)
 						if not bundled_models.has(full_path):
 							bundled_models.append(full_path)
+							print("[ModelManager] Found: ", full_path)
 					file_name = da.get_next()
 	
+	print("[ModelManager] Total bundled models: ", bundled_models.size())
 	_preload_bundled_thumbnails()
 
 func _refresh_ui() -> void:

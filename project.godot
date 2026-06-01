@@ -28,7 +28,7 @@ config/icon="uid://bklxfuuu03836"
 [autoload]
 
 SceneLoader="*res://visual-novel/scripts/globals/scene_loader.gd"
-CinematicManager="*res://visual-novel/scripts/globals/cinematic_manager.gd"
+CinematicManager="res://visual-novel/scripts/globals/cinematic_manager.gd"
 
 [dialogic]
 

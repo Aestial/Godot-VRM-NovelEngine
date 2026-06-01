@@ -51,14 +51,24 @@ var _model_manager: Control = null
 func _try_load_pcks() -> void:
 	var exe_dir: String = OS.get_executable_path().get_base_dir()
 	var exe_pck: String = exe_dir.path_join("Models.pck")
+	print("[PCK] Executable dir: ", exe_dir)
+	print("[PCK] Looking for: ", exe_pck)
+	print("[PCK] File exists: ", FileAccess.file_exists(exe_pck))
 	if FileAccess.file_exists(exe_pck):
-		if ProjectSettings.load_resource_pack(exe_pck):
-			print("Loaded PCK: ", exe_pck)
+		var ok: bool = ProjectSettings.load_resource_pack(exe_pck)
+		print("[PCK] load_resource_pack result: ", ok)
+		if ok:
+			print("[PCK] Successfully loaded PCK: ", exe_pck)
+		else:
+			print("[PCK] FAILED to load PCK: ", exe_pck)
 	
 	var user_pck: String = "user://Models.pck"
+	print("[PCK] Looking for user://Models.pck, exists: ", FileAccess.file_exists(user_pck))
 	if FileAccess.file_exists(user_pck):
-		if ProjectSettings.load_resource_pack(user_pck):
-			print("Loaded PCK: ", user_pck)
+		var ok: bool = ProjectSettings.load_resource_pack(user_pck)
+		print("[PCK] user:// load result: ", ok)
+		if ok:
+			print("[PCK] Successfully loaded user PCK")
 
 func _ready() -> void:
 	_is_web = OS.get_name() == "Web"
