@@ -33,6 +33,167 @@ uv1_scale = Vector3(100, 100, 100)
 material = SubResource("StandardMaterial3D_ground")
 size = Vector2(100, 100)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k30m5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5npw"]
+bg_color = Color(1, 1, 1, 0.06)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykph4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptaij"]
+bg_color = Color(1, 1, 1, 0.06)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufa0b"]
+bg_color = Color(0, 0.6, 1, 0.15)
+border_width_left = 2
+border_color = Color(0, 0.75, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ic0v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuaxx"]
+bg_color = Color(0, 0.6, 1, 0.12)
+border_width_bottom = 2
+border_color = Color(0, 0.75, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uslun"]
+bg_color = Color(1, 1, 1, 0.04)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.06)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kro7"]
+bg_color = Color(1, 1, 1, 0.08)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.12)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42cng"]
+bg_color = Color(0.07, 0.07, 0.09, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.08)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 8
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j418o"]
+bg_color = Color(0.08, 0.08, 0.1, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 15
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0si3h"]
+bg_color = Color(0.06, 0.12, 0.08, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 1, 0.3, 0.35)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_size = 8
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgvvs"]
+bg_color = Color(0.07, 0.07, 0.09, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.08)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 10
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="Theme" id="Theme_ymxj8"]
+Button/colors/font_color = Color(0.85, 0.85, 0.88, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_k30m5")
+Button/styles/hover = SubResource("StyleBoxFlat_x5npw")
+Button/styles/normal = SubResource("StyleBoxEmpty_k30m5")
+Button/styles/pressed = SubResource("StyleBoxFlat_x5npw")
+ListButton/colors/font_color = Color(0.8, 0.8, 0.82, 1)
+ListButton/colors/font_hover_color = Color(1, 1, 1, 1)
+ListButton/colors/font_pressed_color = Color(1, 1, 1, 1)
+ListButton/styles/focus = SubResource("StyleBoxEmpty_ykph4")
+ListButton/styles/hover = SubResource("StyleBoxFlat_ptaij")
+ListButton/styles/normal = SubResource("StyleBoxEmpty_ykph4")
+ListButton/styles/pressed = SubResource("StyleBoxFlat_ptaij")
+ListButtonActive/colors/font_color = Color(0.2, 0.8, 1, 1)
+ListButtonActive/colors/font_hover_color = Color(1, 1, 1, 1)
+ListButtonActive/colors/font_pressed_color = Color(1, 1, 1, 1)
+ListButtonActive/styles/focus = SubResource("StyleBoxFlat_ufa0b")
+ListButtonActive/styles/hover = SubResource("StyleBoxFlat_ufa0b")
+ListButtonActive/styles/normal = SubResource("StyleBoxFlat_ufa0b")
+ListButtonActive/styles/pressed = SubResource("StyleBoxFlat_ufa0b")
+LogScroll/styles/panel = SubResource("StyleBoxEmpty_6ic0v")
+MenuTabButton/colors/font_color = Color(0.2, 0.8, 1, 1)
+MenuTabButton/colors/font_hover_color = Color(0.4, 0.85, 1, 1)
+MenuTabButton/styles/focus = SubResource("StyleBoxFlat_yuaxx")
+MenuTabButton/styles/hover = SubResource("StyleBoxFlat_yuaxx")
+MenuTabButton/styles/normal = SubResource("StyleBoxFlat_yuaxx")
+MenuTabButton/styles/pressed = SubResource("StyleBoxFlat_yuaxx")
+OptionButton/colors/font_color = Color(0.85, 0.85, 0.88, 1)
+OptionButton/colors/font_hover_color = Color(1, 1, 1, 1)
+OptionButton/styles/focus = SubResource("StyleBoxFlat_uslun")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_2kro7")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_uslun")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_42cng")
+StatusModal/styles/panel = SubResource("StyleBoxFlat_j418o")
+SuccessModal/styles/panel = SubResource("StyleBoxFlat_0si3h")
+TopMenuBar/styles/panel = SubResource("StyleBoxFlat_bgvvs")
+
 [node name="VRMViewer" type="Node3D" unique_id=567746459]
 script = ExtResource("1_vrmv")
 
@@ -70,6 +231,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = SubResource("Theme_ymxj8")
 
 [node name="TopMenuBar" type="PanelContainer" parent="UI/Control" unique_id=1000000]
 layout_mode = 1
@@ -80,6 +242,7 @@ offset_top = 15.0
 offset_right = -20.0
 offset_bottom = 65.0
 grow_horizontal = 2
+theme_type_variation = &"TopMenuBar"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Control/TopMenuBar" unique_id=1000001]
 layout_mode = 2
@@ -96,22 +259,10 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="LoadButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection" unique_id=469905139]
+[node name="LibraryButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection" unique_id=469905139]
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
-text = "Load VRM"
-
-[node name="VersionOption" type="OptionButton" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection" unique_id=2022707543]
-custom_minimum_size = Vector2(130, 35)
-layout_mode = 2
-selected = 0
-item_count = 3
-popup/item_0/text = "Auto Detect"
-popup/item_0/id = 0
-popup/item_1/text = "Force VRM 0.0"
-popup/item_1/id = 1
-popup/item_2/text = "Force VRM 1.0"
-popup/item_2/id = 2
+text = "Library"
 
 [node name="SpacerLeft" type="Control" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000004]
 layout_mode = 2
@@ -121,24 +272,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
-
-[node name="InfoButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000008]
-custom_minimum_size = Vector2(100, 35)
-layout_mode = 2
-toggle_mode = true
-text = "Model Info"
-
-[node name="LogsButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000012]
-custom_minimum_size = Vector2(80, 35)
-layout_mode = 2
-toggle_mode = true
-text = "Logs"
-
-[node name="EnvButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000009]
-custom_minimum_size = Vector2(110, 35)
-layout_mode = 2
-toggle_mode = true
-text = "Environment"
 
 [node name="ExpressionButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000010]
 custom_minimum_size = Vector2(110, 35)
@@ -151,6 +284,25 @@ custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 toggle_mode = true
 text = "Motions"
+
+[node name="SceneButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000009]
+custom_minimum_size = Vector2(110, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Scene
+"
+
+[node name="LogsButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000012]
+custom_minimum_size = Vector2(80, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Logs"
+
+[node name="InfoButton" type="Button" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection" unique_id=1000008]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+toggle_mode = true
+text = "Model Info"
 
 [node name="SpacerRight" type="Control" parent="UI/Control/TopMenuBar/MarginContainer/HBoxContainer" unique_id=1000006]
 layout_mode = 2
@@ -187,7 +339,7 @@ offset_top = 85.0
 offset_right = 320.0
 offset_bottom = 585.0
 
-[node name="EnvPanel" parent="UI/Control" unique_id=2096104143 instance=ExtResource("4_k6w5u")]
+[node name="ScenePanel" parent="UI/Control" unique_id=2096104143 instance=ExtResource("4_k6w5u")]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -238,6 +390,7 @@ offset_right = 180.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"StatusModal"
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Control/StatusModal" unique_id=1000015]
 layout_mode = 2
@@ -319,6 +472,7 @@ layout_mode = 2
 [node name="LogScroll" type="ScrollContainer" parent="UI/Control/LogPanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=1000027]
 layout_mode = 2
 size_flags_vertical = 3
+theme_type_variation = &"LogScroll"
 horizontal_scroll_mode = 0
 
 [node name="LogList" type="VBoxContainer" parent="UI/Control/LogPanel/PanelContainer/MarginContainer/VBoxContainer/LogScroll" unique_id=1000028]

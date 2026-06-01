@@ -42,36 +42,6 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="TitleLabel" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=558520449]
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-text = "Title: "
-autowrap_mode = 2
-
-[node name="AuthorLabel" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2045874511]
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-text = "Author: "
-autowrap_mode = 2
-
-[node name="VersionLabel" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1483162861]
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-text = "Version: "
-autowrap_mode = 2
-
-[node name="LicenseLabel" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1513801114]
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-text = "License: "
-autowrap_mode = 2
-
-[node name="ReferenceLabel" type="Label" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=2064023190]
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-text = "Reference: "
-autowrap_mode = 2
-
 [node name="ThumbnailRect" type="TextureRect" parent="PanelContainer/ScrollContainer/MarginContainer/VBoxContainer" unique_id=1463516100]
 custom_minimum_size = Vector2(230, 230)
 layout_mode = 2

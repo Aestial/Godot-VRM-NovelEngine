@@ -1,20 +1,21 @@
 extends Node3D
 
-@onready var load_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection/LoadButton
+@onready var library_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection/LibraryButton
+@onready var model_manager_scene: PackedScene = preload("res://samples/vrm_viewer/scenes/ui_model_manager.tscn")
 @onready var message_label: Label = $UI/Control/MessageLabel
 @onready var file_dialog: FileDialog = $UI/FileDialog
 @onready var model_pivot: Node3D = $ModelPivot
 
 @onready var meta_panel: VBoxContainer = $UI/Control/MetaPanel
-@onready var env_panel: VBoxContainer = $UI/Control/EnvPanel
+@onready var scene_panel: VBoxContainer = $UI/Control/ScenePanel
 @onready var expression_panel: VBoxContainer = $UI/Control/ExpressionPanel
 @onready var motion_panel: VBoxContainer = $UI/Control/MotionPanel
-@onready var version_option: OptionButton = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/LeftSection/VersionOption
+@onready var add_log_method: Callable = Callable(self, "add_log")
 @onready var home_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/RightSection/HomeButton
 @onready var camera_pivot: Node3D = $CameraPivot
 
 @onready var info_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection/InfoButton
-@onready var env_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection/EnvButton
+@onready var scene_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection/SceneButton
 @onready var expression_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection/ExpressionButton
 @onready var motion_button: Button = $UI/Control/TopMenuBar/MarginContainer/HBoxContainer/CenterSection/MotionButton
 
@@ -45,10 +46,42 @@ var _file_access_web: RefCounted = null # FileAccessWeb (only on web builds)
 var _active_left_panel: String = ""
 var _active_right_panel: String = ""
 
+var _model_manager: Control = null
+
+func _try_load_pcks() -> void:
+	var exe_dir: String = OS.get_executable_path().get_base_dir()
+	var exe_pck: String = exe_dir.path_join("Models.pck")
+	print("[PCK] Executable dir: ", exe_dir)
+	print("[PCK] Looking for: ", exe_pck)
+	print("[PCK] File exists: ", FileAccess.file_exists(exe_pck))
+	if FileAccess.file_exists(exe_pck):
+		var ok: bool = ProjectSettings.load_resource_pack(exe_pck)
+		print("[PCK] load_resource_pack result: ", ok)
+		if ok:
+			print("[PCK] Successfully loaded PCK: ", exe_pck)
+		else:
+			print("[PCK] FAILED to load PCK: ", exe_pck)
+	
+	var user_pck: String = "user://Models.pck"
+	print("[PCK] Looking for user://Models.pck, exists: ", FileAccess.file_exists(user_pck))
+	if FileAccess.file_exists(user_pck):
+		var ok: bool = ProjectSettings.load_resource_pack(user_pck)
+		print("[PCK] user:// load result: ", ok)
+		if ok:
+			print("[PCK] Successfully loaded user PCK")
+
 func _ready() -> void:
 	_is_web = OS.get_name() == "Web"
+	_try_load_pcks()
 	
-	load_button.pressed.connect(_on_load_button_pressed)
+	_model_manager = model_manager_scene.instantiate()
+	_model_manager.hide()
+	$UI/Control.add_child(_model_manager)
+	_model_manager.model_selected.connect(_on_file_selected)
+	_model_manager.browse_local_requested.connect(_on_browse_local_requested)
+	
+	library_button.text = "Library"
+	library_button.pressed.connect(func(): _model_manager.open())
 	home_button.pressed.connect(_on_home_button_pressed)
 	
 	if _is_web:
@@ -67,7 +100,7 @@ func _ready() -> void:
 	# Connect menu panel triggers
 	info_button.toggled.connect(_on_info_button_toggled)
 	logs_button.toggled.connect(_on_logs_button_toggled)
-	env_button.toggled.connect(_on_env_button_toggled)
+	scene_button.toggled.connect(_on_env_button_toggled)
 	expression_button.toggled.connect(_on_expression_button_toggled)
 	motion_button.toggled.connect(_on_motion_button_toggled)
 	
@@ -81,8 +114,8 @@ func _ready() -> void:
 	
 	message_label.text = ""
 	
-	# Apply premium visual design styling
-	_apply_theme_styling()
+	# Set initial menu button variations
+	_update_menu_button_visuals()
 	
 	# Set up landing welcome screen
 	_show_welcome_modal()
@@ -94,7 +127,7 @@ func _on_home_button_pressed() -> void:
 	if camera_pivot.has_method("reset_camera"):
 		camera_pivot.reset_camera()
 
-func _on_load_button_pressed() -> void:
+func _on_browse_local_requested() -> void:
 	if _is_web:
 		_file_access_web.open(".vrm")
 	else:
@@ -120,11 +153,10 @@ func _load_default_model() -> void:
 	
 	# Step 1: Try loading from bundled res:// path (works on all platforms)
 	if default_model_path != "" and FileAccess.file_exists(default_model_path):
-		update_status("Trying bundled model: " + default_model_path, "info")
-		var force_version: int = version_option.get_selected_id()
+		var force_version: int = _model_manager.get_force_version() if _model_manager else 0
 		var result: Dictionary = VRMLoader.load_vrm_from_res(default_model_path, force_version)
 		if result["success"]:
-			_apply_load_result(result)
+			_apply_load_result(result, default_model_path)
 			return
 		else:
 			update_status("Bundled model failed: " + result["error_msg"], "error")
@@ -163,13 +195,13 @@ func _on_remote_model_downloaded(result: int, response_code: int, body: PackedBy
 		_show_no_default_model_message()
 		return
 	
-	update_status("Remote model downloaded (%d bytes), parsing..." % body.size(), "info")
+	modal_desc.text = "Parsing Web VRM file..."
 	
-	var force_version: int = version_option.get_selected_id()
+	var force_version: int = _model_manager.get_force_version() if _model_manager else 0
 	var load_result: Dictionary = VRMLoader.load_vrm_from_buffer(body, force_version)
 	
 	if load_result["success"]:
-		_apply_load_result(load_result)
+		_apply_load_result(load_result, "")
 	else:
 		update_status("Remote model parse failed: " + load_result["error_msg"], "error")
 		_show_no_default_model_message()
@@ -203,10 +235,12 @@ func _on_web_file_loaded(file_name: String, _file_type: String, base64_data: Str
 	# Decode base64 to raw bytes
 	var raw_data: PackedByteArray = Marshalls.base64_to_raw(base64_data)
 	
-	var force_version: int = version_option.get_selected_id()
+	modal_desc.text = "Parsing Drag-and-Drop VRM file..."
+	
+	var force_version: int = _model_manager.get_force_version() if _model_manager else 0
 	var result: Dictionary = VRMLoader.load_vrm_from_buffer(raw_data, force_version)
 	
-	_apply_load_result(result)
+	_apply_load_result(result, "")
 
 func _on_web_file_error() -> void:
 	update_status("Error: Failed to read the uploaded web file.", "error")
@@ -233,13 +267,13 @@ func _on_file_selected(path: String) -> void:
 		if _active_left_panel in ["expression", "motion"]:
 			_toggle_left_panel("")
 	
-	var file_name = path.get_file()
+	var file_name: String = path.get_file()
 	_start_loading(file_name)
 	update_status("Loading local file '%s'..." % file_name, "info")
 	
 	await get_tree().process_frame
 	
-	var force_version: int = version_option.get_selected_id()
+	var force_version: int = _model_manager.get_force_version() if _model_manager else 0
 	var result: Dictionary
 	
 	# Use buffer-based loading for res:// paths (cross-platform safe),
@@ -249,11 +283,11 @@ func _on_file_selected(path: String) -> void:
 	else:
 		result = VRMLoader.load_vrm(path, force_version)
 	
-	_apply_load_result(result)
+	_apply_load_result(result, path)
 
 # --- Shared result handling ---
 
-func _apply_load_result(result: Dictionary) -> void:
+func _apply_load_result(result: Dictionary, path: String = "") -> void:
 	if result["success"]:
 		var ps: PackedScene = PackedScene.new()
 		ps.pack(result["node"])
@@ -285,6 +319,9 @@ func _apply_load_result(result: Dictionary) -> void:
 		# Auto-open Info Panel on load (if not currently checking logs)
 		if _active_right_panel != "log":
 			_toggle_right_panel("info")
+			
+		if path != "":
+			_model_manager.add_to_recent(path, current_model.get("vrm_meta"))
 			
 		_transition_to_success_toast()
 			
@@ -357,13 +394,13 @@ func _on_motion_button_toggled(pressed: bool) -> void:
 
 func _toggle_left_panel(panel_name: String) -> void:
 	if panel_name != "":
-		if panel_name != "env": env_button.set_pressed_no_signal(false)
+		if panel_name != "env": scene_button.set_pressed_no_signal(false)
 		if panel_name != "expression": expression_button.set_pressed_no_signal(false)
 		if panel_name != "motion": motion_button.set_pressed_no_signal(false)
 		
 	var next_panel: Control = null
 	if panel_name == "env":
-		next_panel = env_panel
+		next_panel = scene_panel
 	elif panel_name == "expression":
 		next_panel = expression_panel
 	elif panel_name == "motion":
@@ -371,7 +408,7 @@ func _toggle_left_panel(panel_name: String) -> void:
 		
 	var prev_panel: Control = null
 	if _active_left_panel == "env":
-		prev_panel = env_panel
+		prev_panel = scene_panel
 	elif _active_left_panel == "expression":
 		prev_panel = expression_panel
 	elif _active_left_panel == "motion":
@@ -445,139 +482,16 @@ func _animate_panel_slide(panel: Control, open: bool, is_right_side: bool) -> vo
 	tween.tween_property(panel, "modulate:a", target_alpha, 0.35)
 	
 	if not open:
-		var timer_tween = create_tween()
+		var timer_tween: Tween = create_tween()
 		panel.set_meta("hide_tween", timer_tween)
 		timer_tween.tween_interval(0.35)
 		timer_tween.tween_callback(panel.hide)
 
-func _apply_theme_styling() -> void:
-	var bar_style := StyleBoxFlat.new()
-	bar_style.bg_color = Color(0.07, 0.07, 0.09, 0.85)
-	bar_style.corner_radius_top_left = 12
-	bar_style.corner_radius_top_right = 12
-	bar_style.corner_radius_bottom_left = 12
-	bar_style.corner_radius_bottom_right = 12
-	bar_style.border_width_left = 1
-	bar_style.border_width_top = 1
-	bar_style.border_width_right = 1
-	bar_style.border_width_bottom = 1
-	bar_style.border_color = Color(1.0, 1.0, 1.0, 0.08)
-	bar_style.shadow_color = Color(0, 0, 0, 0.3)
-	bar_style.shadow_size = 10
-	bar_style.shadow_offset = Vector2(0, 4)
-	
-	var top_menu_bar = $UI/Control/TopMenuBar
-	top_menu_bar.add_theme_stylebox_override("panel", bar_style)
-	
-	var panel_style := StyleBoxFlat.new()
-	panel_style.bg_color = Color(0.07, 0.07, 0.09, 0.85)
-	panel_style.corner_radius_top_left = 12
-	panel_style.corner_radius_top_right = 12
-	panel_style.corner_radius_bottom_left = 12
-	panel_style.corner_radius_bottom_right = 12
-	panel_style.border_width_left = 1
-	panel_style.border_width_top = 1
-	panel_style.border_width_right = 1
-	panel_style.border_width_bottom = 1
-	panel_style.border_color = Color(1.0, 1.0, 1.0, 0.08)
-	panel_style.shadow_color = Color(0, 0, 0, 0.25)
-	panel_style.shadow_size = 8
-	panel_style.shadow_offset = Vector2(0, 3)
-	
-	meta_panel.get_node("PanelContainer").add_theme_stylebox_override("panel", panel_style)
-	expression_panel.get_node("PanelContainer").add_theme_stylebox_override("panel", panel_style)
-	motion_panel.get_node("PanelContainer").add_theme_stylebox_override("panel", panel_style)
-	env_panel.get_node("PanelContainer").add_theme_stylebox_override("panel", panel_style)
-	log_panel.get_node("PanelContainer").add_theme_stylebox_override("panel", panel_style)
-	
-	# Modal overlay transparent dark style
-	modal_overlay.color = Color(0.02, 0.02, 0.04, 0.45)
-	
-	# Initial reset style for loading modal
-	_reset_modal_to_center()
-	
-	# Custom styled empty scroll background for logs
-	var log_scroll_style := StyleBoxEmpty.new()
-	log_scroll.add_theme_stylebox_override("panel", log_scroll_style)
-	
-	var btn_normal := StyleBoxEmpty.new()
-	
-	var btn_hover := StyleBoxFlat.new()
-	btn_hover.bg_color = Color(1.0, 1.0, 1.0, 0.06)
-	btn_hover.corner_radius_top_left = 8
-	btn_hover.corner_radius_top_right = 8
-	btn_hover.corner_radius_bottom_left = 8
-	btn_hover.corner_radius_bottom_right = 8
-	
-	var buttons = [
-		load_button,
-		home_button,
-		info_button,
-		logs_button,
-		env_button,
-		expression_button,
-		motion_button,
-		clear_logs_button,
-		dismiss_button
-	]
-	
-	for btn in buttons:
-		btn.add_theme_stylebox_override("normal", btn_normal)
-		btn.add_theme_stylebox_override("hover", btn_hover)
-		btn.add_theme_stylebox_override("pressed", btn_hover)
-		btn.add_theme_stylebox_override("focus", btn_normal)
-		btn.add_theme_color_override("font_color", Color(0.85, 0.85, 0.88))
-		btn.add_theme_color_override("font_hover_color", Color(1.0, 1.0, 1.0))
-		btn.add_theme_color_override("font_pressed_color", Color(1.0, 1.0, 1.0))
-		
-	var opt_style_normal := StyleBoxFlat.new()
-	opt_style_normal.bg_color = Color(1.0, 1.0, 1.0, 0.04)
-	opt_style_normal.corner_radius_top_left = 8
-	opt_style_normal.corner_radius_top_right = 8
-	opt_style_normal.corner_radius_bottom_left = 8
-	opt_style_normal.corner_radius_bottom_right = 8
-	opt_style_normal.border_width_left = 1
-	opt_style_normal.border_width_top = 1
-	opt_style_normal.border_width_right = 1
-	opt_style_normal.border_width_bottom = 1
-	opt_style_normal.border_color = Color(1.0, 1.0, 1.0, 0.06)
-	
-	var opt_style_hover := StyleBoxFlat.new()
-	opt_style_hover.bg_color = Color(1.0, 1.0, 1.0, 0.08)
-	opt_style_hover.corner_radius_top_left = 8
-	opt_style_hover.corner_radius_top_right = 8
-	opt_style_hover.corner_radius_bottom_left = 8
-	opt_style_hover.corner_radius_bottom_right = 8
-	opt_style_hover.border_width_left = 1
-	opt_style_hover.border_width_top = 1
-	opt_style_hover.border_width_right = 1
-	opt_style_hover.border_width_bottom = 1
-	opt_style_hover.border_color = Color(1.0, 1.0, 1.0, 0.12)
-
-	version_option.add_theme_stylebox_override("normal", opt_style_normal)
-	version_option.add_theme_stylebox_override("hover", opt_style_hover)
-	version_option.add_theme_stylebox_override("focus", opt_style_normal)
-	version_option.add_theme_color_override("font_color", Color(0.85, 0.85, 0.88))
-	version_option.add_theme_color_override("font_hover_color", Color(1.0, 1.0, 1.0))
-	
-	_update_menu_button_visuals()
-
 func _update_menu_button_visuals() -> void:
-	var active_tab_style := StyleBoxFlat.new()
-	active_tab_style.bg_color = Color(0.0, 0.6, 1.0, 0.12)
-	active_tab_style.corner_radius_top_left = 8
-	active_tab_style.corner_radius_top_right = 8
-	active_tab_style.corner_radius_bottom_left = 8
-	active_tab_style.corner_radius_bottom_right = 8
-	active_tab_style.border_width_bottom = 2
-	active_tab_style.border_color = Color(0.0, 0.75, 1.0)
-	
-	var normal_tab_style := StyleBoxEmpty.new()
-	
-	var tabs = {
+	var tabs: Dictionary[Variant, Variant] = {
 		info_button: _active_right_panel == "info",
 		logs_button: _active_right_panel == "log",
-		env_button: _active_left_panel == "env",
+		scene_button: _active_left_panel == "env",
 		expression_button: _active_left_panel == "expression",
 		motion_button: _active_left_panel == "motion"
 	}
@@ -585,27 +499,22 @@ func _update_menu_button_visuals() -> void:
 	for btn in tabs.keys():
 		var is_active = tabs[btn]
 		if is_active:
-			btn.add_theme_stylebox_override("normal", active_tab_style)
-			btn.add_theme_stylebox_override("hover", active_tab_style)
-			btn.add_theme_color_override("font_color", Color(0.2, 0.8, 1.0))
-			btn.add_theme_color_override("font_hover_color", Color(0.4, 0.85, 1.0))
+			btn.theme_type_variation = "MenuTabButton"
 		else:
-			btn.add_theme_stylebox_override("normal", normal_tab_style)
-			btn.add_theme_color_override("font_color", Color(0.85, 0.85, 0.88))
-			btn.add_theme_color_override("font_hover_color", Color(1.0, 1.0, 1.0))
+			btn.theme_type_variation = ""
 
 # --- Status Modal & Log History Helpers ---
 
 func add_log(message: String, type: String = "info") -> void:
-	var time = Time.get_time_dict_from_system()
-	var time_str = "%02d:%02d:%02d" % [time.hour, time.minute, time.second]
+	var time: Dictionary = Time.get_time_dict_from_system()
+	var time_str: String = "%02d:%02d:%02d" % [time.hour, time.minute, time.second]
 	
-	var log_label = RichTextLabel.new()
+	var log_label: RichTextLabel = RichTextLabel.new()
 	log_label.fit_content = true
 	log_label.selection_enabled = true
 	log_label.bbcode_enabled = true
 	
-	var color_tag = "white"
+	var color_tag: String = "white"
 	if type == "error":
 		color_tag = "#ff5555" # Soft red
 	elif type == "success":
@@ -620,7 +529,7 @@ func add_log(message: String, type: String = "info") -> void:
 	# Auto scroll to bottom
 	await get_tree().process_frame
 	if log_scroll:
-		var v_scroll = log_scroll.get_v_scroll_bar()
+		var v_scroll: VScrollBar = log_scroll.get_v_scroll_bar()
 		if v_scroll:
 			log_scroll.scroll_vertical = int(v_scroll.max_value)
 
@@ -639,7 +548,7 @@ func update_status(message: String, type: String = "info") -> void:
 func _show_welcome_modal() -> void:
 	_reset_modal_to_center()
 	modal_title.text = "Welcome to VRM Viewer"
-	modal_desc.text = "Click 'Load VRM' in the top-left to select your avatar."
+	modal_desc.text = "Click 'Library' in the top-left to select your avatar."
 	spinner_control.hide()
 	dismiss_button.text = "OK"
 	dismiss_button.show()
@@ -692,22 +601,7 @@ func _reset_modal_to_center() -> void:
 	status_modal.offset_right = 180.0
 	status_modal.offset_top = -100.0
 	status_modal.offset_bottom = 100.0
-	
-	var modal_style := StyleBoxFlat.new()
-	modal_style.bg_color = Color(0.08, 0.08, 0.1, 0.95)
-	modal_style.corner_radius_top_left = 12
-	modal_style.corner_radius_top_right = 12
-	modal_style.corner_radius_bottom_left = 12
-	modal_style.corner_radius_bottom_right = 12
-	modal_style.border_width_left = 1
-	modal_style.border_width_top = 1
-	modal_style.border_width_right = 1
-	modal_style.border_width_bottom = 1
-	modal_style.border_color = Color(1.0, 1.0, 1.0, 0.1)
-	modal_style.shadow_color = Color(0, 0, 0, 0.4)
-	modal_style.shadow_size = 15
-	modal_style.shadow_offset = Vector2(0, 5)
-	status_modal.add_theme_stylebox_override("panel", modal_style)
+	status_modal.theme_type_variation = "StatusModal"
 
 func _transition_to_success_toast() -> void:
 	modal_overlay.hide()
@@ -718,23 +612,9 @@ func _transition_to_success_toast() -> void:
 	modal_desc.text = "Avatar loaded successfully!"
 	modal_desc.add_theme_color_override("font_color", Color(0.3, 1.0, 0.3))
 	
-	var success_style := StyleBoxFlat.new()
-	success_style.bg_color = Color(0.06, 0.12, 0.08, 0.95)
-	success_style.corner_radius_top_left = 12
-	success_style.corner_radius_top_right = 12
-	success_style.corner_radius_bottom_left = 12
-	success_style.corner_radius_bottom_right = 12
-	success_style.border_width_left = 1
-	success_style.border_width_top = 1
-	success_style.border_width_right = 1
-	success_style.border_width_bottom = 1
-	success_style.border_color = Color(0.3, 1.0, 0.3, 0.35)
-	success_style.shadow_color = Color(0, 0, 0, 0.25)
-	success_style.shadow_size = 8
-	success_style.shadow_offset = Vector2(0, 2)
-	status_modal.add_theme_stylebox_override("panel", success_style)
+	status_modal.theme_type_variation = "SuccessModal"
 	
-	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	var tween: Tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	status_modal.set_meta("active_tween", tween)
 	
 	tween.tween_property(status_modal, "anchor_top", 0.0, 0.45)
@@ -744,17 +624,17 @@ func _transition_to_success_toast() -> void:
 	tween.tween_property(status_modal, "offset_top", 80.0, 0.45)
 	tween.tween_property(status_modal, "offset_bottom", 140.0, 0.45)
 	
-	var hide_timer = create_tween()
+	var hide_timer: Tween = create_tween()
 	status_modal.set_meta("hide_tween", hide_timer)
 	hide_timer.tween_interval(2.5)
 	hide_timer.tween_property(status_modal, "modulate:a", 0.0, 0.3)
 	hide_timer.tween_callback(status_modal.hide)
 
 func _on_dismiss_button_pressed() -> void:
-	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	var tween: Tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(status_modal, "modulate:a", 0.0, 0.25)
 	
-	var timer = create_tween()
+	var timer: Tween = create_tween()
 	timer.tween_interval(0.25)
 	timer.tween_callback(status_modal.hide)
 

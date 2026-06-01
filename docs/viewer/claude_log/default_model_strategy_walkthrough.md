@@ -482,7 +482,7 @@ New method that:
 ```diff:vrm_viewer.gd
 extends Node3D
 
-@onready var load_button: Button = $UI/Control/LoadButton
+@onready var load_button: Button = $UI/Control/LibraryButton
 @onready var message_label: Label = $UI/Control/MessageLabel
 @onready var file_dialog: FileDialog = $UI/FileDialog
 @onready var model_pivot: Node3D = $ModelPivot
@@ -580,7 +580,7 @@ func _display_metadata(model: Node3D) -> void:
 ===
 extends Node3D
 
-@onready var load_button: Button = $UI/Control/LoadButton
+@onready var load_button: Button = $UI/Control/LibraryButton
 @onready var message_label: Label = $UI/Control/MessageLabel
 @onready var file_dialog: FileDialog = $UI/FileDialog
 @onready var model_pivot: Node3D = $ModelPivot
