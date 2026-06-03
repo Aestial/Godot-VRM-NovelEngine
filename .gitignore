@@ -7,3 +7,6 @@
 
 *.blend1
 *.zip
+
+# PCK generated files (for VRM export)
+*.pck
